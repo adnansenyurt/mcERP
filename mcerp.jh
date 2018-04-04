@@ -1,0 +1,189 @@
+entity Customer {
+	name String required
+    address String
+    phone String
+    accountNo String //IBAN
+}
+
+entity Supplier {
+	name String required
+    address String //free format address entry
+    domain String required
+    web String //URL
+    phone String
+    accountNo String //IBAN
+}
+
+entity ContactPerson {
+	name String required
+    role String
+    eMail String
+    mobile String
+}
+
+entity Opportunity {
+	name String required
+    dateOpened Instant required
+    amount Long
+    currentStatus OpportunityStatus
+}
+
+entity CustomerOrder {
+	name String required
+    dateOpened Instant required
+    datePaymentDue Instant
+    amount Long
+    currentStatus CustomerOrderStatus
+}
+
+entity PurchaseOrder {
+	name String required
+    dateOpened Instant required
+    amount Long required
+    costCenter String
+    paymentConditions String
+    currentStatus PurchaseOrderStatus required
+}
+
+entity CashFlow {
+	datePayment Instant required
+    //relatedPO
+    //relatedCostCenter
+    //relatedCustomer
+    direction CashFlowDirection required
+    type CashFlowType required
+    amount Long required
+    description String
+    currentStatus CashFlowStatus required
+}
+
+entity Invoice {
+	name String required
+	dateIssued Instant required
+    amountTotal Long
+    paymentDue Integer //duration
+    customer Customer
+}
+
+entity CustomerProposal {
+	name String required
+    dateSubmitted Instant required
+    duration Integer //days valid
+    amount Long
+}
+
+entity Product {
+	name String required
+	model String required
+    image String //object URL
+    brochure String //pdf URL
+    specsURL String //web URL
+}
+
+entity BillOfMaterials {
+    items Integer //number of items used per product model
+}
+
+entity SupplierContract {
+	//relatedSupplier
+    dateSigned Instant required
+    //relatedSupplyPartContract
+    //relatedPriceRange
+}
+
+entity SupplyPart {
+	name String required
+    supplierPartCode String
+    description String
+}
+
+entity SupplyPartContract {
+	//relatedSupplyPart
+    //relatedPriceRange
+    //relatedSupplierContract
+}
+
+entity PriceRange {
+	rangeLow Integer required //inclusive
+    rangeHigh Integer required //inclusive
+    price Long required
+    currency Currency required //default: USD
+}
+
+entity ProductStock {
+    skuCode String required
+    amount Long //number of items
+}
+
+entity SupplyStock {
+	name String required
+    amount Long //number of items
+}
+
+enum CustomerOrderStatus {
+    RECEIVED, INVOICED, PAID
+}
+
+enum CashFlowDirection {
+	IN, OUT
+}
+
+enum CashFlowType {
+	INVOICE, ALLOWANCE, SALARY, PO, TAX, CORRECTION
+}
+
+enum CashFlowStatus {
+	DUE, PAID, LATE, CANCELLED
+}
+
+enum Currency {
+	TL, USD, EURO
+}
+
+enum PurchaseOrderStatus {
+	ACTIVE, DELIVERED, CANCELLED
+}
+
+relationship OneToMany {
+	ContactPerson{customer} to Customer,
+    ContactPerson{supplier} to Supplier,
+    Opportunity{customer} to Customer,
+    Opportunity{product} to Product,
+    CustomerOrder{customer} to Customer,
+    PurchaseOrder{supplier} to Supplier,
+    PurchaseOrder{contract} to SupplierContract,
+    SupplyPartContract{contract} to SupplierContract,
+    CashFlow{purchaseOrder} to PurchaseOrder,
+    CashFlow{customerOrder} to CustomerOrder,
+    CustomerProposal{customer} to Customer,
+    ProductStock{product} to Product,
+    SupplyStock{part} to SupplyPart,
+    SupplyPart{bom} to BillOfMaterials
+}
+
+relationship OneToOne {
+    SupplyPart{contract} to SupplyPartContract,
+    PriceRange{contract} to SupplyPartContract,
+    Invoice{customerOrder} to CustomerOrder,
+    BillOfMaterials{product} to Product
+}
+
+//relationship ManyToMany {
+//	Job{task(title)} to Task{job}
+//}
+
+//relationship ManyToOne {
+//	Employee{manager} to Employee
+//}
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+//paginate Job with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl //except Employee, Job
+// Set an angular suffix
+angularSuffix * with mc //mobile-chip
+
