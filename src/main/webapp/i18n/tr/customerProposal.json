@@ -20,7 +20,8 @@
             "dateSubmitted": "Date Submitted",
             "duration": "Duration",
             "amount": "Amount",
-            "customer": "Customer"
+            "customer": "Customer",
+            "opportunity": "Opportunity"
         }
     }
 }

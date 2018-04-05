@@ -51,6 +51,10 @@ public class CustomerOrder implements Serializable {
     @ManyToOne
     private Customer customer;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private CustomerProposal proposal;
+
     @OneToMany(mappedBy = "customerOrder")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -141,6 +145,19 @@ public class CustomerOrder implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public CustomerProposal getProposal() {
+        return proposal;
+    }
+
+    public CustomerOrder proposal(CustomerProposal customerProposal) {
+        this.proposal = customerProposal;
+        return this;
+    }
+
+    public void setProposal(CustomerProposal customerProposal) {
+        this.proposal = customerProposal;
     }
 
     public Set<CashFlow> getCashFlows() {

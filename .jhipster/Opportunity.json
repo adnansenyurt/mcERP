@@ -8,6 +8,13 @@
             "otherEntityField": "id"
         },
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "proposal",
+            "otherEntityName": "customerProposal",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "opportunity"
+        },
+        {
             "relationshipName": "product",
             "otherEntityName": "product",
             "relationshipType": "many-to-one",

@@ -42,6 +42,10 @@ public class CustomerProposal implements Serializable {
     @ManyToOne
     private Customer customer;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Opportunity opportunity;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -114,6 +118,19 @@ public class CustomerProposal implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Opportunity getOpportunity() {
+        return opportunity;
+    }
+
+    public CustomerProposal opportunity(Opportunity opportunity) {
+        this.opportunity = opportunity;
+        return this;
+    }
+
+    public void setOpportunity(Opportunity opportunity) {
+        this.opportunity = opportunity;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

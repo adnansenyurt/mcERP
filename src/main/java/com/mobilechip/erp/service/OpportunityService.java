@@ -22,6 +22,12 @@ public interface OpportunityService {
      * @return the list of entities
      */
     List<OpportunityDTO> findAll();
+    /**
+     * Get all the OpportunityDTO where Proposal is null.
+     *
+     * @return the list of entities
+     */
+    List<OpportunityDTO> findAllWhereProposalIsNull();
 
     /**
      * Get the "id" opportunity.

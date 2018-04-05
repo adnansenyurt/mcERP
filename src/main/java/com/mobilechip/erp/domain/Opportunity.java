@@ -1,5 +1,6 @@
 package com.mobilechip.erp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -44,6 +45,10 @@ public class Opportunity implements Serializable {
 
     @ManyToOne
     private Customer customer;
+
+    @OneToOne(mappedBy = "opportunity")
+    @JsonIgnore
+    private CustomerProposal proposal;
 
     @ManyToOne
     private Product product;
@@ -120,6 +125,19 @@ public class Opportunity implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public CustomerProposal getProposal() {
+        return proposal;
+    }
+
+    public Opportunity proposal(CustomerProposal customerProposal) {
+        this.proposal = customerProposal;
+        return this;
+    }
+
+    public void setProposal(CustomerProposal customerProposal) {
+        this.proposal = customerProposal;
     }
 
     public Product getProduct() {

@@ -10,6 +10,7 @@ import { CustomerOrderMc } from './customer-order-mc.model';
 import { CustomerOrderMcPopupService } from './customer-order-mc-popup.service';
 import { CustomerOrderMcService } from './customer-order-mc.service';
 import { CustomerMc, CustomerMcService } from '../customer-mc';
+import { CustomerProposalMc, CustomerProposalMcService } from '../customer-proposal-mc';
 
 @Component({
     selector: 'jhi-customer-order-mc-dialog',
@@ -22,11 +23,14 @@ export class CustomerOrderMcDialogComponent implements OnInit {
 
     customers: CustomerMc[];
 
+    proposals: CustomerProposalMc[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private customerOrderService: CustomerOrderMcService,
         private customerService: CustomerMcService,
+        private customerProposalService: CustomerProposalMcService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -35,6 +39,19 @@ export class CustomerOrderMcDialogComponent implements OnInit {
         this.isSaving = false;
         this.customerService.query()
             .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.customerProposalService
+            .query({filter: 'customerorder-is-null'})
+            .subscribe((res: HttpResponse<CustomerProposalMc[]>) => {
+                if (!this.customerOrder.proposalId) {
+                    this.proposals = res.body;
+                } else {
+                    this.customerProposalService
+                        .find(this.customerOrder.proposalId)
+                        .subscribe((subRes: HttpResponse<CustomerProposalMc>) => {
+                            this.proposals = [subRes.body].concat(res.body);
+                        }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
+                }
+            }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -72,6 +89,10 @@ export class CustomerOrderMcDialogComponent implements OnInit {
     }
 
     trackCustomerById(index: number, item: CustomerMc) {
+        return item.id;
+    }
+
+    trackCustomerProposalById(index: number, item: CustomerProposalMc) {
         return item.id;
     }
 }

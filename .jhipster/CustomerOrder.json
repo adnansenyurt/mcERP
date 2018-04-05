@@ -8,6 +8,14 @@
             "otherEntityField": "id"
         },
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "proposal",
+            "otherEntityName": "customerProposal",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerOrder"
+        },
+        {
             "relationshipType": "one-to-many",
             "relationshipName": "cashFlow",
             "otherEntityName": "cashFlow",
