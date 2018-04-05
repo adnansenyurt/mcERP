@@ -151,21 +151,21 @@ entity SupplyStock {
 }
 
 relationship OneToMany {
-	ContactPerson{customer} to Customer,
-    ContactPerson{supplier} to Supplier,
     Customer{opportunity} to Opportunity,
-    Opportunity{product} to Product,
-    CustomerOrder{customer} to Customer,
-    PurchaseOrder{supplier} to Supplier,
-    PurchaseOrder{contract} to SupplierContract,
-    SupplyPartContract{contract} to SupplierContract,
-    CashFlow{purchaseOrder} to PurchaseOrder,
-    CashFlow{customerOrder} to CustomerOrder,
-    CustomerProposal{customer} to Customer,
-    ProductStock{product} to Product,
-    SupplyStock{part} to SupplyPart,
-    SupplyPart{bom} to BillOfMaterials,
-    Invoice{customer} to Customer
+    Customer{customerOrder} to CustomerOrder,
+    Customer{contactPerson} to ContactPerson,
+    Supplier{contactPerson} to ContactPerson,
+    Product{opportunity} to Opportunity,
+    Supplier{purchaseOrder} to PurchaseOrder,
+    SupplierContract{purchaseOrder} to PurchaseOrder,
+    SupplierContract{supplierPartContract} to SupplierPartContract,
+    PurchaseOrder{cashFlow} to CashFlow,
+    CustomerOrder{cashFlow} to CashFlow,
+    Customer{customerProposal} to CustomerProposal,
+    Product{productStock} to ProductStock,
+    SupplyPart{supplyStock} to SupplyStock,
+    BillOfMaterials{supplyPart} to SupplyPart,
+    Customer{invoice} to Invoice
 }
 
 relationship OneToOne {
