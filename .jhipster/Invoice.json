@@ -11,7 +11,7 @@
             "relationshipType": "one-to-one",
             "relationshipName": "customerOrder",
             "otherEntityName": "customerOrder",
-            "otherEntityField": "id",
+            "otherEntityField": "name",
             "ownerSide": true,
             "otherEntityRelationshipName": "invoice"
         }

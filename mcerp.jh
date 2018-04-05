@@ -151,27 +151,27 @@ entity SupplyStock {
 }
 
 relationship OneToMany {
-    Customer{opportunity} to Opportunity,
-    Customer{customerOrder} to CustomerOrder,
-    Customer{contactPerson} to ContactPerson,
-    Supplier{contactPerson} to ContactPerson,
-    Product{opportunity} to Opportunity,
-    Supplier{purchaseOrder} to PurchaseOrder,
-    SupplierContract{purchaseOrder} to PurchaseOrder,
-    SupplierContract{supplyPartContract} to SupplyPartContract,
-    PurchaseOrder{cashFlow} to CashFlow,
-    CustomerOrder{cashFlow} to CashFlow,
-    Customer{customerProposal} to CustomerProposal,
-    Product{productStock} to ProductStock,
-    SupplyPart{supplyStock} to SupplyStock,
+    Customer{opportunity(name)} to Opportunity,
+    Customer{customerOrder(name)} to CustomerOrder,
+    Customer{contactPerson(name)} to ContactPerson,
+    Supplier{contactPerson(name)} to ContactPerson,
+    Product{opportunity(name)} to Opportunity,
+    Supplier{purchaseOrder(name)} to PurchaseOrder,
+    SupplierContract{purchaseOrder(dateSigned)} to PurchaseOrder,
+    SupplierContract{supplyPartContract(dateSigned)} to SupplyPartContract,
+    PurchaseOrder{cashFlow(name)} to CashFlow,
+    CustomerOrder{cashFlow(name)} to CashFlow,
+    Customer{customerProposal(name)} to CustomerProposal,
+    Product{productStock(name)} to ProductStock,
+    SupplyPart{supplyStock(name)} to SupplyStock,
     BillOfMaterials{supplyPart} to SupplyPart,
-    Customer{invoice} to Invoice
+    Customer{invoice(name)} to Invoice
 }
 
 relationship OneToOne {
     SupplyPart{contract} to SupplyPartContract,
     PriceRange{contract} to SupplyPartContract,
-    Invoice{customerOrder} to CustomerOrder,
+    Invoice{customerOrder(name)} to CustomerOrder,
     BillOfMaterials{product} to Product
 }
 

@@ -13,6 +13,7 @@ public interface InvoiceMapper extends EntityMapper<InvoiceDTO, Invoice> {
 
     @Mapping(source = "customer.id", target = "customerId")
     @Mapping(source = "customerOrder.id", target = "customerOrderId")
+    @Mapping(source = "customerOrder.name", target = "customerOrderName")
     InvoiceDTO toDto(Invoice invoice);
 
     @Mapping(source = "customerId", target = "customer")
