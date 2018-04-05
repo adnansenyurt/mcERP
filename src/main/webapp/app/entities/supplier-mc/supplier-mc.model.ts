@@ -9,8 +9,8 @@ export class SupplierMc implements BaseEntity {
         public web?: string,
         public phone?: string,
         public accountNo?: string,
-        public contactPersonId?: number,
-        public purchaseOrderId?: number,
+        public contactPeople?: BaseEntity[],
+        public purchaseOrders?: BaseEntity[],
     ) {
     }
 }

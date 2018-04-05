@@ -18,7 +18,7 @@
             },
             "name": "Name",
             "amount": "Amount",
-            "part": "Part"
+            "supplyPart": "Supply Part"
         }
     }
 }

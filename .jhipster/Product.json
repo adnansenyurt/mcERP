@@ -2,16 +2,16 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "one-to-many",
             "relationshipName": "opportunity",
             "otherEntityName": "opportunity",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "product"
         },
         {
+            "relationshipType": "one-to-many",
             "relationshipName": "productStock",
             "otherEntityName": "productStock",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "product"
         }
     ],
     "fields": [

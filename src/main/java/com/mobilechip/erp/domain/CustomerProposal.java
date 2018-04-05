@@ -1,6 +1,5 @@
 package com.mobilechip.erp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -9,8 +8,6 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -42,10 +39,8 @@ public class CustomerProposal implements Serializable {
     @Column(name = "amount")
     private Long amount;
 
-    @OneToMany(mappedBy = "customerProposal")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Customer> customers = new HashSet<>();
+    @ManyToOne
+    private Customer customer;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -108,29 +103,17 @@ public class CustomerProposal implements Serializable {
         this.amount = amount;
     }
 
-    public Set<Customer> getCustomers() {
-        return customers;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public CustomerProposal customers(Set<Customer> customers) {
-        this.customers = customers;
+    public CustomerProposal customer(Customer customer) {
+        this.customer = customer;
         return this;
     }
 
-    public CustomerProposal addCustomer(Customer customer) {
-        this.customers.add(customer);
-        customer.setCustomerProposal(this);
-        return this;
-    }
-
-    public CustomerProposal removeCustomer(Customer customer) {
-        this.customers.remove(customer);
-        customer.setCustomerProposal(null);
-        return this;
-    }
-
-    public void setCustomers(Set<Customer> customers) {
-        this.customers = customers;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

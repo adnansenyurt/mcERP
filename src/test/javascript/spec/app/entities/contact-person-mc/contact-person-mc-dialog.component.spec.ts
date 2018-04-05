@@ -9,6 +9,8 @@ import { McErpTestModule } from '../../../test.module';
 import { ContactPersonMcDialogComponent } from '../../../../../../main/webapp/app/entities/contact-person-mc/contact-person-mc-dialog.component';
 import { ContactPersonMcService } from '../../../../../../main/webapp/app/entities/contact-person-mc/contact-person-mc.service';
 import { ContactPersonMc } from '../../../../../../main/webapp/app/entities/contact-person-mc/contact-person-mc.model';
+import { CustomerMcService } from '../../../../../../main/webapp/app/entities/customer-mc';
+import { SupplierMcService } from '../../../../../../main/webapp/app/entities/supplier-mc';
 
 describe('Component Tests', () => {
 
@@ -24,6 +26,8 @@ describe('Component Tests', () => {
                 imports: [McErpTestModule],
                 declarations: [ContactPersonMcDialogComponent],
                 providers: [
+                    CustomerMcService,
+                    SupplierMcService,
                     ContactPersonMcService
                 ]
             })

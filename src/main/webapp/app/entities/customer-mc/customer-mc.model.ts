@@ -8,10 +8,10 @@ export class CustomerMc implements BaseEntity {
         public phone?: string,
         public accountNo?: string,
         public opportunities?: BaseEntity[],
-        public contactPersonId?: number,
-        public customerOrderId?: number,
-        public invoiceId?: number,
-        public customerProposalId?: number,
+        public customerOrders?: BaseEntity[],
+        public contactPeople?: BaseEntity[],
+        public customerProposals?: BaseEntity[],
+        public invoices?: BaseEntity[],
     ) {
     }
 }

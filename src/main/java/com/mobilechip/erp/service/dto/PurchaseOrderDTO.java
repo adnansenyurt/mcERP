@@ -32,7 +32,9 @@ public class PurchaseOrderDTO implements Serializable {
     @NotNull
     private PurchaseOrderStatus currentStatus;
 
-    private Long cashFlowId;
+    private Long supplierId;
+
+    private Long supplierContractId;
 
     public Long getId() {
         return id;
@@ -90,12 +92,20 @@ public class PurchaseOrderDTO implements Serializable {
         this.currentStatus = currentStatus;
     }
 
-    public Long getCashFlowId() {
-        return cashFlowId;
+    public Long getSupplierId() {
+        return supplierId;
     }
 
-    public void setCashFlowId(Long cashFlowId) {
-        this.cashFlowId = cashFlowId;
+    public void setSupplierId(Long supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    public Long getSupplierContractId() {
+        return supplierContractId;
+    }
+
+    public void setSupplierContractId(Long supplierContractId) {
+        this.supplierContractId = supplierContractId;
     }
 
     @Override

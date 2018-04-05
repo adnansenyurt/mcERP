@@ -1,6 +1,5 @@
 package com.mobilechip.erp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -9,8 +8,6 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 import com.mobilechip.erp.domain.enumeration.CashFlowDirection;
@@ -60,15 +57,11 @@ public class CashFlow implements Serializable {
     @Column(name = "current_status", nullable = false)
     private CashFlowStatus currentStatus;
 
-    @OneToMany(mappedBy = "cashFlow")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<PurchaseOrder> purchaseOrders = new HashSet<>();
+    @ManyToOne
+    private CustomerOrder customerOrder;
 
-    @OneToMany(mappedBy = "cashFlow")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CustomerOrder> customerOrders = new HashSet<>();
+    @ManyToOne
+    private PurchaseOrder purchaseOrder;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -157,54 +150,30 @@ public class CashFlow implements Serializable {
         this.currentStatus = currentStatus;
     }
 
-    public Set<PurchaseOrder> getPurchaseOrders() {
-        return purchaseOrders;
+    public CustomerOrder getCustomerOrder() {
+        return customerOrder;
     }
 
-    public CashFlow purchaseOrders(Set<PurchaseOrder> purchaseOrders) {
-        this.purchaseOrders = purchaseOrders;
+    public CashFlow customerOrder(CustomerOrder customerOrder) {
+        this.customerOrder = customerOrder;
         return this;
     }
 
-    public CashFlow addPurchaseOrder(PurchaseOrder purchaseOrder) {
-        this.purchaseOrders.add(purchaseOrder);
-        purchaseOrder.setCashFlow(this);
+    public void setCustomerOrder(CustomerOrder customerOrder) {
+        this.customerOrder = customerOrder;
+    }
+
+    public PurchaseOrder getPurchaseOrder() {
+        return purchaseOrder;
+    }
+
+    public CashFlow purchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrder = purchaseOrder;
         return this;
     }
 
-    public CashFlow removePurchaseOrder(PurchaseOrder purchaseOrder) {
-        this.purchaseOrders.remove(purchaseOrder);
-        purchaseOrder.setCashFlow(null);
-        return this;
-    }
-
-    public void setPurchaseOrders(Set<PurchaseOrder> purchaseOrders) {
-        this.purchaseOrders = purchaseOrders;
-    }
-
-    public Set<CustomerOrder> getCustomerOrders() {
-        return customerOrders;
-    }
-
-    public CashFlow customerOrders(Set<CustomerOrder> customerOrders) {
-        this.customerOrders = customerOrders;
-        return this;
-    }
-
-    public CashFlow addCustomerOrder(CustomerOrder customerOrder) {
-        this.customerOrders.add(customerOrder);
-        customerOrder.setCashFlow(this);
-        return this;
-    }
-
-    public CashFlow removeCustomerOrder(CustomerOrder customerOrder) {
-        this.customerOrders.remove(customerOrder);
-        customerOrder.setCashFlow(null);
-        return this;
-    }
-
-    public void setCustomerOrders(Set<CustomerOrder> customerOrders) {
-        this.customerOrders = customerOrders;
+    public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrder = purchaseOrder;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

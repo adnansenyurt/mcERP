@@ -10,7 +10,6 @@ import { BillOfMaterialsMcDialogComponent } from '../../../../../../main/webapp/
 import { BillOfMaterialsMcService } from '../../../../../../main/webapp/app/entities/bill-of-materials-mc/bill-of-materials-mc.service';
 import { BillOfMaterialsMc } from '../../../../../../main/webapp/app/entities/bill-of-materials-mc/bill-of-materials-mc.model';
 import { ProductMcService } from '../../../../../../main/webapp/app/entities/product-mc';
-import { SupplyPartMcService } from '../../../../../../main/webapp/app/entities/supply-part-mc';
 
 describe('Component Tests', () => {
 
@@ -27,7 +26,6 @@ describe('Component Tests', () => {
                 declarations: [BillOfMaterialsMcDialogComponent],
                 providers: [
                     ProductMcService,
-                    SupplyPartMcService,
                     BillOfMaterialsMcService
                 ]
             })

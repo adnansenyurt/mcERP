@@ -28,6 +28,18 @@
         <dd>
             <span jhiTranslate="{{'mcErpApp.CashFlowStatus.' + cashFlow.currentStatus}}">{{cashFlow.currentStatus}}</span>
         </dd>
+        <dt><span jhiTranslate="mcErpApp.cashFlow.customerOrder">Customer Order</span></dt>
+        <dd>
+            <div *ngIf="cashFlow.customerOrderId">
+                <a [routerLink]="['/customer-order-mc', cashFlow.customerOrderId]">{{cashFlow.customerOrderId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.cashFlow.purchaseOrder">Purchase Order</span></dt>
+        <dd>
+            <div *ngIf="cashFlow.purchaseOrderId">
+                <a [routerLink]="['/purchase-order-mc', cashFlow.purchaseOrderId]">{{cashFlow.purchaseOrderId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

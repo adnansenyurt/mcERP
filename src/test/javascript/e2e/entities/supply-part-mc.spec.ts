@@ -39,8 +39,8 @@ describe('SupplyPart e2e test', () => {
         expect(supplyPartDialogPage.getSupplierPartCodeInput()).toMatch('supplierPartCode');
         supplyPartDialogPage.setDescriptionInput('description');
         expect(supplyPartDialogPage.getDescriptionInput()).toMatch('description');
+        supplyPartDialogPage.billOfMaterialsSelectLastOption();
         supplyPartDialogPage.contractSelectLastOption();
-        supplyPartDialogPage.supplyStockSelectLastOption();
         supplyPartDialogPage.save();
         expect(supplyPartDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -70,8 +70,8 @@ export class SupplyPartDialogPage {
     nameInput = element(by.css('input#field_name'));
     supplierPartCodeInput = element(by.css('input#field_supplierPartCode'));
     descriptionInput = element(by.css('input#field_description'));
+    billOfMaterialsSelect = element(by.css('select#field_billOfMaterials'));
     contractSelect = element(by.css('select#field_contract'));
-    supplyStockSelect = element(by.css('select#field_supplyStock'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -101,6 +101,22 @@ export class SupplyPartDialogPage {
         return this.descriptionInput.getAttribute('value');
     };
 
+    billOfMaterialsSelectLastOption = function() {
+        this.billOfMaterialsSelect.all(by.tagName('option')).last().click();
+    };
+
+    billOfMaterialsSelectOption = function(option) {
+        this.billOfMaterialsSelect.sendKeys(option);
+    };
+
+    getBillOfMaterialsSelect = function() {
+        return this.billOfMaterialsSelect;
+    };
+
+    getBillOfMaterialsSelectedOption = function() {
+        return this.billOfMaterialsSelect.element(by.css('option:checked')).getText();
+    };
+
     contractSelectLastOption = function() {
         this.contractSelect.all(by.tagName('option')).last().click();
     };
@@ -115,22 +131,6 @@ export class SupplyPartDialogPage {
 
     getContractSelectedOption = function() {
         return this.contractSelect.element(by.css('option:checked')).getText();
-    };
-
-    supplyStockSelectLastOption = function() {
-        this.supplyStockSelect.all(by.tagName('option')).last().click();
-    };
-
-    supplyStockSelectOption = function(option) {
-        this.supplyStockSelect.sendKeys(option);
-    };
-
-    getSupplyStockSelect = function() {
-        return this.supplyStockSelect;
-    };
-
-    getSupplyStockSelectedOption = function() {
-        return this.supplyStockSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

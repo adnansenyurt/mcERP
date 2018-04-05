@@ -25,13 +25,6 @@
                 <option [ngValue]="productOption.id" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.id}}</option>
             </select>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.billOfMaterials.supplyPart" for="field_supplyPart">Supply Part</label>
-            <select class="form-control" id="field_supplyPart" name="supplyPart" [(ngModel)]="billOfMaterials.supplyPartId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="supplyPartOption.id" *ngFor="let supplyPartOption of supplyparts; trackBy: trackSupplyPartById">{{supplyPartOption.id}}</option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

@@ -34,5 +34,11 @@
     <include file="config/liquibase/changelog/20180405084055_added_entity_constraints_SupplyPart.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180405084057_added_entity_constraints_PriceRange.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180405084046_added_entity_constraints_Opportunity.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180405084045_added_entity_constraints_ContactPerson.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180405084049_added_entity_constraints_CashFlow.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180405084051_added_entity_constraints_CustomerProposal.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180405084056_added_entity_constraints_SupplyPartContract.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180405084058_added_entity_constraints_ProductStock.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180405084059_added_entity_constraints_SupplyStock.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

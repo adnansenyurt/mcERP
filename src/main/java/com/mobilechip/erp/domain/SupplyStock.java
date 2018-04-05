@@ -1,6 +1,5 @@
 package com.mobilechip.erp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,8 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -34,10 +31,8 @@ public class SupplyStock implements Serializable {
     @Column(name = "amount")
     private Long amount;
 
-    @OneToMany(mappedBy = "supplyStock")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<SupplyPart> parts = new HashSet<>();
+    @ManyToOne
+    private SupplyPart supplyPart;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -74,29 +69,17 @@ public class SupplyStock implements Serializable {
         this.amount = amount;
     }
 
-    public Set<SupplyPart> getParts() {
-        return parts;
+    public SupplyPart getSupplyPart() {
+        return supplyPart;
     }
 
-    public SupplyStock parts(Set<SupplyPart> supplyParts) {
-        this.parts = supplyParts;
+    public SupplyStock supplyPart(SupplyPart supplyPart) {
+        this.supplyPart = supplyPart;
         return this;
     }
 
-    public SupplyStock addPart(SupplyPart supplyPart) {
-        this.parts.add(supplyPart);
-        supplyPart.setSupplyStock(this);
-        return this;
-    }
-
-    public SupplyStock removePart(SupplyPart supplyPart) {
-        this.parts.remove(supplyPart);
-        supplyPart.setSupplyStock(null);
-        return this;
-    }
-
-    public void setParts(Set<SupplyPart> supplyParts) {
-        this.parts = supplyParts;
+    public void setSupplyPart(SupplyPart supplyPart) {
+        this.supplyPart = supplyPart;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

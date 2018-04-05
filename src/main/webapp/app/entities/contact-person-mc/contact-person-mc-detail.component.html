@@ -20,6 +20,18 @@
         <dd>
             <span>{{contactPerson.mobile}}</span>
         </dd>
+        <dt><span jhiTranslate="mcErpApp.contactPerson.customer">Customer</span></dt>
+        <dd>
+            <div *ngIf="contactPerson.customerId">
+                <a [routerLink]="['/customer-mc', contactPerson.customerId]">{{contactPerson.customerId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.contactPerson.supplier">Supplier</span></dt>
+        <dd>
+            <div *ngIf="contactPerson.supplierId">
+                <a [routerLink]="['/supplier-mc', contactPerson.supplierId]">{{contactPerson.supplierId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

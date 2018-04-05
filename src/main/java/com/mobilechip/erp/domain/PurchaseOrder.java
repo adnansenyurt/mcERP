@@ -53,18 +53,16 @@ public class PurchaseOrder implements Serializable {
     @Column(name = "current_status", nullable = false)
     private PurchaseOrderStatus currentStatus;
 
-    @OneToMany(mappedBy = "purchaseOrder")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Supplier> suppliers = new HashSet<>();
+    @ManyToOne
+    private Supplier supplier;
 
     @OneToMany(mappedBy = "purchaseOrder")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<SupplierContract> contracts = new HashSet<>();
+    private Set<CashFlow> cashFlows = new HashSet<>();
 
     @ManyToOne
-    private CashFlow cashFlow;
+    private SupplierContract supplierContract;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -153,67 +151,55 @@ public class PurchaseOrder implements Serializable {
         this.currentStatus = currentStatus;
     }
 
-    public Set<Supplier> getSuppliers() {
-        return suppliers;
+    public Supplier getSupplier() {
+        return supplier;
     }
 
-    public PurchaseOrder suppliers(Set<Supplier> suppliers) {
-        this.suppliers = suppliers;
+    public PurchaseOrder supplier(Supplier supplier) {
+        this.supplier = supplier;
         return this;
     }
 
-    public PurchaseOrder addSupplier(Supplier supplier) {
-        this.suppliers.add(supplier);
-        supplier.setPurchaseOrder(this);
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public Set<CashFlow> getCashFlows() {
+        return cashFlows;
+    }
+
+    public PurchaseOrder cashFlows(Set<CashFlow> cashFlows) {
+        this.cashFlows = cashFlows;
         return this;
     }
 
-    public PurchaseOrder removeSupplier(Supplier supplier) {
-        this.suppliers.remove(supplier);
-        supplier.setPurchaseOrder(null);
+    public PurchaseOrder addCashFlow(CashFlow cashFlow) {
+        this.cashFlows.add(cashFlow);
+        cashFlow.setPurchaseOrder(this);
         return this;
     }
 
-    public void setSuppliers(Set<Supplier> suppliers) {
-        this.suppliers = suppliers;
-    }
-
-    public Set<SupplierContract> getContracts() {
-        return contracts;
-    }
-
-    public PurchaseOrder contracts(Set<SupplierContract> supplierContracts) {
-        this.contracts = supplierContracts;
+    public PurchaseOrder removeCashFlow(CashFlow cashFlow) {
+        this.cashFlows.remove(cashFlow);
+        cashFlow.setPurchaseOrder(null);
         return this;
     }
 
-    public PurchaseOrder addContract(SupplierContract supplierContract) {
-        this.contracts.add(supplierContract);
-        supplierContract.setPurchaseOrder(this);
+    public void setCashFlows(Set<CashFlow> cashFlows) {
+        this.cashFlows = cashFlows;
+    }
+
+    public SupplierContract getSupplierContract() {
+        return supplierContract;
+    }
+
+    public PurchaseOrder supplierContract(SupplierContract supplierContract) {
+        this.supplierContract = supplierContract;
         return this;
     }
 
-    public PurchaseOrder removeContract(SupplierContract supplierContract) {
-        this.contracts.remove(supplierContract);
-        supplierContract.setPurchaseOrder(null);
-        return this;
-    }
-
-    public void setContracts(Set<SupplierContract> supplierContracts) {
-        this.contracts = supplierContracts;
-    }
-
-    public CashFlow getCashFlow() {
-        return cashFlow;
-    }
-
-    public PurchaseOrder cashFlow(CashFlow cashFlow) {
-        this.cashFlow = cashFlow;
-        return this;
-    }
-
-    public void setCashFlow(CashFlow cashFlow) {
-        this.cashFlow = cashFlow;
+    public void setSupplierContract(SupplierContract supplierContract) {
+        this.supplierContract = supplierContract;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

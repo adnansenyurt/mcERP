@@ -2,20 +2,20 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-many",
             "relationshipName": "supplier",
             "otherEntityName": "supplier",
-            "otherEntityRelationshipName": "purchaseOrder"
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "contract",
-            "otherEntityName": "supplierContract",
+            "relationshipName": "cashFlow",
+            "otherEntityName": "cashFlow",
             "otherEntityRelationshipName": "purchaseOrder"
         },
         {
-            "relationshipName": "cashFlow",
-            "otherEntityName": "cashFlow",
+            "relationshipName": "supplierContract",
+            "otherEntityName": "supplierContract",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         }

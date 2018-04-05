@@ -8,28 +8,28 @@
             "otherEntityRelationshipName": "customer"
         },
         {
-            "relationshipName": "contactPerson",
-            "otherEntityName": "contactPerson",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
+            "relationshipType": "one-to-many",
             "relationshipName": "customerOrder",
             "otherEntityName": "customerOrder",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "customer"
         },
         {
-            "relationshipName": "invoice",
-            "otherEntityName": "invoice",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipType": "one-to-many",
+            "relationshipName": "contactPerson",
+            "otherEntityName": "contactPerson",
+            "otherEntityRelationshipName": "customer"
         },
         {
+            "relationshipType": "one-to-many",
             "relationshipName": "customerProposal",
             "otherEntityName": "customerProposal",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "invoice",
+            "otherEntityName": "invoice",
+            "otherEntityRelationshipName": "customer"
         }
     ],
     "fields": [

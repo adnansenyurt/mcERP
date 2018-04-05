@@ -23,6 +23,10 @@ public class ContactPersonDTO implements Serializable {
 
     private String mobile;
 
+    private Long customerId;
+
+    private Long supplierId;
+
     public Long getId() {
         return id;
     }
@@ -61,6 +65,22 @@ public class ContactPersonDTO implements Serializable {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public Long getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(Long supplierId) {
+        this.supplierId = supplierId;
     }
 
     @Override

@@ -41,6 +41,8 @@ describe('ContactPerson e2e test', () => {
         expect(contactPersonDialogPage.getEMailInput()).toMatch('eMail');
         contactPersonDialogPage.setMobileInput('mobile');
         expect(contactPersonDialogPage.getMobileInput()).toMatch('mobile');
+        contactPersonDialogPage.customerSelectLastOption();
+        contactPersonDialogPage.supplierSelectLastOption();
         contactPersonDialogPage.save();
         expect(contactPersonDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -71,6 +73,8 @@ export class ContactPersonDialogPage {
     roleInput = element(by.css('input#field_role'));
     eMailInput = element(by.css('input#field_eMail'));
     mobileInput = element(by.css('input#field_mobile'));
+    customerSelect = element(by.css('select#field_customer'));
+    supplierSelect = element(by.css('select#field_supplier'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -106,6 +110,38 @@ export class ContactPersonDialogPage {
 
     getMobileInput = function() {
         return this.mobileInput.getAttribute('value');
+    };
+
+    customerSelectLastOption = function() {
+        this.customerSelect.all(by.tagName('option')).last().click();
+    };
+
+    customerSelectOption = function(option) {
+        this.customerSelect.sendKeys(option);
+    };
+
+    getCustomerSelect = function() {
+        return this.customerSelect;
+    };
+
+    getCustomerSelectedOption = function() {
+        return this.customerSelect.element(by.css('option:checked')).getText();
+    };
+
+    supplierSelectLastOption = function() {
+        this.supplierSelect.all(by.tagName('option')).last().click();
+    };
+
+    supplierSelectOption = function(option) {
+        this.supplierSelect.sendKeys(option);
+    };
+
+    getSupplierSelect = function() {
+        return this.supplierSelect;
+    };
+
+    getSupplierSelectedOption = function() {
+        return this.supplierSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

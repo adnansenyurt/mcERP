@@ -9,6 +9,7 @@ import { McErpTestModule } from '../../../test.module';
 import { CustomerProposalMcDialogComponent } from '../../../../../../main/webapp/app/entities/customer-proposal-mc/customer-proposal-mc-dialog.component';
 import { CustomerProposalMcService } from '../../../../../../main/webapp/app/entities/customer-proposal-mc/customer-proposal-mc.service';
 import { CustomerProposalMc } from '../../../../../../main/webapp/app/entities/customer-proposal-mc/customer-proposal-mc.model';
+import { CustomerMcService } from '../../../../../../main/webapp/app/entities/customer-mc';
 
 describe('Component Tests', () => {
 
@@ -24,6 +25,7 @@ describe('Component Tests', () => {
                 imports: [McErpTestModule],
                 declarations: [CustomerProposalMcDialogComponent],
                 providers: [
+                    CustomerMcService,
                     CustomerProposalMcService
                 ]
             })

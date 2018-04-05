@@ -2,10 +2,10 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-many",
             "relationshipName": "product",
             "otherEntityName": "product",
-            "otherEntityRelationshipName": "productStock"
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

@@ -13,12 +13,22 @@ public class SupplyPartContractDTO implements Serializable {
 
     private Long id;
 
+    private Long supplierContractId;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getSupplierContractId() {
+        return supplierContractId;
+    }
+
+    public void setSupplierContractId(Long supplierContractId) {
+        this.supplierContractId = supplierContractId;
     }
 
     @Override

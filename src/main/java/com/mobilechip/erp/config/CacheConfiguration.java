@@ -75,6 +75,20 @@ public class CacheConfiguration {
             cm.createCache(com.mobilechip.erp.domain.SupplyStock.class.getName(), jcacheConfiguration);
             cm.createCache(com.mobilechip.erp.domain.SupplyStock.class.getName() + ".parts", jcacheConfiguration);
             cm.createCache(com.mobilechip.erp.domain.Customer.class.getName() + ".opportunities", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Customer.class.getName() + ".customerOrders", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Customer.class.getName() + ".contactPeople", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Customer.class.getName() + ".customerProposals", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Customer.class.getName() + ".invoices", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Supplier.class.getName() + ".contactPeople", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Supplier.class.getName() + ".purchaseOrders", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.CustomerOrder.class.getName() + ".cashFlows", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.PurchaseOrder.class.getName() + ".cashFlows", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Product.class.getName() + ".opportunities", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Product.class.getName() + ".productStocks", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.BillOfMaterials.class.getName() + ".supplyParts", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.SupplierContract.class.getName() + ".purchaseOrders", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.SupplierContract.class.getName() + ".supplyPartContracts", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.SupplyPart.class.getName() + ".supplyStocks", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -9,7 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { PurchaseOrderMc } from './purchase-order-mc.model';
 import { PurchaseOrderMcPopupService } from './purchase-order-mc-popup.service';
 import { PurchaseOrderMcService } from './purchase-order-mc.service';
-import { CashFlowMc, CashFlowMcService } from '../cash-flow-mc';
+import { SupplierMc, SupplierMcService } from '../supplier-mc';
+import { SupplierContractMc, SupplierContractMcService } from '../supplier-contract-mc';
 
 @Component({
     selector: 'jhi-purchase-order-mc-dialog',
@@ -20,21 +21,26 @@ export class PurchaseOrderMcDialogComponent implements OnInit {
     purchaseOrder: PurchaseOrderMc;
     isSaving: boolean;
 
-    cashflows: CashFlowMc[];
+    suppliers: SupplierMc[];
+
+    suppliercontracts: SupplierContractMc[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private purchaseOrderService: PurchaseOrderMcService,
-        private cashFlowService: CashFlowMcService,
+        private supplierService: SupplierMcService,
+        private supplierContractService: SupplierContractMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.cashFlowService.query()
-            .subscribe((res: HttpResponse<CashFlowMc[]>) => { this.cashflows = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.supplierService.query()
+            .subscribe((res: HttpResponse<SupplierMc[]>) => { this.suppliers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.supplierContractService.query()
+            .subscribe((res: HttpResponse<SupplierContractMc[]>) => { this.suppliercontracts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -71,7 +77,11 @@ export class PurchaseOrderMcDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackCashFlowById(index: number, item: CashFlowMc) {
+    trackSupplierById(index: number, item: SupplierMc) {
+        return item.id;
+    }
+
+    trackSupplierContractById(index: number, item: SupplierContractMc) {
         return item.id;
     }
 }

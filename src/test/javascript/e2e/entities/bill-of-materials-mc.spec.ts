@@ -36,7 +36,6 @@ describe('BillOfMaterials e2e test', () => {
         billOfMaterialsDialogPage.setItemsInput('5');
         expect(billOfMaterialsDialogPage.getItemsInput()).toMatch('5');
         billOfMaterialsDialogPage.productSelectLastOption();
-        billOfMaterialsDialogPage.supplyPartSelectLastOption();
         billOfMaterialsDialogPage.save();
         expect(billOfMaterialsDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -65,7 +64,6 @@ export class BillOfMaterialsDialogPage {
     closeButton = element(by.css('button.close'));
     itemsInput = element(by.css('input#field_items'));
     productSelect = element(by.css('select#field_product'));
-    supplyPartSelect = element(by.css('select#field_supplyPart'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -93,22 +91,6 @@ export class BillOfMaterialsDialogPage {
 
     getProductSelectedOption = function() {
         return this.productSelect.element(by.css('option:checked')).getText();
-    };
-
-    supplyPartSelectLastOption = function() {
-        this.supplyPartSelect.all(by.tagName('option')).last().click();
-    };
-
-    supplyPartSelectOption = function(option) {
-        this.supplyPartSelect.sendKeys(option);
-    };
-
-    getSupplyPartSelect = function() {
-        return this.supplyPartSelect;
-    };
-
-    getSupplyPartSelectedOption = function() {
-        return this.supplyPartSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

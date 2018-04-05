@@ -1,5 +1,6 @@
 package com.mobilechip.erp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -7,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -41,11 +44,15 @@ public class Product implements Serializable {
     @Column(name = "specs_url")
     private String specsURL;
 
-    @ManyToOne
-    private Opportunity opportunity;
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Opportunity> opportunities = new HashSet<>();
 
-    @ManyToOne
-    private ProductStock productStock;
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ProductStock> productStocks = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -121,30 +128,54 @@ public class Product implements Serializable {
         this.specsURL = specsURL;
     }
 
-    public Opportunity getOpportunity() {
-        return opportunity;
+    public Set<Opportunity> getOpportunities() {
+        return opportunities;
     }
 
-    public Product opportunity(Opportunity opportunity) {
-        this.opportunity = opportunity;
+    public Product opportunities(Set<Opportunity> opportunities) {
+        this.opportunities = opportunities;
         return this;
     }
 
-    public void setOpportunity(Opportunity opportunity) {
-        this.opportunity = opportunity;
-    }
-
-    public ProductStock getProductStock() {
-        return productStock;
-    }
-
-    public Product productStock(ProductStock productStock) {
-        this.productStock = productStock;
+    public Product addOpportunity(Opportunity opportunity) {
+        this.opportunities.add(opportunity);
+        opportunity.setProduct(this);
         return this;
     }
 
-    public void setProductStock(ProductStock productStock) {
-        this.productStock = productStock;
+    public Product removeOpportunity(Opportunity opportunity) {
+        this.opportunities.remove(opportunity);
+        opportunity.setProduct(null);
+        return this;
+    }
+
+    public void setOpportunities(Set<Opportunity> opportunities) {
+        this.opportunities = opportunities;
+    }
+
+    public Set<ProductStock> getProductStocks() {
+        return productStocks;
+    }
+
+    public Product productStocks(Set<ProductStock> productStocks) {
+        this.productStocks = productStocks;
+        return this;
+    }
+
+    public Product addProductStock(ProductStock productStock) {
+        this.productStocks.add(productStock);
+        productStock.setProduct(this);
+        return this;
+    }
+
+    public Product removeProductStock(ProductStock productStock) {
+        this.productStocks.remove(productStock);
+        productStock.setProduct(null);
+        return this;
+    }
+
+    public void setProductStocks(Set<ProductStock> productStocks) {
+        this.productStocks = productStocks;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

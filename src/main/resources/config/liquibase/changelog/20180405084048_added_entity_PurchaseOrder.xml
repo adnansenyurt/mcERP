@@ -45,7 +45,11 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="cash_flow_id" type="bigint">
+            <column name="supplier_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="supplier_contract_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

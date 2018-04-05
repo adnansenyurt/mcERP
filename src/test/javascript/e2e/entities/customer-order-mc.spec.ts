@@ -42,7 +42,7 @@ describe('CustomerOrder e2e test', () => {
         customerOrderDialogPage.setAmountInput('5');
         expect(customerOrderDialogPage.getAmountInput()).toMatch('5');
         customerOrderDialogPage.currentStatusSelectLastOption();
-        customerOrderDialogPage.cashFlowSelectLastOption();
+        customerOrderDialogPage.customerSelectLastOption();
         customerOrderDialogPage.save();
         expect(customerOrderDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -74,7 +74,7 @@ export class CustomerOrderDialogPage {
     datePaymentDueInput = element(by.css('input#field_datePaymentDue'));
     amountInput = element(by.css('input#field_amount'));
     currentStatusSelect = element(by.css('select#field_currentStatus'));
-    cashFlowSelect = element(by.css('select#field_cashFlow'));
+    customerSelect = element(by.css('select#field_customer'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -123,20 +123,20 @@ export class CustomerOrderDialogPage {
     currentStatusSelectLastOption = function() {
         this.currentStatusSelect.all(by.tagName('option')).last().click();
     };
-    cashFlowSelectLastOption = function() {
-        this.cashFlowSelect.all(by.tagName('option')).last().click();
+    customerSelectLastOption = function() {
+        this.customerSelect.all(by.tagName('option')).last().click();
     };
 
-    cashFlowSelectOption = function(option) {
-        this.cashFlowSelect.sendKeys(option);
+    customerSelectOption = function(option) {
+        this.customerSelect.sendKeys(option);
     };
 
-    getCashFlowSelect = function() {
-        return this.cashFlowSelect;
+    getCustomerSelect = function() {
+        return this.customerSelect;
     };
 
-    getCashFlowSelectedOption = function() {
-        return this.cashFlowSelect.element(by.css('option:checked')).getText();
+    getCustomerSelectedOption = function() {
+        return this.customerSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

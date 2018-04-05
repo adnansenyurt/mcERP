@@ -1,5 +1,6 @@
 package com.mobilechip.erp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -7,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -44,11 +47,15 @@ public class Supplier implements Serializable {
     @Column(name = "account_no")
     private String accountNo;
 
-    @ManyToOne
-    private ContactPerson contactPerson;
+    @OneToMany(mappedBy = "supplier")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ContactPerson> contactPeople = new HashSet<>();
 
-    @ManyToOne
-    private PurchaseOrder purchaseOrder;
+    @OneToMany(mappedBy = "supplier")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<PurchaseOrder> purchaseOrders = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -137,30 +144,54 @@ public class Supplier implements Serializable {
         this.accountNo = accountNo;
     }
 
-    public ContactPerson getContactPerson() {
-        return contactPerson;
+    public Set<ContactPerson> getContactPeople() {
+        return contactPeople;
     }
 
-    public Supplier contactPerson(ContactPerson contactPerson) {
-        this.contactPerson = contactPerson;
+    public Supplier contactPeople(Set<ContactPerson> contactPeople) {
+        this.contactPeople = contactPeople;
         return this;
     }
 
-    public void setContactPerson(ContactPerson contactPerson) {
-        this.contactPerson = contactPerson;
-    }
-
-    public PurchaseOrder getPurchaseOrder() {
-        return purchaseOrder;
-    }
-
-    public Supplier purchaseOrder(PurchaseOrder purchaseOrder) {
-        this.purchaseOrder = purchaseOrder;
+    public Supplier addContactPerson(ContactPerson contactPerson) {
+        this.contactPeople.add(contactPerson);
+        contactPerson.setSupplier(this);
         return this;
     }
 
-    public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
-        this.purchaseOrder = purchaseOrder;
+    public Supplier removeContactPerson(ContactPerson contactPerson) {
+        this.contactPeople.remove(contactPerson);
+        contactPerson.setSupplier(null);
+        return this;
+    }
+
+    public void setContactPeople(Set<ContactPerson> contactPeople) {
+        this.contactPeople = contactPeople;
+    }
+
+    public Set<PurchaseOrder> getPurchaseOrders() {
+        return purchaseOrders;
+    }
+
+    public Supplier purchaseOrders(Set<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
+        return this;
+    }
+
+    public Supplier addPurchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrders.add(purchaseOrder);
+        purchaseOrder.setSupplier(this);
+        return this;
+    }
+
+    public Supplier removePurchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrders.remove(purchaseOrder);
+        purchaseOrder.setSupplier(null);
+        return this;
+    }
+
+    public void setPurchaseOrders(Set<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

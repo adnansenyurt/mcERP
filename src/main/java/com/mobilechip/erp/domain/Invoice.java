@@ -1,6 +1,5 @@
 package com.mobilechip.erp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -9,8 +8,6 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -42,14 +39,12 @@ public class Invoice implements Serializable {
     @Column(name = "payment_due")
     private Integer paymentDue;
 
+    @ManyToOne
+    private Customer customer;
+
     @OneToOne
     @JoinColumn(unique = true)
     private CustomerOrder customerOrder;
-
-    @OneToMany(mappedBy = "invoice")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Customer> customers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -112,6 +107,19 @@ public class Invoice implements Serializable {
         this.paymentDue = paymentDue;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Invoice customer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public CustomerOrder getCustomerOrder() {
         return customerOrder;
     }
@@ -123,31 +131,6 @@ public class Invoice implements Serializable {
 
     public void setCustomerOrder(CustomerOrder customerOrder) {
         this.customerOrder = customerOrder;
-    }
-
-    public Set<Customer> getCustomers() {
-        return customers;
-    }
-
-    public Invoice customers(Set<Customer> customers) {
-        this.customers = customers;
-        return this;
-    }
-
-    public Invoice addCustomer(Customer customer) {
-        this.customers.add(customer);
-        customer.setInvoice(this);
-        return this;
-    }
-
-    public Invoice removeCustomer(Customer customer) {
-        this.customers.remove(customer);
-        customer.setInvoice(null);
-        return this;
-    }
-
-    public void setCustomers(Set<Customer> customers) {
-        this.customers = customers;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

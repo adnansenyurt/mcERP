@@ -21,6 +21,8 @@
             <th><span jhiTranslate="mcErpApp.contactPerson.role">Role</span></th>
             <th><span jhiTranslate="mcErpApp.contactPerson.eMail">E Mail</span></th>
             <th><span jhiTranslate="mcErpApp.contactPerson.mobile">Mobile</span></th>
+            <th><span jhiTranslate="mcErpApp.contactPerson.customer">Customer</span></th>
+            <th><span jhiTranslate="mcErpApp.contactPerson.supplier">Supplier</span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,6 +33,16 @@
                 <td>{{contactPerson.role}}</td>
                 <td>{{contactPerson.eMail}}</td>
                 <td>{{contactPerson.mobile}}</td>
+                <td>
+                    <div *ngIf="contactPerson.customerId">
+                        <a [routerLink]="['../customer-mc', contactPerson.customerId  ]" >{{contactPerson.customerId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="contactPerson.supplierId">
+                        <a [routerLink]="['../supplier-mc', contactPerson.supplierId  ]" >{{contactPerson.supplierId}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

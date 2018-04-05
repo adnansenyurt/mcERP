@@ -35,6 +35,10 @@ public class CashFlowDTO implements Serializable {
     @NotNull
     private CashFlowStatus currentStatus;
 
+    private Long customerOrderId;
+
+    private Long purchaseOrderId;
+
     public Long getId() {
         return id;
     }
@@ -89,6 +93,22 @@ public class CashFlowDTO implements Serializable {
 
     public void setCurrentStatus(CashFlowStatus currentStatus) {
         this.currentStatus = currentStatus;
+    }
+
+    public Long getCustomerOrderId() {
+        return customerOrderId;
+    }
+
+    public void setCustomerOrderId(Long customerOrderId) {
+        this.customerOrderId = customerOrderId;
+    }
+
+    public Long getPurchaseOrderId() {
+        return purchaseOrderId;
+    }
+
+    public void setPurchaseOrderId(Long purchaseOrderId) {
+        this.purchaseOrderId = purchaseOrderId;
     }
 
     @Override

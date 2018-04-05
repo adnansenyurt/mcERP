@@ -18,10 +18,6 @@ public class SupplierContractDTO implements Serializable {
     @NotNull
     private Instant dateSigned;
 
-    private Long purchaseOrderId;
-
-    private Long supplyPartContractId;
-
     public Long getId() {
         return id;
     }
@@ -36,22 +32,6 @@ public class SupplierContractDTO implements Serializable {
 
     public void setDateSigned(Instant dateSigned) {
         this.dateSigned = dateSigned;
-    }
-
-    public Long getPurchaseOrderId() {
-        return purchaseOrderId;
-    }
-
-    public void setPurchaseOrderId(Long purchaseOrderId) {
-        this.purchaseOrderId = purchaseOrderId;
-    }
-
-    public Long getSupplyPartContractId() {
-        return supplyPartContractId;
-    }
-
-    public void setSupplyPartContractId(Long supplyPartContractId) {
-        this.supplyPartContractId = supplyPartContractId;
     }
 
     @Override

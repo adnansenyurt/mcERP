@@ -4,11 +4,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { SupplyPartContractMc } from './supply-part-contract-mc.model';
 import { SupplyPartContractMcPopupService } from './supply-part-contract-mc-popup.service';
 import { SupplyPartContractMcService } from './supply-part-contract-mc.service';
+import { SupplierContractMc, SupplierContractMcService } from '../supplier-contract-mc';
 
 @Component({
     selector: 'jhi-supply-part-contract-mc-dialog',
@@ -19,15 +20,21 @@ export class SupplyPartContractMcDialogComponent implements OnInit {
     supplyPartContract: SupplyPartContractMc;
     isSaving: boolean;
 
+    suppliercontracts: SupplierContractMc[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private supplyPartContractService: SupplyPartContractMcService,
+        private supplierContractService: SupplierContractMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.supplierContractService.query()
+            .subscribe((res: HttpResponse<SupplierContractMc[]>) => { this.suppliercontracts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -58,6 +65,14 @@ export class SupplyPartContractMcDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackSupplierContractById(index: number, item: SupplierContractMc) {
+        return item.id;
     }
 }
 

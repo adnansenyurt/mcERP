@@ -2,10 +2,10 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-many",
             "relationshipName": "customer",
             "otherEntityName": "customer",
-            "otherEntityRelationshipName": "customerProposal"
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

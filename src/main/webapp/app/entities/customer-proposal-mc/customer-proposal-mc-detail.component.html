@@ -20,6 +20,12 @@
         <dd>
             <span>{{customerProposal.amount}}</span>
         </dd>
+        <dt><span jhiTranslate="mcErpApp.customerProposal.customer">Customer</span></dt>
+        <dd>
+            <div *ngIf="customerProposal.customerId">
+                <a [routerLink]="['/customer-mc', customerProposal.customerId]">{{customerProposal.customerId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

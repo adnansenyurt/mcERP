@@ -19,8 +19,8 @@
             "name": "Name",
             "supplierPartCode": "Supplier Part Code",
             "description": "Description",
+            "billOfMaterials": "Bill Of Materials",
             "contract": "Contract",
-            "bom": "Bom",
             "supplyStock": "Supply Stock"
         }
     }

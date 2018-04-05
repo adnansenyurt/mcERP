@@ -10,6 +10,7 @@ import { OpportunityMcDialogComponent } from '../../../../../../main/webapp/app/
 import { OpportunityMcService } from '../../../../../../main/webapp/app/entities/opportunity-mc/opportunity-mc.service';
 import { OpportunityMc } from '../../../../../../main/webapp/app/entities/opportunity-mc/opportunity-mc.model';
 import { CustomerMcService } from '../../../../../../main/webapp/app/entities/customer-mc';
+import { ProductMcService } from '../../../../../../main/webapp/app/entities/product-mc';
 
 describe('Component Tests', () => {
 
@@ -26,6 +27,7 @@ describe('Component Tests', () => {
                 declarations: [OpportunityMcDialogComponent],
                 providers: [
                     CustomerMcService,
+                    ProductMcService,
                     OpportunityMcService
                 ]
             })

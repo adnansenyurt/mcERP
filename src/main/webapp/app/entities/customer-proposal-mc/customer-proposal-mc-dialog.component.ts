@@ -4,11 +4,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { CustomerProposalMc } from './customer-proposal-mc.model';
 import { CustomerProposalMcPopupService } from './customer-proposal-mc-popup.service';
 import { CustomerProposalMcService } from './customer-proposal-mc.service';
+import { CustomerMc, CustomerMcService } from '../customer-mc';
 
 @Component({
     selector: 'jhi-customer-proposal-mc-dialog',
@@ -19,15 +20,21 @@ export class CustomerProposalMcDialogComponent implements OnInit {
     customerProposal: CustomerProposalMc;
     isSaving: boolean;
 
+    customers: CustomerMc[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private customerProposalService: CustomerProposalMcService,
+        private customerService: CustomerMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.customerService.query()
+            .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -58,6 +65,14 @@ export class CustomerProposalMcDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackCustomerById(index: number, item: CustomerMc) {
+        return item.id;
     }
 }
 

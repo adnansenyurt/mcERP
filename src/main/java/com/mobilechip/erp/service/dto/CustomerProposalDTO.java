@@ -25,6 +25,8 @@ public class CustomerProposalDTO implements Serializable {
 
     private Long amount;
 
+    private Long customerId;
+
     public Long getId() {
         return id;
     }
@@ -63,6 +65,14 @@ public class CustomerProposalDTO implements Serializable {
 
     public void setAmount(Long amount) {
         this.amount = amount;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @Override

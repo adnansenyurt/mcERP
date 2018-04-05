@@ -8,18 +8,6 @@
         <dd>
             <span>{{supplierContract.dateSigned | date:'medium'}}</span>
         </dd>
-        <dt><span jhiTranslate="mcErpApp.supplierContract.purchaseOrder">Purchase Order</span></dt>
-        <dd>
-            <div *ngIf="supplierContract.purchaseOrderId">
-                <a [routerLink]="['/purchase-order-mc', supplierContract.purchaseOrderId]">{{supplierContract.purchaseOrderId}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="mcErpApp.supplierContract.supplyPartContract">Supply Part Contract</span></dt>
-        <dd>
-            <div *ngIf="supplierContract.supplyPartContractId">
-                <a [routerLink]="['/supply-part-contract-mc', supplierContract.supplyPartContractId]">{{supplierContract.supplyPartContractId}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

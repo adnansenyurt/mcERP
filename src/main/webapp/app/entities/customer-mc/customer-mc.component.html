@@ -21,10 +21,6 @@
             <th><span jhiTranslate="mcErpApp.customer.address">Address</span></th>
             <th><span jhiTranslate="mcErpApp.customer.phone">Phone</span></th>
             <th><span jhiTranslate="mcErpApp.customer.accountNo">Account No</span></th>
-            <th><span jhiTranslate="mcErpApp.customer.contactPerson">Contact Person</span></th>
-            <th><span jhiTranslate="mcErpApp.customer.customerOrder">Customer Order</span></th>
-            <th><span jhiTranslate="mcErpApp.customer.invoice">Invoice</span></th>
-            <th><span jhiTranslate="mcErpApp.customer.customerProposal">Customer Proposal</span></th>
             <th></th>
             </tr>
             </thead>
@@ -35,26 +31,6 @@
                 <td>{{customer.address}}</td>
                 <td>{{customer.phone}}</td>
                 <td>{{customer.accountNo}}</td>
-                <td>
-                    <div *ngIf="customer.contactPersonId">
-                        <a [routerLink]="['../contact-person-mc', customer.contactPersonId  ]" >{{customer.contactPersonId}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="customer.customerOrderId">
-                        <a [routerLink]="['../customer-order-mc', customer.customerOrderId  ]" >{{customer.customerOrderId}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="customer.invoiceId">
-                        <a [routerLink]="['../invoice-mc', customer.invoiceId  ]" >{{customer.invoiceId}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="customer.customerProposalId">
-                        <a [routerLink]="['../customer-proposal-mc', customer.customerProposalId  ]" >{{customer.customerProposalId}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

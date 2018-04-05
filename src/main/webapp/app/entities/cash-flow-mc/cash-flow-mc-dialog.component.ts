@@ -4,11 +4,13 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { CashFlowMc } from './cash-flow-mc.model';
 import { CashFlowMcPopupService } from './cash-flow-mc-popup.service';
 import { CashFlowMcService } from './cash-flow-mc.service';
+import { CustomerOrderMc, CustomerOrderMcService } from '../customer-order-mc';
+import { PurchaseOrderMc, PurchaseOrderMcService } from '../purchase-order-mc';
 
 @Component({
     selector: 'jhi-cash-flow-mc-dialog',
@@ -19,15 +21,26 @@ export class CashFlowMcDialogComponent implements OnInit {
     cashFlow: CashFlowMc;
     isSaving: boolean;
 
+    customerorders: CustomerOrderMc[];
+
+    purchaseorders: PurchaseOrderMc[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private cashFlowService: CashFlowMcService,
+        private customerOrderService: CustomerOrderMcService,
+        private purchaseOrderService: PurchaseOrderMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.customerOrderService.query()
+            .subscribe((res: HttpResponse<CustomerOrderMc[]>) => { this.customerorders = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.purchaseOrderService.query()
+            .subscribe((res: HttpResponse<PurchaseOrderMc[]>) => { this.purchaseorders = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -58,6 +71,18 @@ export class CashFlowMcDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackCustomerOrderById(index: number, item: CustomerOrderMc) {
+        return item.id;
+    }
+
+    trackPurchaseOrderById(index: number, item: PurchaseOrderMc) {
+        return item.id;
     }
 }
 

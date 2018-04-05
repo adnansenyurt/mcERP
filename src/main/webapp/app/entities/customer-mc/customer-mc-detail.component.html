@@ -20,30 +20,6 @@
         <dd>
             <span>{{customer.accountNo}}</span>
         </dd>
-        <dt><span jhiTranslate="mcErpApp.customer.contactPerson">Contact Person</span></dt>
-        <dd>
-            <div *ngIf="customer.contactPersonId">
-                <a [routerLink]="['/contact-person-mc', customer.contactPersonId]">{{customer.contactPersonId}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="mcErpApp.customer.customerOrder">Customer Order</span></dt>
-        <dd>
-            <div *ngIf="customer.customerOrderId">
-                <a [routerLink]="['/customer-order-mc', customer.customerOrderId]">{{customer.customerOrderId}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="mcErpApp.customer.invoice">Invoice</span></dt>
-        <dd>
-            <div *ngIf="customer.invoiceId">
-                <a [routerLink]="['/invoice-mc', customer.invoiceId]">{{customer.invoiceId}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="mcErpApp.customer.customerProposal">Customer Proposal</span></dt>
-        <dd>
-            <div *ngIf="customer.customerProposalId">
-                <a [routerLink]="['/customer-proposal-mc', customer.customerProposalId]">{{customer.customerProposalId}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

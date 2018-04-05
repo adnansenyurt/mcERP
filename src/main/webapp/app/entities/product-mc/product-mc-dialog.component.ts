@@ -4,13 +4,11 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { ProductMc } from './product-mc.model';
 import { ProductMcPopupService } from './product-mc-popup.service';
 import { ProductMcService } from './product-mc.service';
-import { OpportunityMc, OpportunityMcService } from '../opportunity-mc';
-import { ProductStockMc, ProductStockMcService } from '../product-stock-mc';
 
 @Component({
     selector: 'jhi-product-mc-dialog',
@@ -21,26 +19,15 @@ export class ProductMcDialogComponent implements OnInit {
     product: ProductMc;
     isSaving: boolean;
 
-    opportunities: OpportunityMc[];
-
-    productstocks: ProductStockMc[];
-
     constructor(
         public activeModal: NgbActiveModal,
-        private jhiAlertService: JhiAlertService,
         private productService: ProductMcService,
-        private opportunityService: OpportunityMcService,
-        private productStockService: ProductStockMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.opportunityService.query()
-            .subscribe((res: HttpResponse<OpportunityMc[]>) => { this.opportunities = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.productStockService.query()
-            .subscribe((res: HttpResponse<ProductStockMc[]>) => { this.productstocks = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -71,18 +58,6 @@ export class ProductMcDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
-    }
-
-    private onError(error: any) {
-        this.jhiAlertService.error(error.message, null, null);
-    }
-
-    trackOpportunityById(index: number, item: OpportunityMc) {
-        return item.id;
-    }
-
-    trackProductStockById(index: number, item: ProductStockMc) {
-        return item.id;
     }
 }
 

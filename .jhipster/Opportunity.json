@@ -8,10 +8,10 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-many",
             "relationshipName": "product",
             "otherEntityName": "product",
-            "otherEntityRelationshipName": "opportunity"
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

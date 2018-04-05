@@ -25,14 +25,6 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="purchase_order_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="supply_part_contract_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="supplier_contract" columnName="date_signed" columnDataType="datetime"/>

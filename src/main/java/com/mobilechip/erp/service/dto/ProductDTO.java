@@ -26,10 +26,6 @@ public class ProductDTO implements Serializable {
 
     private String specsURL;
 
-    private Long opportunityId;
-
-    private Long productStockId;
-
     public Long getId() {
         return id;
     }
@@ -76,22 +72,6 @@ public class ProductDTO implements Serializable {
 
     public void setSpecsURL(String specsURL) {
         this.specsURL = specsURL;
-    }
-
-    public Long getOpportunityId() {
-        return opportunityId;
-    }
-
-    public void setOpportunityId(Long opportunityId) {
-        this.opportunityId = opportunityId;
-    }
-
-    public Long getProductStockId() {
-        return productStockId;
-    }
-
-    public void setProductStockId(Long productStockId) {
-        this.productStockId = productStockId;
     }
 
     @Override

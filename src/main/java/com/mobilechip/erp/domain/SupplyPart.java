@@ -37,6 +37,9 @@ public class SupplyPart implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @ManyToOne
+    private BillOfMaterials billOfMaterials;
+
     @OneToOne
     @JoinColumn(unique = true)
     private SupplyPartContract contract;
@@ -44,10 +47,7 @@ public class SupplyPart implements Serializable {
     @OneToMany(mappedBy = "supplyPart")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<BillOfMaterials> boms = new HashSet<>();
-
-    @ManyToOne
-    private SupplyStock supplyStock;
+    private Set<SupplyStock> supplyStocks = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -97,6 +97,19 @@ public class SupplyPart implements Serializable {
         this.description = description;
     }
 
+    public BillOfMaterials getBillOfMaterials() {
+        return billOfMaterials;
+    }
+
+    public SupplyPart billOfMaterials(BillOfMaterials billOfMaterials) {
+        this.billOfMaterials = billOfMaterials;
+        return this;
+    }
+
+    public void setBillOfMaterials(BillOfMaterials billOfMaterials) {
+        this.billOfMaterials = billOfMaterials;
+    }
+
     public SupplyPartContract getContract() {
         return contract;
     }
@@ -110,42 +123,29 @@ public class SupplyPart implements Serializable {
         this.contract = supplyPartContract;
     }
 
-    public Set<BillOfMaterials> getBoms() {
-        return boms;
+    public Set<SupplyStock> getSupplyStocks() {
+        return supplyStocks;
     }
 
-    public SupplyPart boms(Set<BillOfMaterials> billOfMaterials) {
-        this.boms = billOfMaterials;
+    public SupplyPart supplyStocks(Set<SupplyStock> supplyStocks) {
+        this.supplyStocks = supplyStocks;
         return this;
     }
 
-    public SupplyPart addBom(BillOfMaterials billOfMaterials) {
-        this.boms.add(billOfMaterials);
-        billOfMaterials.setSupplyPart(this);
+    public SupplyPart addSupplyStock(SupplyStock supplyStock) {
+        this.supplyStocks.add(supplyStock);
+        supplyStock.setSupplyPart(this);
         return this;
     }
 
-    public SupplyPart removeBom(BillOfMaterials billOfMaterials) {
-        this.boms.remove(billOfMaterials);
-        billOfMaterials.setSupplyPart(null);
+    public SupplyPart removeSupplyStock(SupplyStock supplyStock) {
+        this.supplyStocks.remove(supplyStock);
+        supplyStock.setSupplyPart(null);
         return this;
     }
 
-    public void setBoms(Set<BillOfMaterials> billOfMaterials) {
-        this.boms = billOfMaterials;
-    }
-
-    public SupplyStock getSupplyStock() {
-        return supplyStock;
-    }
-
-    public SupplyPart supplyStock(SupplyStock supplyStock) {
-        this.supplyStock = supplyStock;
-        return this;
-    }
-
-    public void setSupplyStock(SupplyStock supplyStock) {
-        this.supplyStock = supplyStock;
+    public void setSupplyStocks(Set<SupplyStock> supplyStocks) {
+        this.supplyStocks = supplyStocks;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

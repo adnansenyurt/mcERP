@@ -45,8 +45,6 @@ describe('Supplier e2e test', () => {
         expect(supplierDialogPage.getPhoneInput()).toMatch('phone');
         supplierDialogPage.setAccountNoInput('accountNo');
         expect(supplierDialogPage.getAccountNoInput()).toMatch('accountNo');
-        supplierDialogPage.contactPersonSelectLastOption();
-        supplierDialogPage.purchaseOrderSelectLastOption();
         supplierDialogPage.save();
         expect(supplierDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -79,8 +77,6 @@ export class SupplierDialogPage {
     webInput = element(by.css('input#field_web'));
     phoneInput = element(by.css('input#field_phone'));
     accountNoInput = element(by.css('input#field_accountNo'));
-    contactPersonSelect = element(by.css('select#field_contactPerson'));
-    purchaseOrderSelect = element(by.css('select#field_purchaseOrder'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -132,38 +128,6 @@ export class SupplierDialogPage {
 
     getAccountNoInput = function() {
         return this.accountNoInput.getAttribute('value');
-    };
-
-    contactPersonSelectLastOption = function() {
-        this.contactPersonSelect.all(by.tagName('option')).last().click();
-    };
-
-    contactPersonSelectOption = function(option) {
-        this.contactPersonSelect.sendKeys(option);
-    };
-
-    getContactPersonSelect = function() {
-        return this.contactPersonSelect;
-    };
-
-    getContactPersonSelectedOption = function() {
-        return this.contactPersonSelect.element(by.css('option:checked')).getText();
-    };
-
-    purchaseOrderSelectLastOption = function() {
-        this.purchaseOrderSelect.all(by.tagName('option')).last().click();
-    };
-
-    purchaseOrderSelectOption = function(option) {
-        this.purchaseOrderSelect.sendKeys(option);
-    };
-
-    getPurchaseOrderSelect = function() {
-        return this.purchaseOrderSelect;
-    };
-
-    getPurchaseOrderSelectedOption = function() {
-        return this.purchaseOrderSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

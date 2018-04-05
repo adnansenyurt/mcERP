@@ -35,17 +35,17 @@
         </div>
 
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplyPart.billOfMaterials" for="field_billOfMaterials">Bill Of Materials</label>
+            <select class="form-control" id="field_billOfMaterials" name="billOfMaterials" [(ngModel)]="supplyPart.billOfMaterialsId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="billOfMaterialsOption.id" *ngFor="let billOfMaterialsOption of billofmaterials; trackBy: trackBillOfMaterialsById">{{billOfMaterialsOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="mcErpApp.supplyPart.contract" for="field_contract">Contract</label>
             <select class="form-control" id="field_contract" name="contract" [(ngModel)]="supplyPart.contractId">
                 <option [ngValue]="null"></option>
                 <option [ngValue]="supplyPartContractOption.id" *ngFor="let supplyPartContractOption of contracts; trackBy: trackSupplyPartContractById">{{supplyPartContractOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.supplyPart.supplyStock" for="field_supplyStock">Supply Stock</label>
-            <select class="form-control" id="field_supplyStock" name="supplyStock" [(ngModel)]="supplyPart.supplyStockId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="supplyStockOption.id" *ngFor="let supplyStockOption of supplystocks; trackBy: trackSupplyStockById">{{supplyStockOption.id}}</option>
             </select>
         </div>
     </div>

@@ -19,7 +19,6 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="mcErpApp.billOfMaterials.items">Items</span></th>
             <th><span jhiTranslate="mcErpApp.billOfMaterials.product">Product</span></th>
-            <th><span jhiTranslate="mcErpApp.billOfMaterials.supplyPart">Supply Part</span></th>
             <th></th>
             </tr>
             </thead>
@@ -30,11 +29,6 @@
                 <td>
                     <div *ngIf="billOfMaterials.productId">
                         <a [routerLink]="['../product-mc', billOfMaterials.productId  ]" >{{billOfMaterials.productId}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="billOfMaterials.supplyPartId">
-                        <a [routerLink]="['../supply-part-mc', billOfMaterials.supplyPartId  ]" >{{billOfMaterials.supplyPartId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

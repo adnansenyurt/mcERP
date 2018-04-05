@@ -6,9 +6,9 @@ export class SupplyPartMc implements BaseEntity {
         public name?: string,
         public supplierPartCode?: string,
         public description?: string,
+        public billOfMaterialsId?: number,
         public contractId?: number,
-        public boms?: BaseEntity[],
-        public supplyStockId?: number,
+        public supplyStocks?: BaseEntity[],
     ) {
     }
 }

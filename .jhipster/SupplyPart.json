@@ -2,6 +2,12 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipName": "billOfMaterials",
+            "otherEntityName": "billOfMaterials",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
             "relationshipType": "one-to-one",
             "relationshipName": "contract",
             "otherEntityName": "supplyPartContract",
@@ -11,15 +17,9 @@
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "bom",
-            "otherEntityName": "billOfMaterials",
-            "otherEntityRelationshipName": "supplyPart"
-        },
-        {
             "relationshipName": "supplyStock",
             "otherEntityName": "supplyStock",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "supplyPart"
         }
     ],
     "fields": [

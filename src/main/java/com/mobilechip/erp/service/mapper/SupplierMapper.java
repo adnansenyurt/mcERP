@@ -8,15 +8,12 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Supplier and its DTO SupplierDTO.
  */
-@Mapper(componentModel = "spring", uses = {ContactPersonMapper.class, PurchaseOrderMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface SupplierMapper extends EntityMapper<SupplierDTO, Supplier> {
 
-    @Mapping(source = "contactPerson.id", target = "contactPersonId")
-    @Mapping(source = "purchaseOrder.id", target = "purchaseOrderId")
-    SupplierDTO toDto(Supplier supplier);
 
-    @Mapping(source = "contactPersonId", target = "contactPerson")
-    @Mapping(source = "purchaseOrderId", target = "purchaseOrder")
+    @Mapping(target = "contactPeople", ignore = true)
+    @Mapping(target = "purchaseOrders", ignore = true)
     Supplier toEntity(SupplierDTO supplierDTO);
 
     default Supplier fromId(Long id) {

@@ -24,10 +24,10 @@
         <dd>
             <span jhiTranslate="{{'mcErpApp.CustomerOrderStatus.' + customerOrder.currentStatus}}">{{customerOrder.currentStatus}}</span>
         </dd>
-        <dt><span jhiTranslate="mcErpApp.customerOrder.cashFlow">Cash Flow</span></dt>
+        <dt><span jhiTranslate="mcErpApp.customerOrder.customer">Customer</span></dt>
         <dd>
-            <div *ngIf="customerOrder.cashFlowId">
-                <a [routerLink]="['/cash-flow-mc', customerOrder.cashFlowId]">{{customerOrder.cashFlowId}}</a>
+            <div *ngIf="customerOrder.customerId">
+                <a [routerLink]="['/customer-mc', customerOrder.customerId]">{{customerOrder.customerId}}</a>
             </div>
         </dd>
     </dl>

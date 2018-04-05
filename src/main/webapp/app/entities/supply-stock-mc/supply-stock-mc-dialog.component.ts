@@ -4,11 +4,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { SupplyStockMc } from './supply-stock-mc.model';
 import { SupplyStockMcPopupService } from './supply-stock-mc-popup.service';
 import { SupplyStockMcService } from './supply-stock-mc.service';
+import { SupplyPartMc, SupplyPartMcService } from '../supply-part-mc';
 
 @Component({
     selector: 'jhi-supply-stock-mc-dialog',
@@ -19,15 +20,21 @@ export class SupplyStockMcDialogComponent implements OnInit {
     supplyStock: SupplyStockMc;
     isSaving: boolean;
 
+    supplyparts: SupplyPartMc[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private supplyStockService: SupplyStockMcService,
+        private supplyPartService: SupplyPartMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.supplyPartService.query()
+            .subscribe((res: HttpResponse<SupplyPartMc[]>) => { this.supplyparts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -58,6 +65,14 @@ export class SupplyStockMcDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackSupplyPartById(index: number, item: SupplyPartMc) {
+        return item.id;
     }
 }
 
