@@ -14,7 +14,7 @@ export class OpportunityMc implements BaseEntity {
         public dateOpened?: any,
         public amount?: number,
         public currentStatus?: OpportunityStatus,
-        public customers?: BaseEntity[],
+        public customerId?: number,
         public products?: BaseEntity[],
     ) {
     }

@@ -40,6 +40,7 @@ describe('Opportunity e2e test', () => {
         opportunityDialogPage.setAmountInput('5');
         expect(opportunityDialogPage.getAmountInput()).toMatch('5');
         opportunityDialogPage.currentStatusSelectLastOption();
+        opportunityDialogPage.customerSelectLastOption();
         opportunityDialogPage.save();
         expect(opportunityDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -70,6 +71,7 @@ export class OpportunityDialogPage {
     dateOpenedInput = element(by.css('input#field_dateOpened'));
     amountInput = element(by.css('input#field_amount'));
     currentStatusSelect = element(by.css('select#field_currentStatus'));
+    customerSelect = element(by.css('select#field_customer'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -110,6 +112,22 @@ export class OpportunityDialogPage {
     currentStatusSelectLastOption = function() {
         this.currentStatusSelect.all(by.tagName('option')).last().click();
     };
+    customerSelectLastOption = function() {
+        this.customerSelect.all(by.tagName('option')).last().click();
+    };
+
+    customerSelectOption = function(option) {
+        this.customerSelect.sendKeys(option);
+    };
+
+    getCustomerSelect = function() {
+        return this.customerSelect;
+    };
+
+    getCustomerSelectedOption = function() {
+        return this.customerSelect.element(by.css('option:checked')).getText();
+    };
+
     save() {
         this.saveButton.click();
     }

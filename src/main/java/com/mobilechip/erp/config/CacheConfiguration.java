@@ -74,6 +74,7 @@ public class CacheConfiguration {
             cm.createCache(com.mobilechip.erp.domain.ProductStock.class.getName() + ".products", jcacheConfiguration);
             cm.createCache(com.mobilechip.erp.domain.SupplyStock.class.getName(), jcacheConfiguration);
             cm.createCache(com.mobilechip.erp.domain.SupplyStock.class.getName() + ".parts", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Customer.class.getName() + ".opportunities", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

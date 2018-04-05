@@ -8,11 +8,13 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Opportunity and its DTO OpportunityDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {CustomerMapper.class})
 public interface OpportunityMapper extends EntityMapper<OpportunityDTO, Opportunity> {
 
+    @Mapping(source = "customer.id", target = "customerId")
+    OpportunityDTO toDto(Opportunity opportunity);
 
-    @Mapping(target = "customers", ignore = true)
+    @Mapping(source = "customerId", target = "customer")
     @Mapping(target = "products", ignore = true)
     Opportunity toEntity(OpportunityDTO opportunityDTO);
 

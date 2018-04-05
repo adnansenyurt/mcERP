@@ -14,12 +14,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="contact_person"/>
 
-        <addForeignKeyConstraint baseColumnNames="opportunity_id"
-                                 baseTableName="customer"
-                                 constraintName="fk_customer_opportunity_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="opportunity"/>
-
         <addForeignKeyConstraint baseColumnNames="customer_order_id"
                                  baseTableName="customer"
                                  constraintName="fk_customer_customer_order_id"

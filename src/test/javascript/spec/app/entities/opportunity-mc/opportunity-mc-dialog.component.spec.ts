@@ -9,6 +9,7 @@ import { McErpTestModule } from '../../../test.module';
 import { OpportunityMcDialogComponent } from '../../../../../../main/webapp/app/entities/opportunity-mc/opportunity-mc-dialog.component';
 import { OpportunityMcService } from '../../../../../../main/webapp/app/entities/opportunity-mc/opportunity-mc.service';
 import { OpportunityMc } from '../../../../../../main/webapp/app/entities/opportunity-mc/opportunity-mc.model';
+import { CustomerMcService } from '../../../../../../main/webapp/app/entities/customer-mc';
 
 describe('Component Tests', () => {
 
@@ -24,6 +25,7 @@ describe('Component Tests', () => {
                 imports: [McErpTestModule],
                 declarations: [OpportunityMcDialogComponent],
                 providers: [
+                    CustomerMcService,
                     OpportunityMcService
                 ]
             })

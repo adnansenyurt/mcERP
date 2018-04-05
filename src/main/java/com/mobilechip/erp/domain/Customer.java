@@ -1,5 +1,6 @@
 package com.mobilechip.erp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -7,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -37,11 +40,13 @@ public class Customer implements Serializable {
     @Column(name = "account_no")
     private String accountNo;
 
-    @ManyToOne
-    private ContactPerson contactPerson;
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Opportunity> opportunities = new HashSet<>();
 
     @ManyToOne
-    private Opportunity opportunity;
+    private ContactPerson contactPerson;
 
     @ManyToOne
     private CustomerOrder customerOrder;
@@ -113,6 +118,31 @@ public class Customer implements Serializable {
         this.accountNo = accountNo;
     }
 
+    public Set<Opportunity> getOpportunities() {
+        return opportunities;
+    }
+
+    public Customer opportunities(Set<Opportunity> opportunities) {
+        this.opportunities = opportunities;
+        return this;
+    }
+
+    public Customer addOpportunity(Opportunity opportunity) {
+        this.opportunities.add(opportunity);
+        opportunity.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeOpportunity(Opportunity opportunity) {
+        this.opportunities.remove(opportunity);
+        opportunity.setCustomer(null);
+        return this;
+    }
+
+    public void setOpportunities(Set<Opportunity> opportunities) {
+        this.opportunities = opportunities;
+    }
+
     public ContactPerson getContactPerson() {
         return contactPerson;
     }
@@ -124,19 +154,6 @@ public class Customer implements Serializable {
 
     public void setContactPerson(ContactPerson contactPerson) {
         this.contactPerson = contactPerson;
-    }
-
-    public Opportunity getOpportunity() {
-        return opportunity;
-    }
-
-    public Customer opportunity(Opportunity opportunity) {
-        this.opportunity = opportunity;
-        return this;
-    }
-
-    public void setOpportunity(Opportunity opportunity) {
-        this.opportunity = opportunity;
     }
 
     public CustomerOrder getCustomerOrder() {

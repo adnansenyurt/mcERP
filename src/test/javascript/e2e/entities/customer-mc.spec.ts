@@ -42,7 +42,6 @@ describe('Customer e2e test', () => {
         customerDialogPage.setAccountNoInput('accountNo');
         expect(customerDialogPage.getAccountNoInput()).toMatch('accountNo');
         customerDialogPage.contactPersonSelectLastOption();
-        customerDialogPage.opportunitySelectLastOption();
         customerDialogPage.customerOrderSelectLastOption();
         customerDialogPage.invoiceSelectLastOption();
         customerDialogPage.customerProposalSelectLastOption();
@@ -77,7 +76,6 @@ export class CustomerDialogPage {
     phoneInput = element(by.css('input#field_phone'));
     accountNoInput = element(by.css('input#field_accountNo'));
     contactPersonSelect = element(by.css('select#field_contactPerson'));
-    opportunitySelect = element(by.css('select#field_opportunity'));
     customerOrderSelect = element(by.css('select#field_customerOrder'));
     invoiceSelect = element(by.css('select#field_invoice'));
     customerProposalSelect = element(by.css('select#field_customerProposal'));
@@ -132,22 +130,6 @@ export class CustomerDialogPage {
 
     getContactPersonSelectedOption = function() {
         return this.contactPersonSelect.element(by.css('option:checked')).getText();
-    };
-
-    opportunitySelectLastOption = function() {
-        this.opportunitySelect.all(by.tagName('option')).last().click();
-    };
-
-    opportunitySelectOption = function(option) {
-        this.opportunitySelect.sendKeys(option);
-    };
-
-    getOpportunitySelect = function() {
-        return this.opportunitySelect;
-    };
-
-    getOpportunitySelectedOption = function() {
-        return this.opportunitySelect.element(by.css('option:checked')).getText();
     };
 
     customerOrderSelectLastOption = function() {

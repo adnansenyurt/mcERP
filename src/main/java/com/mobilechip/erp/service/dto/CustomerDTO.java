@@ -25,8 +25,6 @@ public class CustomerDTO implements Serializable {
 
     private Long contactPersonId;
 
-    private Long opportunityId;
-
     private Long customerOrderId;
 
     private Long invoiceId;
@@ -79,14 +77,6 @@ public class CustomerDTO implements Serializable {
 
     public void setContactPersonId(Long contactPersonId) {
         this.contactPersonId = contactPersonId;
-    }
-
-    public Long getOpportunityId() {
-        return opportunityId;
-    }
-
-    public void setOpportunityId(Long opportunityId) {
-        this.opportunityId = opportunityId;
     }
 
     public Long getCustomerOrderId() {
