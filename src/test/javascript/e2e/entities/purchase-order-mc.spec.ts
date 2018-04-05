@@ -44,7 +44,8 @@ describe('PurchaseOrder e2e test', () => {
         purchaseOrderDialogPage.setPaymentConditionsInput('paymentConditions');
         expect(purchaseOrderDialogPage.getPaymentConditionsInput()).toMatch('paymentConditions');
         purchaseOrderDialogPage.currentStatusSelectLastOption();
-        purchaseOrderDialogPage.cashFlowSelectLastOption();
+        purchaseOrderDialogPage.supplierSelectLastOption();
+        purchaseOrderDialogPage.supplierContractSelectLastOption();
         purchaseOrderDialogPage.save();
         expect(purchaseOrderDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -77,7 +78,8 @@ export class PurchaseOrderDialogPage {
     costCenterInput = element(by.css('input#field_costCenter'));
     paymentConditionsInput = element(by.css('input#field_paymentConditions'));
     currentStatusSelect = element(by.css('select#field_currentStatus'));
-    cashFlowSelect = element(by.css('select#field_cashFlow'));
+    supplierSelect = element(by.css('select#field_supplier'));
+    supplierContractSelect = element(by.css('select#field_supplierContract'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -134,20 +136,36 @@ export class PurchaseOrderDialogPage {
     currentStatusSelectLastOption = function() {
         this.currentStatusSelect.all(by.tagName('option')).last().click();
     };
-    cashFlowSelectLastOption = function() {
-        this.cashFlowSelect.all(by.tagName('option')).last().click();
+    supplierSelectLastOption = function() {
+        this.supplierSelect.all(by.tagName('option')).last().click();
     };
 
-    cashFlowSelectOption = function(option) {
-        this.cashFlowSelect.sendKeys(option);
+    supplierSelectOption = function(option) {
+        this.supplierSelect.sendKeys(option);
     };
 
-    getCashFlowSelect = function() {
-        return this.cashFlowSelect;
+    getSupplierSelect = function() {
+        return this.supplierSelect;
     };
 
-    getCashFlowSelectedOption = function() {
-        return this.cashFlowSelect.element(by.css('option:checked')).getText();
+    getSupplierSelectedOption = function() {
+        return this.supplierSelect.element(by.css('option:checked')).getText();
+    };
+
+    supplierContractSelectLastOption = function() {
+        this.supplierContractSelect.all(by.tagName('option')).last().click();
+    };
+
+    supplierContractSelectOption = function(option) {
+        this.supplierContractSelect.sendKeys(option);
+    };
+
+    getSupplierContractSelect = function() {
+        return this.supplierContractSelect;
+    };
+
+    getSupplierContractSelectedOption = function() {
+        return this.supplierContractSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

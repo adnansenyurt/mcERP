@@ -13,6 +13,13 @@
                    [(ngModel)]="supplyPartContract.id" readonly />
         </div>
 
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplyPartContract.supplierContract" for="field_supplierContract">Supplier Contract</label>
+            <select class="form-control" id="field_supplierContract" name="supplierContract" [(ngModel)]="supplyPartContract.supplierContractId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="supplierContractOption.id" *ngFor="let supplierContractOption of suppliercontracts; trackBy: trackSupplierContractById">{{supplierContractOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

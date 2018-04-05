@@ -41,6 +41,7 @@ describe('Invoice e2e test', () => {
         expect(invoiceDialogPage.getAmountTotalInput()).toMatch('5');
         invoiceDialogPage.setPaymentDueInput('5');
         expect(invoiceDialogPage.getPaymentDueInput()).toMatch('5');
+        invoiceDialogPage.customerSelectLastOption();
         invoiceDialogPage.customerOrderSelectLastOption();
         invoiceDialogPage.save();
         expect(invoiceDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -72,6 +73,7 @@ export class InvoiceDialogPage {
     dateIssuedInput = element(by.css('input#field_dateIssued'));
     amountTotalInput = element(by.css('input#field_amountTotal'));
     paymentDueInput = element(by.css('input#field_paymentDue'));
+    customerSelect = element(by.css('select#field_customer'));
     customerOrderSelect = element(by.css('select#field_customerOrder'));
 
     getModalTitle() {
@@ -108,6 +110,22 @@ export class InvoiceDialogPage {
 
     getPaymentDueInput = function() {
         return this.paymentDueInput.getAttribute('value');
+    };
+
+    customerSelectLastOption = function() {
+        this.customerSelect.all(by.tagName('option')).last().click();
+    };
+
+    customerSelectOption = function(option) {
+        this.customerSelect.sendKeys(option);
+    };
+
+    getCustomerSelect = function() {
+        return this.customerSelect;
+    };
+
+    getCustomerSelectedOption = function() {
+        return this.customerSelect.element(by.css('option:checked')).getText();
     };
 
     customerOrderSelectLastOption = function() {

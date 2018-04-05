@@ -24,18 +24,6 @@
         <dd>
             <span>{{product.specsURL}}</span>
         </dd>
-        <dt><span jhiTranslate="mcErpApp.product.opportunity">Opportunity</span></dt>
-        <dd>
-            <div *ngIf="product.opportunityId">
-                <a [routerLink]="['/opportunity-mc', product.opportunityId]">{{product.opportunityId}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="mcErpApp.product.productStock">Product Stock</span></dt>
-        <dd>
-            <div *ngIf="product.productStockId">
-                <a [routerLink]="['/product-stock-mc', product.productStockId]">{{product.productStockId}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

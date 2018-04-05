@@ -7,8 +7,8 @@ export class ContactPersonMc implements BaseEntity {
         public role?: string,
         public eMail?: string,
         public mobile?: string,
-        public customers?: BaseEntity[],
-        public suppliers?: BaseEntity[],
+        public customerId?: number,
+        public supplierId?: number,
     ) {
     }
 }

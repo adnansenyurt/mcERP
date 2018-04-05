@@ -19,6 +19,7 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="mcErpApp.productStock.skuCode">Sku Code</span></th>
             <th><span jhiTranslate="mcErpApp.productStock.amount">Amount</span></th>
+            <th><span jhiTranslate="mcErpApp.productStock.product">Product</span></th>
             <th></th>
             </tr>
             </thead>
@@ -27,6 +28,11 @@
                 <td><a [routerLink]="['../product-stock-mc', productStock.id ]">{{productStock.id}}</a></td>
                 <td>{{productStock.skuCode}}</td>
                 <td>{{productStock.amount}}</td>
+                <td>
+                    <div *ngIf="productStock.productId">
+                        <a [routerLink]="['../product-mc', productStock.productId  ]" >{{productStock.productId}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

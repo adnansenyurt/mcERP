@@ -2,16 +2,16 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-many",
             "relationshipName": "customer",
             "otherEntityName": "customer",
-            "otherEntityRelationshipName": "customerOrder"
-        },
-        {
-            "relationshipName": "cashFlow",
-            "otherEntityName": "cashFlow",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "cashFlow",
+            "otherEntityName": "cashFlow",
+            "otherEntityRelationshipName": "customerOrder"
         }
     ],
     "fields": [

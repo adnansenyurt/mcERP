@@ -28,18 +28,6 @@
         <dd>
             <span>{{supplier.accountNo}}</span>
         </dd>
-        <dt><span jhiTranslate="mcErpApp.supplier.contactPerson">Contact Person</span></dt>
-        <dd>
-            <div *ngIf="supplier.contactPersonId">
-                <a [routerLink]="['/contact-person-mc', supplier.contactPersonId]">{{supplier.contactPersonId}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="mcErpApp.supplier.purchaseOrder">Purchase Order</span></dt>
-        <dd>
-            <div *ngIf="supplier.purchaseOrderId">
-                <a [routerLink]="['/purchase-order-mc', supplier.purchaseOrderId]">{{supplier.purchaseOrderId}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

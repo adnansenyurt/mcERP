@@ -8,11 +8,13 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity SupplyStock and its DTO SupplyStockDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {SupplyPartMapper.class})
 public interface SupplyStockMapper extends EntityMapper<SupplyStockDTO, SupplyStock> {
 
+    @Mapping(source = "supplyPart.id", target = "supplyPartId")
+    SupplyStockDTO toDto(SupplyStock supplyStock);
 
-    @Mapping(target = "parts", ignore = true)
+    @Mapping(source = "supplyPartId", target = "supplyPart")
     SupplyStock toEntity(SupplyStockDTO supplyStockDTO);
 
     default SupplyStock fromId(Long id) {

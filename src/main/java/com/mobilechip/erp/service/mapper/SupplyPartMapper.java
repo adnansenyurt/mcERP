@@ -8,16 +8,16 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity SupplyPart and its DTO SupplyPartDTO.
  */
-@Mapper(componentModel = "spring", uses = {SupplyPartContractMapper.class, SupplyStockMapper.class})
+@Mapper(componentModel = "spring", uses = {BillOfMaterialsMapper.class, SupplyPartContractMapper.class})
 public interface SupplyPartMapper extends EntityMapper<SupplyPartDTO, SupplyPart> {
 
+    @Mapping(source = "billOfMaterials.id", target = "billOfMaterialsId")
     @Mapping(source = "contract.id", target = "contractId")
-    @Mapping(source = "supplyStock.id", target = "supplyStockId")
     SupplyPartDTO toDto(SupplyPart supplyPart);
 
+    @Mapping(source = "billOfMaterialsId", target = "billOfMaterials")
     @Mapping(source = "contractId", target = "contract")
-    @Mapping(target = "boms", ignore = true)
-    @Mapping(source = "supplyStockId", target = "supplyStock")
+    @Mapping(target = "supplyStocks", ignore = true)
     SupplyPart toEntity(SupplyPartDTO supplyPartDTO);
 
     default SupplyPart fromId(Long id) {

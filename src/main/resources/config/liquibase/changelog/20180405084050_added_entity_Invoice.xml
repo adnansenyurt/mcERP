@@ -36,6 +36,10 @@
             <column name="payment_due" type="integer">
                 <constraints nullable="true" />
             </column>
+
+            <column name="customer_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <column name="customer_order_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>

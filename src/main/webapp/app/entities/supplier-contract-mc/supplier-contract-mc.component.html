@@ -18,8 +18,6 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="mcErpApp.supplierContract.dateSigned">Date Signed</span></th>
-            <th><span jhiTranslate="mcErpApp.supplierContract.purchaseOrder">Purchase Order</span></th>
-            <th><span jhiTranslate="mcErpApp.supplierContract.supplyPartContract">Supply Part Contract</span></th>
             <th></th>
             </tr>
             </thead>
@@ -27,16 +25,6 @@
             <tr *ngFor="let supplierContract of supplierContracts ;trackBy: trackId">
                 <td><a [routerLink]="['../supplier-contract-mc', supplierContract.id ]">{{supplierContract.id}}</a></td>
                 <td>{{supplierContract.dateSigned | date:'medium'}}</td>
-                <td>
-                    <div *ngIf="supplierContract.purchaseOrderId">
-                        <a [routerLink]="['../purchase-order-mc', supplierContract.purchaseOrderId  ]" >{{supplierContract.purchaseOrderId}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="supplierContract.supplyPartContractId">
-                        <a [routerLink]="['../supply-part-contract-mc', supplierContract.supplyPartContractId  ]" >{{supplierContract.supplyPartContractId}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

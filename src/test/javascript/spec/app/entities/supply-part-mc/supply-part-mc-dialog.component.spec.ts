@@ -9,8 +9,8 @@ import { McErpTestModule } from '../../../test.module';
 import { SupplyPartMcDialogComponent } from '../../../../../../main/webapp/app/entities/supply-part-mc/supply-part-mc-dialog.component';
 import { SupplyPartMcService } from '../../../../../../main/webapp/app/entities/supply-part-mc/supply-part-mc.service';
 import { SupplyPartMc } from '../../../../../../main/webapp/app/entities/supply-part-mc/supply-part-mc.model';
+import { BillOfMaterialsMcService } from '../../../../../../main/webapp/app/entities/bill-of-materials-mc';
 import { SupplyPartContractMcService } from '../../../../../../main/webapp/app/entities/supply-part-contract-mc';
-import { SupplyStockMcService } from '../../../../../../main/webapp/app/entities/supply-stock-mc';
 
 describe('Component Tests', () => {
 
@@ -26,8 +26,8 @@ describe('Component Tests', () => {
                 imports: [McErpTestModule],
                 declarations: [SupplyPartMcDialogComponent],
                 providers: [
+                    BillOfMaterialsMcService,
                     SupplyPartContractMcService,
-                    SupplyStockMcService,
                     SupplyPartMcService
                 ]
             })

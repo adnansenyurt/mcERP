@@ -22,7 +22,7 @@
             <th><span jhiTranslate="mcErpApp.customerOrder.datePaymentDue">Date Payment Due</span></th>
             <th><span jhiTranslate="mcErpApp.customerOrder.amount">Amount</span></th>
             <th><span jhiTranslate="mcErpApp.customerOrder.currentStatus">Current Status</span></th>
-            <th><span jhiTranslate="mcErpApp.customerOrder.cashFlow">Cash Flow</span></th>
+            <th><span jhiTranslate="mcErpApp.customerOrder.customer">Customer</span></th>
             <th></th>
             </tr>
             </thead>
@@ -35,8 +35,8 @@
                 <td>{{customerOrder.amount}}</td>
                 <td jhiTranslate="{{'mcErpApp.CustomerOrderStatus.' + customerOrder.currentStatus}}">{{customerOrder.currentStatus}}</td>
                 <td>
-                    <div *ngIf="customerOrder.cashFlowId">
-                        <a [routerLink]="['../cash-flow-mc', customerOrder.cashFlowId  ]" >{{customerOrder.cashFlowId}}</a>
+                    <div *ngIf="customerOrder.customerId">
+                        <a [routerLink]="['../customer-mc', customerOrder.customerId  ]" >{{customerOrder.customerId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

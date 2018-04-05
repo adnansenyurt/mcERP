@@ -39,34 +39,6 @@
                 [(ngModel)]="customer.accountNo" />
         </div>
 
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.customer.contactPerson" for="field_contactPerson">Contact Person</label>
-            <select class="form-control" id="field_contactPerson" name="contactPerson" [(ngModel)]="customer.contactPersonId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="contactPersonOption.id" *ngFor="let contactPersonOption of contactpeople; trackBy: trackContactPersonById">{{contactPersonOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.customer.customerOrder" for="field_customerOrder">Customer Order</label>
-            <select class="form-control" id="field_customerOrder" name="customerOrder" [(ngModel)]="customer.customerOrderId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="customerOrderOption.id" *ngFor="let customerOrderOption of customerorders; trackBy: trackCustomerOrderById">{{customerOrderOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.customer.invoice" for="field_invoice">Invoice</label>
-            <select class="form-control" id="field_invoice" name="invoice" [(ngModel)]="customer.invoiceId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="invoiceOption.id" *ngFor="let invoiceOption of invoices; trackBy: trackInvoiceById">{{invoiceOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.customer.customerProposal" for="field_customerProposal">Customer Proposal</label>
-            <select class="form-control" id="field_customerProposal" name="customerProposal" [(ngModel)]="customer.customerProposalId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="customerProposalOption.id" *ngFor="let customerProposalOption of customerproposals; trackBy: trackCustomerProposalById">{{customerProposalOption.id}}</option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

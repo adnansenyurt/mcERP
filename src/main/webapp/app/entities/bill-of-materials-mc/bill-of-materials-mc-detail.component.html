@@ -14,12 +14,6 @@
                 <a [routerLink]="['/product-mc', billOfMaterials.productId]">{{billOfMaterials.productId}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="mcErpApp.billOfMaterials.supplyPart">Supply Part</span></dt>
-        <dd>
-            <div *ngIf="billOfMaterials.supplyPartId">
-                <a [routerLink]="['/supply-part-mc', billOfMaterials.supplyPartId]">{{billOfMaterials.supplyPartId}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

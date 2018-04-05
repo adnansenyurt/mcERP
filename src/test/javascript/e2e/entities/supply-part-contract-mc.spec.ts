@@ -33,6 +33,7 @@ describe('SupplyPartContract e2e test', () => {
 
     it('should create and save SupplyPartContracts', () => {
         supplyPartContractComponentsPage.clickOnCreateButton();
+        supplyPartContractDialogPage.supplierContractSelectLastOption();
         supplyPartContractDialogPage.save();
         expect(supplyPartContractDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -59,10 +60,27 @@ export class SupplyPartContractDialogPage {
     modalTitle = element(by.css('h4#mySupplyPartContractLabel'));
     saveButton = element(by.css('.modal-footer .btn.btn-primary'));
     closeButton = element(by.css('button.close'));
+    supplierContractSelect = element(by.css('select#field_supplierContract'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
     }
+
+    supplierContractSelectLastOption = function() {
+        this.supplierContractSelect.all(by.tagName('option')).last().click();
+    };
+
+    supplierContractSelectOption = function(option) {
+        this.supplierContractSelect.sendKeys(option);
+    };
+
+    getSupplierContractSelect = function() {
+        return this.supplierContractSelect;
+    };
+
+    getSupplierContractSelectedOption = function() {
+        return this.supplierContractSelect.element(by.css('option:checked')).getText();
+    };
 
     save() {
         this.saveButton.click();

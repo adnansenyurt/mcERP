@@ -9,6 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { InvoiceMc } from './invoice-mc.model';
 import { InvoiceMcPopupService } from './invoice-mc-popup.service';
 import { InvoiceMcService } from './invoice-mc.service';
+import { CustomerMc, CustomerMcService } from '../customer-mc';
 import { CustomerOrderMc, CustomerOrderMcService } from '../customer-order-mc';
 
 @Component({
@@ -20,12 +21,15 @@ export class InvoiceMcDialogComponent implements OnInit {
     invoice: InvoiceMc;
     isSaving: boolean;
 
+    customers: CustomerMc[];
+
     customerorders: CustomerOrderMc[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private invoiceService: InvoiceMcService,
+        private customerService: CustomerMcService,
         private customerOrderService: CustomerOrderMcService,
         private eventManager: JhiEventManager
     ) {
@@ -33,6 +37,8 @@ export class InvoiceMcDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.customerService.query()
+            .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.customerOrderService
             .query({filter: 'invoice-is-null'})
             .subscribe((res: HttpResponse<CustomerOrderMc[]>) => {
@@ -80,6 +86,10 @@ export class InvoiceMcDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackCustomerById(index: number, item: CustomerMc) {
+        return item.id;
     }
 
     trackCustomerOrderById(index: number, item: CustomerOrderMc) {

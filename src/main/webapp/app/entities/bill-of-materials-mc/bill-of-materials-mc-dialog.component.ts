@@ -10,7 +10,6 @@ import { BillOfMaterialsMc } from './bill-of-materials-mc.model';
 import { BillOfMaterialsMcPopupService } from './bill-of-materials-mc-popup.service';
 import { BillOfMaterialsMcService } from './bill-of-materials-mc.service';
 import { ProductMc, ProductMcService } from '../product-mc';
-import { SupplyPartMc, SupplyPartMcService } from '../supply-part-mc';
 
 @Component({
     selector: 'jhi-bill-of-materials-mc-dialog',
@@ -23,14 +22,11 @@ export class BillOfMaterialsMcDialogComponent implements OnInit {
 
     products: ProductMc[];
 
-    supplyparts: SupplyPartMc[];
-
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private billOfMaterialsService: BillOfMaterialsMcService,
         private productService: ProductMcService,
-        private supplyPartService: SupplyPartMcService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -50,8 +46,6 @@ export class BillOfMaterialsMcDialogComponent implements OnInit {
                         }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
                 }
             }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.supplyPartService.query()
-            .subscribe((res: HttpResponse<SupplyPartMc[]>) => { this.supplyparts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -89,10 +83,6 @@ export class BillOfMaterialsMcDialogComponent implements OnInit {
     }
 
     trackProductById(index: number, item: ProductMc) {
-        return item.id;
-    }
-
-    trackSupplyPartById(index: number, item: SupplyPartMc) {
         return item.id;
     }
 }

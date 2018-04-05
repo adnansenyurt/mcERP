@@ -14,11 +14,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="product"/>
 
-        <addForeignKeyConstraint baseColumnNames="supply_part_id"
-                                 baseTableName="bill_of_materials"
-                                 constraintName="fk_bill_of_materials_supply_part_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="supply_part"/>
-
     </changeSet>
 </databaseChangeLog>

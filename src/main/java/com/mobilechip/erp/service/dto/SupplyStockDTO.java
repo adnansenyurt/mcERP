@@ -19,6 +19,8 @@ public class SupplyStockDTO implements Serializable {
 
     private Long amount;
 
+    private Long supplyPartId;
+
     public Long getId() {
         return id;
     }
@@ -41,6 +43,14 @@ public class SupplyStockDTO implements Serializable {
 
     public void setAmount(Long amount) {
         this.amount = amount;
+    }
+
+    public Long getSupplyPartId() {
+        return supplyPartId;
+    }
+
+    public void setSupplyPartId(Long supplyPartId) {
+        this.supplyPartId = supplyPartId;
     }
 
     @Override

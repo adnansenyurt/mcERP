@@ -1,11 +1,14 @@
 package com.mobilechip.erp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -30,8 +33,10 @@ public class BillOfMaterials implements Serializable {
     @JoinColumn(unique = true)
     private Product product;
 
-    @ManyToOne
-    private SupplyPart supplyPart;
+    @OneToMany(mappedBy = "billOfMaterials")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<SupplyPart> supplyParts = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -68,17 +73,29 @@ public class BillOfMaterials implements Serializable {
         this.product = product;
     }
 
-    public SupplyPart getSupplyPart() {
-        return supplyPart;
+    public Set<SupplyPart> getSupplyParts() {
+        return supplyParts;
     }
 
-    public BillOfMaterials supplyPart(SupplyPart supplyPart) {
-        this.supplyPart = supplyPart;
+    public BillOfMaterials supplyParts(Set<SupplyPart> supplyParts) {
+        this.supplyParts = supplyParts;
         return this;
     }
 
-    public void setSupplyPart(SupplyPart supplyPart) {
-        this.supplyPart = supplyPart;
+    public BillOfMaterials addSupplyPart(SupplyPart supplyPart) {
+        this.supplyParts.add(supplyPart);
+        supplyPart.setBillOfMaterials(this);
+        return this;
+    }
+
+    public BillOfMaterials removeSupplyPart(SupplyPart supplyPart) {
+        this.supplyParts.remove(supplyPart);
+        supplyPart.setBillOfMaterials(null);
+        return this;
+    }
+
+    public void setSupplyParts(Set<SupplyPart> supplyParts) {
+        this.supplyParts = supplyParts;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

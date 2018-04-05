@@ -45,17 +45,25 @@ public class Customer implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Opportunity> opportunities = new HashSet<>();
 
-    @ManyToOne
-    private ContactPerson contactPerson;
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<CustomerOrder> customerOrders = new HashSet<>();
 
-    @ManyToOne
-    private CustomerOrder customerOrder;
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ContactPerson> contactPeople = new HashSet<>();
 
-    @ManyToOne
-    private Invoice invoice;
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<CustomerProposal> customerProposals = new HashSet<>();
 
-    @ManyToOne
-    private CustomerProposal customerProposal;
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Invoice> invoices = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -143,56 +151,104 @@ public class Customer implements Serializable {
         this.opportunities = opportunities;
     }
 
-    public ContactPerson getContactPerson() {
-        return contactPerson;
+    public Set<CustomerOrder> getCustomerOrders() {
+        return customerOrders;
     }
 
-    public Customer contactPerson(ContactPerson contactPerson) {
-        this.contactPerson = contactPerson;
+    public Customer customerOrders(Set<CustomerOrder> customerOrders) {
+        this.customerOrders = customerOrders;
         return this;
     }
 
-    public void setContactPerson(ContactPerson contactPerson) {
-        this.contactPerson = contactPerson;
-    }
-
-    public CustomerOrder getCustomerOrder() {
-        return customerOrder;
-    }
-
-    public Customer customerOrder(CustomerOrder customerOrder) {
-        this.customerOrder = customerOrder;
+    public Customer addCustomerOrder(CustomerOrder customerOrder) {
+        this.customerOrders.add(customerOrder);
+        customerOrder.setCustomer(this);
         return this;
     }
 
-    public void setCustomerOrder(CustomerOrder customerOrder) {
-        this.customerOrder = customerOrder;
-    }
-
-    public Invoice getInvoice() {
-        return invoice;
-    }
-
-    public Customer invoice(Invoice invoice) {
-        this.invoice = invoice;
+    public Customer removeCustomerOrder(CustomerOrder customerOrder) {
+        this.customerOrders.remove(customerOrder);
+        customerOrder.setCustomer(null);
         return this;
     }
 
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
+    public void setCustomerOrders(Set<CustomerOrder> customerOrders) {
+        this.customerOrders = customerOrders;
     }
 
-    public CustomerProposal getCustomerProposal() {
-        return customerProposal;
+    public Set<ContactPerson> getContactPeople() {
+        return contactPeople;
     }
 
-    public Customer customerProposal(CustomerProposal customerProposal) {
-        this.customerProposal = customerProposal;
+    public Customer contactPeople(Set<ContactPerson> contactPeople) {
+        this.contactPeople = contactPeople;
         return this;
     }
 
-    public void setCustomerProposal(CustomerProposal customerProposal) {
-        this.customerProposal = customerProposal;
+    public Customer addContactPerson(ContactPerson contactPerson) {
+        this.contactPeople.add(contactPerson);
+        contactPerson.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeContactPerson(ContactPerson contactPerson) {
+        this.contactPeople.remove(contactPerson);
+        contactPerson.setCustomer(null);
+        return this;
+    }
+
+    public void setContactPeople(Set<ContactPerson> contactPeople) {
+        this.contactPeople = contactPeople;
+    }
+
+    public Set<CustomerProposal> getCustomerProposals() {
+        return customerProposals;
+    }
+
+    public Customer customerProposals(Set<CustomerProposal> customerProposals) {
+        this.customerProposals = customerProposals;
+        return this;
+    }
+
+    public Customer addCustomerProposal(CustomerProposal customerProposal) {
+        this.customerProposals.add(customerProposal);
+        customerProposal.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeCustomerProposal(CustomerProposal customerProposal) {
+        this.customerProposals.remove(customerProposal);
+        customerProposal.setCustomer(null);
+        return this;
+    }
+
+    public void setCustomerProposals(Set<CustomerProposal> customerProposals) {
+        this.customerProposals = customerProposals;
+    }
+
+    public Set<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public Customer invoices(Set<Invoice> invoices) {
+        this.invoices = invoices;
+        return this;
+    }
+
+    public Customer addInvoice(Invoice invoice) {
+        this.invoices.add(invoice);
+        invoice.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeInvoice(Invoice invoice) {
+        this.invoices.remove(invoice);
+        invoice.setCustomer(null);
+        return this;
+    }
+
+    public void setInvoices(Set<Invoice> invoices) {
+        this.invoices = invoices;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

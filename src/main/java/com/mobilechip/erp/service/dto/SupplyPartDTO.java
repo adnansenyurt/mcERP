@@ -21,9 +21,9 @@ public class SupplyPartDTO implements Serializable {
 
     private String description;
 
-    private Long contractId;
+    private Long billOfMaterialsId;
 
-    private Long supplyStockId;
+    private Long contractId;
 
     public Long getId() {
         return id;
@@ -57,20 +57,20 @@ public class SupplyPartDTO implements Serializable {
         this.description = description;
     }
 
+    public Long getBillOfMaterialsId() {
+        return billOfMaterialsId;
+    }
+
+    public void setBillOfMaterialsId(Long billOfMaterialsId) {
+        this.billOfMaterialsId = billOfMaterialsId;
+    }
+
     public Long getContractId() {
         return contractId;
     }
 
     public void setContractId(Long supplyPartContractId) {
         this.contractId = supplyPartContractId;
-    }
-
-    public Long getSupplyStockId() {
-        return supplyStockId;
-    }
-
-    public void setSupplyStockId(Long supplyStockId) {
-        this.supplyStockId = supplyStockId;
     }
 
     @Override

@@ -23,8 +23,8 @@
             "paymentConditions": "Payment Conditions",
             "currentStatus": "Current Status",
             "supplier": "Supplier",
-            "contract": "Contract",
-            "cashFlow": "Cash Flow"
+            "cashFlow": "Cash Flow",
+            "supplierContract": "Supplier Contract"
         }
     }
 }

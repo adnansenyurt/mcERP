@@ -55,20 +55,6 @@
                 [(ngModel)]="supplier.accountNo" />
         </div>
 
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.supplier.contactPerson" for="field_contactPerson">Contact Person</label>
-            <select class="form-control" id="field_contactPerson" name="contactPerson" [(ngModel)]="supplier.contactPersonId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="contactPersonOption.id" *ngFor="let contactPersonOption of contactpeople; trackBy: trackContactPersonById">{{contactPersonOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.supplier.purchaseOrder" for="field_purchaseOrder">Purchase Order</label>
-            <select class="form-control" id="field_purchaseOrder" name="purchaseOrder" [(ngModel)]="supplier.purchaseOrderId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="purchaseOrderOption.id" *ngFor="let purchaseOrderOption of purchaseorders; trackBy: trackPurchaseOrderById">{{purchaseOrderOption.id}}</option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

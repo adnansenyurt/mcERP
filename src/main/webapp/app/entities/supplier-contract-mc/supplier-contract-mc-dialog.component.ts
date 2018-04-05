@@ -4,13 +4,11 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { SupplierContractMc } from './supplier-contract-mc.model';
 import { SupplierContractMcPopupService } from './supplier-contract-mc-popup.service';
 import { SupplierContractMcService } from './supplier-contract-mc.service';
-import { PurchaseOrderMc, PurchaseOrderMcService } from '../purchase-order-mc';
-import { SupplyPartContractMc, SupplyPartContractMcService } from '../supply-part-contract-mc';
 
 @Component({
     selector: 'jhi-supplier-contract-mc-dialog',
@@ -21,26 +19,15 @@ export class SupplierContractMcDialogComponent implements OnInit {
     supplierContract: SupplierContractMc;
     isSaving: boolean;
 
-    purchaseorders: PurchaseOrderMc[];
-
-    supplypartcontracts: SupplyPartContractMc[];
-
     constructor(
         public activeModal: NgbActiveModal,
-        private jhiAlertService: JhiAlertService,
         private supplierContractService: SupplierContractMcService,
-        private purchaseOrderService: PurchaseOrderMcService,
-        private supplyPartContractService: SupplyPartContractMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.purchaseOrderService.query()
-            .subscribe((res: HttpResponse<PurchaseOrderMc[]>) => { this.purchaseorders = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.supplyPartContractService.query()
-            .subscribe((res: HttpResponse<SupplyPartContractMc[]>) => { this.supplypartcontracts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -71,18 +58,6 @@ export class SupplierContractMcDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
-    }
-
-    private onError(error: any) {
-        this.jhiAlertService.error(error.message, null, null);
-    }
-
-    trackPurchaseOrderById(index: number, item: PurchaseOrderMc) {
-        return item.id;
-    }
-
-    trackSupplyPartContractById(index: number, item: SupplyPartContractMc) {
-        return item.id;
     }
 }
 

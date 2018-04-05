@@ -35,8 +35,6 @@ describe('SupplierContract e2e test', () => {
         supplierContractComponentsPage.clickOnCreateButton();
         supplierContractDialogPage.setDateSignedInput(12310020012301);
         expect(supplierContractDialogPage.getDateSignedInput()).toMatch('2001-12-31T02:30');
-        supplierContractDialogPage.purchaseOrderSelectLastOption();
-        supplierContractDialogPage.supplyPartContractSelectLastOption();
         supplierContractDialogPage.save();
         expect(supplierContractDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -64,8 +62,6 @@ export class SupplierContractDialogPage {
     saveButton = element(by.css('.modal-footer .btn.btn-primary'));
     closeButton = element(by.css('button.close'));
     dateSignedInput = element(by.css('input#field_dateSigned'));
-    purchaseOrderSelect = element(by.css('select#field_purchaseOrder'));
-    supplyPartContractSelect = element(by.css('select#field_supplyPartContract'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -77,38 +73,6 @@ export class SupplierContractDialogPage {
 
     getDateSignedInput = function() {
         return this.dateSignedInput.getAttribute('value');
-    };
-
-    purchaseOrderSelectLastOption = function() {
-        this.purchaseOrderSelect.all(by.tagName('option')).last().click();
-    };
-
-    purchaseOrderSelectOption = function(option) {
-        this.purchaseOrderSelect.sendKeys(option);
-    };
-
-    getPurchaseOrderSelect = function() {
-        return this.purchaseOrderSelect;
-    };
-
-    getPurchaseOrderSelectedOption = function() {
-        return this.purchaseOrderSelect.element(by.css('option:checked')).getText();
-    };
-
-    supplyPartContractSelectLastOption = function() {
-        this.supplyPartContractSelect.all(by.tagName('option')).last().click();
-    };
-
-    supplyPartContractSelectOption = function(option) {
-        this.supplyPartContractSelect.sendKeys(option);
-    };
-
-    getSupplyPartContractSelect = function() {
-        return this.supplyPartContractSelect;
-    };
-
-    getSupplyPartContractSelectedOption = function() {
-        return this.supplyPartContractSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

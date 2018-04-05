@@ -41,14 +41,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="opportunity_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="product_stock_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

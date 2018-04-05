@@ -43,8 +43,6 @@ describe('Product e2e test', () => {
         expect(productDialogPage.getBrochureInput()).toMatch('brochure');
         productDialogPage.setSpecsURLInput('specsURL');
         expect(productDialogPage.getSpecsURLInput()).toMatch('specsURL');
-        productDialogPage.opportunitySelectLastOption();
-        productDialogPage.productStockSelectLastOption();
         productDialogPage.save();
         expect(productDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -76,8 +74,6 @@ export class ProductDialogPage {
     imageInput = element(by.css('input#field_image'));
     brochureInput = element(by.css('input#field_brochure'));
     specsURLInput = element(by.css('input#field_specsURL'));
-    opportunitySelect = element(by.css('select#field_opportunity'));
-    productStockSelect = element(by.css('select#field_productStock'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -121,38 +117,6 @@ export class ProductDialogPage {
 
     getSpecsURLInput = function() {
         return this.specsURLInput.getAttribute('value');
-    };
-
-    opportunitySelectLastOption = function() {
-        this.opportunitySelect.all(by.tagName('option')).last().click();
-    };
-
-    opportunitySelectOption = function(option) {
-        this.opportunitySelect.sendKeys(option);
-    };
-
-    getOpportunitySelect = function() {
-        return this.opportunitySelect;
-    };
-
-    getOpportunitySelectedOption = function() {
-        return this.opportunitySelect.element(by.css('option:checked')).getText();
-    };
-
-    productStockSelectLastOption = function() {
-        this.productStockSelect.all(by.tagName('option')).last().click();
-    };
-
-    productStockSelectOption = function(option) {
-        this.productStockSelect.sendKeys(option);
-    };
-
-    getProductStockSelect = function() {
-        return this.productStockSelect;
-    };
-
-    getProductStockSelectedOption = function() {
-        return this.productStockSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

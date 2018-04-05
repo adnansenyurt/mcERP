@@ -8,15 +8,14 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity BillOfMaterials and its DTO BillOfMaterialsDTO.
  */
-@Mapper(componentModel = "spring", uses = {ProductMapper.class, SupplyPartMapper.class})
+@Mapper(componentModel = "spring", uses = {ProductMapper.class})
 public interface BillOfMaterialsMapper extends EntityMapper<BillOfMaterialsDTO, BillOfMaterials> {
 
     @Mapping(source = "product.id", target = "productId")
-    @Mapping(source = "supplyPart.id", target = "supplyPartId")
     BillOfMaterialsDTO toDto(BillOfMaterials billOfMaterials);
 
     @Mapping(source = "productId", target = "product")
-    @Mapping(source = "supplyPartId", target = "supplyPart")
+    @Mapping(target = "supplyParts", ignore = true)
     BillOfMaterials toEntity(BillOfMaterialsDTO billOfMaterialsDTO);
 
     default BillOfMaterials fromId(Long id) {

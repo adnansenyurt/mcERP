@@ -8,8 +8,8 @@ export class ProductMc implements BaseEntity {
         public image?: string,
         public brochure?: string,
         public specsURL?: string,
-        public opportunityId?: number,
-        public productStockId?: number,
+        public opportunities?: BaseEntity[],
+        public productStocks?: BaseEntity[],
     ) {
     }
 }

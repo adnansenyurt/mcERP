@@ -30,8 +30,8 @@ export class CashFlowMc implements BaseEntity {
         public amount?: number,
         public description?: string,
         public currentStatus?: CashFlowStatus,
-        public purchaseOrders?: BaseEntity[],
-        public customerOrders?: BaseEntity[],
+        public customerOrderId?: number,
+        public purchaseOrderId?: number,
     ) {
     }
 }

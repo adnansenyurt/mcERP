@@ -23,14 +23,6 @@ public class CustomerDTO implements Serializable {
 
     private String accountNo;
 
-    private Long contactPersonId;
-
-    private Long customerOrderId;
-
-    private Long invoiceId;
-
-    private Long customerProposalId;
-
     public Long getId() {
         return id;
     }
@@ -69,38 +61,6 @@ public class CustomerDTO implements Serializable {
 
     public void setAccountNo(String accountNo) {
         this.accountNo = accountNo;
-    }
-
-    public Long getContactPersonId() {
-        return contactPersonId;
-    }
-
-    public void setContactPersonId(Long contactPersonId) {
-        this.contactPersonId = contactPersonId;
-    }
-
-    public Long getCustomerOrderId() {
-        return customerOrderId;
-    }
-
-    public void setCustomerOrderId(Long customerOrderId) {
-        this.customerOrderId = customerOrderId;
-    }
-
-    public Long getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(Long invoiceId) {
-        this.invoiceId = invoiceId;
-    }
-
-    public Long getCustomerProposalId() {
-        return customerProposalId;
-    }
-
-    public void setCustomerProposalId(Long customerProposalId) {
-        this.customerProposalId = customerProposalId;
     }
 
     @Override

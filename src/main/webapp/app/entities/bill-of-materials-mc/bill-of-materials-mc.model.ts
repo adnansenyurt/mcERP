@@ -5,7 +5,7 @@ export class BillOfMaterialsMc implements BaseEntity {
         public id?: number,
         public items?: number,
         public productId?: number,
-        public supplyPartId?: number,
+        public supplyParts?: BaseEntity[],
     ) {
     }
 }

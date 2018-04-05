@@ -37,6 +37,7 @@ describe('ProductStock e2e test', () => {
         expect(productStockDialogPage.getSkuCodeInput()).toMatch('skuCode');
         productStockDialogPage.setAmountInput('5');
         expect(productStockDialogPage.getAmountInput()).toMatch('5');
+        productStockDialogPage.productSelectLastOption();
         productStockDialogPage.save();
         expect(productStockDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -65,6 +66,7 @@ export class ProductStockDialogPage {
     closeButton = element(by.css('button.close'));
     skuCodeInput = element(by.css('input#field_skuCode'));
     amountInput = element(by.css('input#field_amount'));
+    productSelect = element(by.css('select#field_product'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -84,6 +86,22 @@ export class ProductStockDialogPage {
 
     getAmountInput = function() {
         return this.amountInput.getAttribute('value');
+    };
+
+    productSelectLastOption = function() {
+        this.productSelect.all(by.tagName('option')).last().click();
+    };
+
+    productSelectOption = function(option) {
+        this.productSelect.sendKeys(option);
+    };
+
+    getProductSelect = function() {
+        return this.productSelect;
+    };
+
+    getProductSelectedOption = function() {
+        return this.productSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

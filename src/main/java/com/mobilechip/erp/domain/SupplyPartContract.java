@@ -1,14 +1,11 @@
 package com.mobilechip.erp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -26,10 +23,8 @@ public class SupplyPartContract implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @OneToMany(mappedBy = "supplyPartContract")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<SupplierContract> contracts = new HashSet<>();
+    @ManyToOne
+    private SupplierContract supplierContract;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -40,29 +35,17 @@ public class SupplyPartContract implements Serializable {
         this.id = id;
     }
 
-    public Set<SupplierContract> getContracts() {
-        return contracts;
+    public SupplierContract getSupplierContract() {
+        return supplierContract;
     }
 
-    public SupplyPartContract contracts(Set<SupplierContract> supplierContracts) {
-        this.contracts = supplierContracts;
+    public SupplyPartContract supplierContract(SupplierContract supplierContract) {
+        this.supplierContract = supplierContract;
         return this;
     }
 
-    public SupplyPartContract addContract(SupplierContract supplierContract) {
-        this.contracts.add(supplierContract);
-        supplierContract.setSupplyPartContract(this);
-        return this;
-    }
-
-    public SupplyPartContract removeContract(SupplierContract supplierContract) {
-        this.contracts.remove(supplierContract);
-        supplierContract.setSupplyPartContract(null);
-        return this;
-    }
-
-    public void setContracts(Set<SupplierContract> supplierContracts) {
-        this.contracts = supplierContracts;
+    public void setSupplierContract(SupplierContract supplierContract) {
+        this.supplierContract = supplierContract;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

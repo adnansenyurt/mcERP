@@ -17,8 +17,6 @@ public class BillOfMaterialsDTO implements Serializable {
 
     private Long productId;
 
-    private Long supplyPartId;
-
     public Long getId() {
         return id;
     }
@@ -41,14 +39,6 @@ public class BillOfMaterialsDTO implements Serializable {
 
     public void setProductId(Long productId) {
         this.productId = productId;
-    }
-
-    public Long getSupplyPartId() {
-        return supplyPartId;
-    }
-
-    public void setSupplyPartId(Long supplyPartId) {
-        this.supplyPartId = supplyPartId;
     }
 
     @Override

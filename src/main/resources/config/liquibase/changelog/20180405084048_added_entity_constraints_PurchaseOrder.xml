@@ -8,11 +8,17 @@
     -->
     <changeSet id="20180405084048-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="cash_flow_id"
+        <addForeignKeyConstraint baseColumnNames="supplier_id"
                                  baseTableName="purchase_order"
-                                 constraintName="fk_purchase_order_cash_flow_id"
+                                 constraintName="fk_purchase_order_supplier_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="cash_flow"/>
+                                 referencedTableName="supplier"/>
+
+        <addForeignKeyConstraint baseColumnNames="supplier_contract_id"
+                                 baseTableName="purchase_order"
+                                 constraintName="fk_purchase_order_supplier_contract_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="supplier_contract"/>
 
     </changeSet>
 </databaseChangeLog>

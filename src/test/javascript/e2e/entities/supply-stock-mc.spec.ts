@@ -37,6 +37,7 @@ describe('SupplyStock e2e test', () => {
         expect(supplyStockDialogPage.getNameInput()).toMatch('name');
         supplyStockDialogPage.setAmountInput('5');
         expect(supplyStockDialogPage.getAmountInput()).toMatch('5');
+        supplyStockDialogPage.supplyPartSelectLastOption();
         supplyStockDialogPage.save();
         expect(supplyStockDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -65,6 +66,7 @@ export class SupplyStockDialogPage {
     closeButton = element(by.css('button.close'));
     nameInput = element(by.css('input#field_name'));
     amountInput = element(by.css('input#field_amount'));
+    supplyPartSelect = element(by.css('select#field_supplyPart'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -84,6 +86,22 @@ export class SupplyStockDialogPage {
 
     getAmountInput = function() {
         return this.amountInput.getAttribute('value');
+    };
+
+    supplyPartSelectLastOption = function() {
+        this.supplyPartSelect.all(by.tagName('option')).last().click();
+    };
+
+    supplyPartSelectOption = function(option) {
+        this.supplyPartSelect.sendKeys(option);
+    };
+
+    getSupplyPartSelect = function() {
+        return this.supplyPartSelect;
+    };
+
+    getSupplyPartSelectedOption = function() {
+        return this.supplyPartSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

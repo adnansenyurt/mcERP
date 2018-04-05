@@ -28,10 +28,6 @@ public class SupplierDTO implements Serializable {
 
     private String accountNo;
 
-    private Long contactPersonId;
-
-    private Long purchaseOrderId;
-
     public Long getId() {
         return id;
     }
@@ -86,22 +82,6 @@ public class SupplierDTO implements Serializable {
 
     public void setAccountNo(String accountNo) {
         this.accountNo = accountNo;
-    }
-
-    public Long getContactPersonId() {
-        return contactPersonId;
-    }
-
-    public void setContactPersonId(Long contactPersonId) {
-        this.contactPersonId = contactPersonId;
-    }
-
-    public Long getPurchaseOrderId() {
-        return purchaseOrderId;
-    }
-
-    public void setPurchaseOrderId(Long purchaseOrderId) {
-        this.purchaseOrderId = purchaseOrderId;
     }
 
     @Override

@@ -4,6 +4,12 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mcErpApp.supplyPartContract.supplierContract">Supplier Contract</span></dt>
+        <dd>
+            <div *ngIf="supplyPartContract.supplierContractId">
+                <a [routerLink]="['/supplier-contract-mc', supplyPartContract.supplierContractId]">{{supplyPartContract.supplierContractId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

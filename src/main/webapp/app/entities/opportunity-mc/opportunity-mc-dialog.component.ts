@@ -10,6 +10,7 @@ import { OpportunityMc } from './opportunity-mc.model';
 import { OpportunityMcPopupService } from './opportunity-mc-popup.service';
 import { OpportunityMcService } from './opportunity-mc.service';
 import { CustomerMc, CustomerMcService } from '../customer-mc';
+import { ProductMc, ProductMcService } from '../product-mc';
 
 @Component({
     selector: 'jhi-opportunity-mc-dialog',
@@ -22,11 +23,14 @@ export class OpportunityMcDialogComponent implements OnInit {
 
     customers: CustomerMc[];
 
+    products: ProductMc[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private opportunityService: OpportunityMcService,
         private customerService: CustomerMcService,
+        private productService: ProductMcService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -35,6 +39,8 @@ export class OpportunityMcDialogComponent implements OnInit {
         this.isSaving = false;
         this.customerService.query()
             .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.productService.query()
+            .subscribe((res: HttpResponse<ProductMc[]>) => { this.products = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -72,6 +78,10 @@ export class OpportunityMcDialogComponent implements OnInit {
     }
 
     trackCustomerById(index: number, item: CustomerMc) {
+        return item.id;
+    }
+
+    trackProductById(index: number, item: ProductMc) {
         return item.id;
     }
 }

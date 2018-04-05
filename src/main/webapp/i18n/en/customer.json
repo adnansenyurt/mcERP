@@ -21,10 +21,10 @@
             "phone": "Phone",
             "accountNo": "Account No",
             "opportunity": "Opportunity",
-            "contactPerson": "Contact Person",
             "customerOrder": "Customer Order",
-            "invoice": "Invoice",
-            "customerProposal": "Customer Proposal"
+            "contactPerson": "Contact Person",
+            "customerProposal": "Customer Proposal",
+            "invoice": "Invoice"
         }
     }
 }

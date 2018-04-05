@@ -17,12 +17,18 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="mcErpApp.supplyPartContract.supplierContract">Supplier Contract</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let supplyPartContract of supplyPartContracts ;trackBy: trackId">
                 <td><a [routerLink]="['../supply-part-contract-mc', supplyPartContract.id ]">{{supplyPartContract.id}}</a></td>
+                <td>
+                    <div *ngIf="supplyPartContract.supplierContractId">
+                        <a [routerLink]="['../supplier-contract-mc', supplyPartContract.supplierContractId  ]" >{{supplyPartContract.supplierContractId}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

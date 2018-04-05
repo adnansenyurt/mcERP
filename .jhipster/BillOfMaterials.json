@@ -10,10 +10,10 @@
             "otherEntityRelationshipName": "billOfMaterials"
         },
         {
+            "relationshipType": "one-to-many",
             "relationshipName": "supplyPart",
             "otherEntityName": "supplyPart",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "billOfMaterials"
         }
     ],
     "fields": [

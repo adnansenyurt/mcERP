@@ -4,11 +4,13 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { ContactPersonMc } from './contact-person-mc.model';
 import { ContactPersonMcPopupService } from './contact-person-mc-popup.service';
 import { ContactPersonMcService } from './contact-person-mc.service';
+import { CustomerMc, CustomerMcService } from '../customer-mc';
+import { SupplierMc, SupplierMcService } from '../supplier-mc';
 
 @Component({
     selector: 'jhi-contact-person-mc-dialog',
@@ -19,15 +21,26 @@ export class ContactPersonMcDialogComponent implements OnInit {
     contactPerson: ContactPersonMc;
     isSaving: boolean;
 
+    customers: CustomerMc[];
+
+    suppliers: SupplierMc[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private contactPersonService: ContactPersonMcService,
+        private customerService: CustomerMcService,
+        private supplierService: SupplierMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.customerService.query()
+            .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.supplierService.query()
+            .subscribe((res: HttpResponse<SupplierMc[]>) => { this.suppliers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -58,6 +71,18 @@ export class ContactPersonMcDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackCustomerById(index: number, item: CustomerMc) {
+        return item.id;
+    }
+
+    trackSupplierById(index: number, item: SupplierMc) {
+        return item.id;
     }
 }
 

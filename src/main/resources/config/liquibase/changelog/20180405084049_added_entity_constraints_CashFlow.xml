@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CashFlow.
+    -->
+    <changeSet id="20180405084049-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="customer_order_id"
+                                 baseTableName="cash_flow"
+                                 constraintName="fk_cash_flow_customer_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="customer_order"/>
+
+        <addForeignKeyConstraint baseColumnNames="purchase_order_id"
+                                 baseTableName="cash_flow"
+                                 constraintName="fk_cash_flow_purchase_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="purchase_order"/>
+
+    </changeSet>
+</databaseChangeLog>

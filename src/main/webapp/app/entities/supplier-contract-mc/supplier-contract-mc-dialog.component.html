@@ -30,20 +30,6 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.supplierContract.purchaseOrder" for="field_purchaseOrder">Purchase Order</label>
-            <select class="form-control" id="field_purchaseOrder" name="purchaseOrder" [(ngModel)]="supplierContract.purchaseOrderId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="purchaseOrderOption.id" *ngFor="let purchaseOrderOption of purchaseorders; trackBy: trackPurchaseOrderById">{{purchaseOrderOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.supplierContract.supplyPartContract" for="field_supplyPartContract">Supply Part Contract</label>
-            <select class="form-control" id="field_supplyPartContract" name="supplyPartContract" [(ngModel)]="supplierContract.supplyPartContractId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="supplyPartContractOption.id" *ngFor="let supplyPartContractOption of supplypartcontracts; trackBy: trackSupplyPartContractById">{{supplyPartContractOption.id}}</option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

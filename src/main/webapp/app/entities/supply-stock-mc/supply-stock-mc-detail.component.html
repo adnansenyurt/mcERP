@@ -12,6 +12,12 @@
         <dd>
             <span>{{supplyStock.amount}}</span>
         </dd>
+        <dt><span jhiTranslate="mcErpApp.supplyStock.supplyPart">Supply Part</span></dt>
+        <dd>
+            <div *ngIf="supplyStock.supplyPartId">
+                <a [routerLink]="['/supply-part-mc', supplyStock.supplyPartId]">{{supplyStock.supplyPartId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

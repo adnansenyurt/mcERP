@@ -9,7 +9,8 @@ import { McErpTestModule } from '../../../test.module';
 import { PurchaseOrderMcDialogComponent } from '../../../../../../main/webapp/app/entities/purchase-order-mc/purchase-order-mc-dialog.component';
 import { PurchaseOrderMcService } from '../../../../../../main/webapp/app/entities/purchase-order-mc/purchase-order-mc.service';
 import { PurchaseOrderMc } from '../../../../../../main/webapp/app/entities/purchase-order-mc/purchase-order-mc.model';
-import { CashFlowMcService } from '../../../../../../main/webapp/app/entities/cash-flow-mc';
+import { SupplierMcService } from '../../../../../../main/webapp/app/entities/supplier-mc';
+import { SupplierContractMcService } from '../../../../../../main/webapp/app/entities/supplier-contract-mc';
 
 describe('Component Tests', () => {
 
@@ -25,7 +26,8 @@ describe('Component Tests', () => {
                 imports: [McErpTestModule],
                 declarations: [PurchaseOrderMcDialogComponent],
                 providers: [
-                    CashFlowMcService,
+                    SupplierMcService,
+                    SupplierContractMcService,
                     PurchaseOrderMcService
                 ]
             })

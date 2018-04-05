@@ -4,13 +4,11 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { SupplierMc } from './supplier-mc.model';
 import { SupplierMcPopupService } from './supplier-mc-popup.service';
 import { SupplierMcService } from './supplier-mc.service';
-import { ContactPersonMc, ContactPersonMcService } from '../contact-person-mc';
-import { PurchaseOrderMc, PurchaseOrderMcService } from '../purchase-order-mc';
 
 @Component({
     selector: 'jhi-supplier-mc-dialog',
@@ -21,26 +19,15 @@ export class SupplierMcDialogComponent implements OnInit {
     supplier: SupplierMc;
     isSaving: boolean;
 
-    contactpeople: ContactPersonMc[];
-
-    purchaseorders: PurchaseOrderMc[];
-
     constructor(
         public activeModal: NgbActiveModal,
-        private jhiAlertService: JhiAlertService,
         private supplierService: SupplierMcService,
-        private contactPersonService: ContactPersonMcService,
-        private purchaseOrderService: PurchaseOrderMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.contactPersonService.query()
-            .subscribe((res: HttpResponse<ContactPersonMc[]>) => { this.contactpeople = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.purchaseOrderService.query()
-            .subscribe((res: HttpResponse<PurchaseOrderMc[]>) => { this.purchaseorders = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -71,18 +58,6 @@ export class SupplierMcDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
-    }
-
-    private onError(error: any) {
-        this.jhiAlertService.error(error.message, null, null);
-    }
-
-    trackContactPersonById(index: number, item: ContactPersonMc) {
-        return item.id;
-    }
-
-    trackPurchaseOrderById(index: number, item: PurchaseOrderMc) {
-        return item.id;
     }
 }
 

@@ -41,10 +41,6 @@ describe('Customer e2e test', () => {
         expect(customerDialogPage.getPhoneInput()).toMatch('phone');
         customerDialogPage.setAccountNoInput('accountNo');
         expect(customerDialogPage.getAccountNoInput()).toMatch('accountNo');
-        customerDialogPage.contactPersonSelectLastOption();
-        customerDialogPage.customerOrderSelectLastOption();
-        customerDialogPage.invoiceSelectLastOption();
-        customerDialogPage.customerProposalSelectLastOption();
         customerDialogPage.save();
         expect(customerDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -75,10 +71,6 @@ export class CustomerDialogPage {
     addressInput = element(by.css('input#field_address'));
     phoneInput = element(by.css('input#field_phone'));
     accountNoInput = element(by.css('input#field_accountNo'));
-    contactPersonSelect = element(by.css('select#field_contactPerson'));
-    customerOrderSelect = element(by.css('select#field_customerOrder'));
-    invoiceSelect = element(by.css('select#field_invoice'));
-    customerProposalSelect = element(by.css('select#field_customerProposal'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -114,70 +106,6 @@ export class CustomerDialogPage {
 
     getAccountNoInput = function() {
         return this.accountNoInput.getAttribute('value');
-    };
-
-    contactPersonSelectLastOption = function() {
-        this.contactPersonSelect.all(by.tagName('option')).last().click();
-    };
-
-    contactPersonSelectOption = function(option) {
-        this.contactPersonSelect.sendKeys(option);
-    };
-
-    getContactPersonSelect = function() {
-        return this.contactPersonSelect;
-    };
-
-    getContactPersonSelectedOption = function() {
-        return this.contactPersonSelect.element(by.css('option:checked')).getText();
-    };
-
-    customerOrderSelectLastOption = function() {
-        this.customerOrderSelect.all(by.tagName('option')).last().click();
-    };
-
-    customerOrderSelectOption = function(option) {
-        this.customerOrderSelect.sendKeys(option);
-    };
-
-    getCustomerOrderSelect = function() {
-        return this.customerOrderSelect;
-    };
-
-    getCustomerOrderSelectedOption = function() {
-        return this.customerOrderSelect.element(by.css('option:checked')).getText();
-    };
-
-    invoiceSelectLastOption = function() {
-        this.invoiceSelect.all(by.tagName('option')).last().click();
-    };
-
-    invoiceSelectOption = function(option) {
-        this.invoiceSelect.sendKeys(option);
-    };
-
-    getInvoiceSelect = function() {
-        return this.invoiceSelect;
-    };
-
-    getInvoiceSelectedOption = function() {
-        return this.invoiceSelect.element(by.css('option:checked')).getText();
-    };
-
-    customerProposalSelectLastOption = function() {
-        this.customerProposalSelect.all(by.tagName('option')).last().click();
-    };
-
-    customerProposalSelectOption = function(option) {
-        this.customerProposalSelect.sendKeys(option);
-    };
-
-    getCustomerProposalSelect = function() {
-        return this.customerProposalSelect;
-    };
-
-    getCustomerProposalSelectedOption = function() {
-        return this.customerProposalSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

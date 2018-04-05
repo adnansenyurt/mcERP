@@ -1,6 +1,5 @@
 package com.mobilechip.erp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -9,8 +8,6 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 import com.mobilechip.erp.domain.enumeration.OpportunityStatus;
@@ -48,10 +45,8 @@ public class Opportunity implements Serializable {
     @ManyToOne
     private Customer customer;
 
-    @OneToMany(mappedBy = "opportunity")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Product> products = new HashSet<>();
+    @ManyToOne
+    private Product product;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -127,29 +122,17 @@ public class Opportunity implements Serializable {
         this.customer = customer;
     }
 
-    public Set<Product> getProducts() {
-        return products;
+    public Product getProduct() {
+        return product;
     }
 
-    public Opportunity products(Set<Product> products) {
-        this.products = products;
+    public Opportunity product(Product product) {
+        this.product = product;
         return this;
     }
 
-    public Opportunity addProduct(Product product) {
-        this.products.add(product);
-        product.setOpportunity(this);
-        return this;
-    }
-
-    public Opportunity removeProduct(Product product) {
-        this.products.remove(product);
-        product.setOpportunity(null);
-        return this;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
+    public void setProduct(Product product) {
+        this.product = product;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

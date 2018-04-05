@@ -1,5 +1,6 @@
 package com.mobilechip.erp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +9,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -29,11 +32,15 @@ public class SupplierContract implements Serializable {
     @Column(name = "date_signed", nullable = false)
     private Instant dateSigned;
 
-    @ManyToOne
-    private PurchaseOrder purchaseOrder;
+    @OneToMany(mappedBy = "supplierContract")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<PurchaseOrder> purchaseOrders = new HashSet<>();
 
-    @ManyToOne
-    private SupplyPartContract supplyPartContract;
+    @OneToMany(mappedBy = "supplierContract")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<SupplyPartContract> supplyPartContracts = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -57,30 +64,54 @@ public class SupplierContract implements Serializable {
         this.dateSigned = dateSigned;
     }
 
-    public PurchaseOrder getPurchaseOrder() {
-        return purchaseOrder;
+    public Set<PurchaseOrder> getPurchaseOrders() {
+        return purchaseOrders;
     }
 
-    public SupplierContract purchaseOrder(PurchaseOrder purchaseOrder) {
-        this.purchaseOrder = purchaseOrder;
+    public SupplierContract purchaseOrders(Set<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
         return this;
     }
 
-    public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
-        this.purchaseOrder = purchaseOrder;
-    }
-
-    public SupplyPartContract getSupplyPartContract() {
-        return supplyPartContract;
-    }
-
-    public SupplierContract supplyPartContract(SupplyPartContract supplyPartContract) {
-        this.supplyPartContract = supplyPartContract;
+    public SupplierContract addPurchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrders.add(purchaseOrder);
+        purchaseOrder.setSupplierContract(this);
         return this;
     }
 
-    public void setSupplyPartContract(SupplyPartContract supplyPartContract) {
-        this.supplyPartContract = supplyPartContract;
+    public SupplierContract removePurchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrders.remove(purchaseOrder);
+        purchaseOrder.setSupplierContract(null);
+        return this;
+    }
+
+    public void setPurchaseOrders(Set<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
+    }
+
+    public Set<SupplyPartContract> getSupplyPartContracts() {
+        return supplyPartContracts;
+    }
+
+    public SupplierContract supplyPartContracts(Set<SupplyPartContract> supplyPartContracts) {
+        this.supplyPartContracts = supplyPartContracts;
+        return this;
+    }
+
+    public SupplierContract addSupplyPartContract(SupplyPartContract supplyPartContract) {
+        this.supplyPartContracts.add(supplyPartContract);
+        supplyPartContract.setSupplierContract(this);
+        return this;
+    }
+
+    public SupplierContract removeSupplyPartContract(SupplyPartContract supplyPartContract) {
+        this.supplyPartContracts.remove(supplyPartContract);
+        supplyPartContract.setSupplierContract(null);
+        return this;
+    }
+
+    public void setSupplyPartContracts(Set<SupplyPartContract> supplyPartContracts) {
+        this.supplyPartContracts = supplyPartContracts;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

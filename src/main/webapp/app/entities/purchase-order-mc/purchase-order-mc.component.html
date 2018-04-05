@@ -23,7 +23,8 @@
             <th><span jhiTranslate="mcErpApp.purchaseOrder.costCenter">Cost Center</span></th>
             <th><span jhiTranslate="mcErpApp.purchaseOrder.paymentConditions">Payment Conditions</span></th>
             <th><span jhiTranslate="mcErpApp.purchaseOrder.currentStatus">Current Status</span></th>
-            <th><span jhiTranslate="mcErpApp.purchaseOrder.cashFlow">Cash Flow</span></th>
+            <th><span jhiTranslate="mcErpApp.purchaseOrder.supplier">Supplier</span></th>
+            <th><span jhiTranslate="mcErpApp.purchaseOrder.supplierContract">Supplier Contract</span></th>
             <th></th>
             </tr>
             </thead>
@@ -37,8 +38,13 @@
                 <td>{{purchaseOrder.paymentConditions}}</td>
                 <td jhiTranslate="{{'mcErpApp.PurchaseOrderStatus.' + purchaseOrder.currentStatus}}">{{purchaseOrder.currentStatus}}</td>
                 <td>
-                    <div *ngIf="purchaseOrder.cashFlowId">
-                        <a [routerLink]="['../cash-flow-mc', purchaseOrder.cashFlowId  ]" >{{purchaseOrder.cashFlowId}}</a>
+                    <div *ngIf="purchaseOrder.supplierId">
+                        <a [routerLink]="['../supplier-mc', purchaseOrder.supplierId  ]" >{{purchaseOrder.supplierId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="purchaseOrder.supplierContractId">
+                        <a [routerLink]="['../supplier-contract-mc', purchaseOrder.supplierContractId  ]" >{{purchaseOrder.supplierContractId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

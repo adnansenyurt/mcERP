@@ -81,10 +81,17 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.purchaseOrder.cashFlow" for="field_cashFlow">Cash Flow</label>
-            <select class="form-control" id="field_cashFlow" name="cashFlow" [(ngModel)]="purchaseOrder.cashFlowId" >
+            <label class="form-control-label" jhiTranslate="mcErpApp.purchaseOrder.supplier" for="field_supplier">Supplier</label>
+            <select class="form-control" id="field_supplier" name="supplier" [(ngModel)]="purchaseOrder.supplierId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="cashFlowOption.id" *ngFor="let cashFlowOption of cashflows; trackBy: trackCashFlowById">{{cashFlowOption.id}}</option>
+                <option [ngValue]="supplierOption.id" *ngFor="let supplierOption of suppliers; trackBy: trackSupplierById">{{supplierOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.purchaseOrder.supplierContract" for="field_supplierContract">Supplier Contract</label>
+            <select class="form-control" id="field_supplierContract" name="supplierContract" [(ngModel)]="purchaseOrder.supplierContractId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="supplierContractOption.id" *ngFor="let supplierContractOption of suppliercontracts; trackBy: trackSupplierContractById">{{supplierContractOption.id}}</option>
             </select>
         </div>
     </div>

@@ -4,11 +4,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { ProductStockMc } from './product-stock-mc.model';
 import { ProductStockMcPopupService } from './product-stock-mc-popup.service';
 import { ProductStockMcService } from './product-stock-mc.service';
+import { ProductMc, ProductMcService } from '../product-mc';
 
 @Component({
     selector: 'jhi-product-stock-mc-dialog',
@@ -19,15 +20,21 @@ export class ProductStockMcDialogComponent implements OnInit {
     productStock: ProductStockMc;
     isSaving: boolean;
 
+    products: ProductMc[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private productStockService: ProductStockMcService,
+        private productService: ProductMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.productService.query()
+            .subscribe((res: HttpResponse<ProductMc[]>) => { this.products = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -58,6 +65,14 @@ export class ProductStockMcDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackProductById(index: number, item: ProductMc) {
+        return item.id;
     }
 }
 

@@ -62,10 +62,10 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.customerOrder.cashFlow" for="field_cashFlow">Cash Flow</label>
-            <select class="form-control" id="field_cashFlow" name="cashFlow" [(ngModel)]="customerOrder.cashFlowId" >
+            <label class="form-control-label" jhiTranslate="mcErpApp.customerOrder.customer" for="field_customer">Customer</label>
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="customerOrder.customerId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="cashFlowOption.id" *ngFor="let cashFlowOption of cashflows; trackBy: trackCashFlowById">{{cashFlowOption.id}}</option>
+                <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
             </select>
         </div>
     </div>

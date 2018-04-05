@@ -2,16 +2,16 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "one-to-many",
             "relationshipName": "purchaseOrder",
             "otherEntityName": "purchaseOrder",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "supplierContract"
         },
         {
+            "relationshipType": "one-to-many",
             "relationshipName": "supplyPartContract",
             "otherEntityName": "supplyPartContract",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "supplierContract"
         }
     ],
     "fields": [

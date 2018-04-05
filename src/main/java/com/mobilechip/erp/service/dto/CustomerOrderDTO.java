@@ -28,7 +28,7 @@ public class CustomerOrderDTO implements Serializable {
 
     private CustomerOrderStatus currentStatus;
 
-    private Long cashFlowId;
+    private Long customerId;
 
     public Long getId() {
         return id;
@@ -78,12 +78,12 @@ public class CustomerOrderDTO implements Serializable {
         this.currentStatus = currentStatus;
     }
 
-    public Long getCashFlowId() {
-        return cashFlowId;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setCashFlowId(Long cashFlowId) {
-        this.cashFlowId = cashFlowId;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @Override

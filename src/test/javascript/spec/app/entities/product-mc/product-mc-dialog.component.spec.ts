@@ -9,8 +9,6 @@ import { McErpTestModule } from '../../../test.module';
 import { ProductMcDialogComponent } from '../../../../../../main/webapp/app/entities/product-mc/product-mc-dialog.component';
 import { ProductMcService } from '../../../../../../main/webapp/app/entities/product-mc/product-mc.service';
 import { ProductMc } from '../../../../../../main/webapp/app/entities/product-mc/product-mc.model';
-import { OpportunityMcService } from '../../../../../../main/webapp/app/entities/opportunity-mc';
-import { ProductStockMcService } from '../../../../../../main/webapp/app/entities/product-stock-mc';
 
 describe('Component Tests', () => {
 
@@ -26,8 +24,6 @@ describe('Component Tests', () => {
                 imports: [McErpTestModule],
                 declarations: [ProductMcDialogComponent],
                 providers: [
-                    OpportunityMcService,
-                    ProductStockMcService,
                     ProductMcService
                 ]
             })

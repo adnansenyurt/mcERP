@@ -50,20 +50,6 @@
                 [(ngModel)]="product.specsURL" />
         </div>
 
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.product.opportunity" for="field_opportunity">Opportunity</label>
-            <select class="form-control" id="field_opportunity" name="opportunity" [(ngModel)]="product.opportunityId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="opportunityOption.id" *ngFor="let opportunityOption of opportunities; trackBy: trackOpportunityById">{{opportunityOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.product.productStock" for="field_productStock">Product Stock</label>
-            <select class="form-control" id="field_productStock" name="productStock" [(ngModel)]="product.productStockId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="productStockOption.id" *ngFor="let productStockOption of productstocks; trackBy: trackProductStockById">{{productStockOption.id}}</option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

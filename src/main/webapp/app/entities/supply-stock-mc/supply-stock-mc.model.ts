@@ -5,7 +5,7 @@ export class SupplyStockMc implements BaseEntity {
         public id?: number,
         public name?: string,
         public amount?: number,
-        public parts?: BaseEntity[],
+        public supplyPartId?: number,
     ) {
     }
 }
