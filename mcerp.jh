@@ -158,7 +158,7 @@ relationship OneToMany {
     Product{opportunity} to Opportunity,
     Supplier{purchaseOrder} to PurchaseOrder,
     SupplierContract{purchaseOrder} to PurchaseOrder,
-    SupplierContract{supplierPartContract} to SupplierPartContract,
+    SupplierContract{supplyPartContract} to SupplyPartContract,
     PurchaseOrder{cashFlow} to CashFlow,
     CustomerOrder{cashFlow} to CashFlow,
     Customer{customerProposal} to CustomerProposal,
