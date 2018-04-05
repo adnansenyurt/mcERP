@@ -62,7 +62,7 @@
             <label class="form-control-label" jhiTranslate="mcErpApp.invoice.customerOrder" for="field_customerOrder">Customer Order</label>
             <select class="form-control" id="field_customerOrder" name="customerOrder" [(ngModel)]="invoice.customerOrderId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="customerOrderOption.id" *ngFor="let customerOrderOption of customerorders; trackBy: trackCustomerOrderById">{{customerOrderOption.id}}</option>
+                <option [ngValue]="customerOrderOption.id" *ngFor="let customerOrderOption of customerorders; trackBy: trackCustomerOrderById">{{customerOrderOption.name}}</option>
             </select>
         </div>
     </div>

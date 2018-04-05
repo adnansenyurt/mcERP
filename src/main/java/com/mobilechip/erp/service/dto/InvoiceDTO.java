@@ -29,6 +29,8 @@ public class InvoiceDTO implements Serializable {
 
     private Long customerOrderId;
 
+    private String customerOrderName;
+
     public Long getId() {
         return id;
     }
@@ -83,6 +85,14 @@ public class InvoiceDTO implements Serializable {
 
     public void setCustomerOrderId(Long customerOrderId) {
         this.customerOrderId = customerOrderId;
+    }
+
+    public String getCustomerOrderName() {
+        return customerOrderName;
+    }
+
+    public void setCustomerOrderName(String customerOrderName) {
+        this.customerOrderName = customerOrderName;
     }
 
     @Override
