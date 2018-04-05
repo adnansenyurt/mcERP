@@ -1,0 +1,11 @@
+{
+    "mcErpApp": {
+        "OpportunityStatus" : {
+            "null": "",
+            "INITIAL": "INITIAL",
+            "PROPOSAL": "PROPOSAL",
+            "LOST": "LOST",
+            "WON": "WON"
+        }
+    }
+}

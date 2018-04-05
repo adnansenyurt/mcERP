@@ -1,0 +1,81 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySupplierLabel" jhiTranslate="mcErpApp.supplier.home.createOrEditLabel">Create or edit a Supplier</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!supplier.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="supplier.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplier.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="supplier.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplier.address" for="field_address">Address</label>
+            <input type="text" class="form-control" name="address" id="field_address"
+                [(ngModel)]="supplier.address" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplier.domain" for="field_domain">Domain</label>
+            <input type="text" class="form-control" name="domain" id="field_domain"
+                [(ngModel)]="supplier.domain" required/>
+            <div [hidden]="!(editForm.controls.domain?.dirty && editForm.controls.domain?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.domain?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplier.web" for="field_web">Web</label>
+            <input type="text" class="form-control" name="web" id="field_web"
+                [(ngModel)]="supplier.web" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplier.phone" for="field_phone">Phone</label>
+            <input type="text" class="form-control" name="phone" id="field_phone"
+                [(ngModel)]="supplier.phone" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplier.accountNo" for="field_accountNo">Account No</label>
+            <input type="text" class="form-control" name="accountNo" id="field_accountNo"
+                [(ngModel)]="supplier.accountNo" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplier.contactPerson" for="field_contactPerson">Contact Person</label>
+            <select class="form-control" id="field_contactPerson" name="contactPerson" [(ngModel)]="supplier.contactPersonId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contactPersonOption.id" *ngFor="let contactPersonOption of contactpeople; trackBy: trackContactPersonById">{{contactPersonOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplier.purchaseOrder" for="field_purchaseOrder">Purchase Order</label>
+            <select class="form-control" id="field_purchaseOrder" name="purchaseOrder" [(ngModel)]="supplier.purchaseOrderId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="purchaseOrderOption.id" *ngFor="let purchaseOrderOption of purchaseorders; trackBy: trackPurchaseOrderById">{{purchaseOrderOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

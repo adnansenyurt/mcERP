@@ -1,0 +1,53 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "customerOrder"
+        },
+        {
+            "relationshipName": "cashFlow",
+            "otherEntityName": "cashFlow",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateOpened",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "datePaymentDue",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "currentStatus",
+            "fieldType": "CustomerOrderStatus",
+            "fieldValues": "RECEIVED,INVOICED,PAID"
+        }
+    ],
+    "changelogDate": "20180405084047",
+    "entityTableName": "customer_order",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mc"
+}

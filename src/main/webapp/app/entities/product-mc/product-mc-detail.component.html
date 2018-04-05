@@ -1,0 +1,54 @@
+
+<div *ngIf="product">
+    <h2><span jhiTranslate="mcErpApp.product.detail.title">Product</span> {{product.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mcErpApp.product.name">Name</span></dt>
+        <dd>
+            <span>{{product.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.product.model">Model</span></dt>
+        <dd>
+            <span>{{product.model}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.product.image">Image</span></dt>
+        <dd>
+            <span>{{product.image}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.product.brochure">Brochure</span></dt>
+        <dd>
+            <span>{{product.brochure}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.product.specsURL">Specs URL</span></dt>
+        <dd>
+            <span>{{product.specsURL}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.product.opportunity">Opportunity</span></dt>
+        <dd>
+            <div *ngIf="product.opportunityId">
+                <a [routerLink]="['/opportunity-mc', product.opportunityId]">{{product.opportunityId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.product.productStock">Product Stock</span></dt>
+        <dd>
+            <div *ngIf="product.productStockId">
+                <a [routerLink]="['/product-stock-mc', product.productStockId]">{{product.productStockId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'product-mc/'+ product.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

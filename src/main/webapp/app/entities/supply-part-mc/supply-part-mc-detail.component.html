@@ -1,0 +1,46 @@
+
+<div *ngIf="supplyPart">
+    <h2><span jhiTranslate="mcErpApp.supplyPart.detail.title">Supply Part</span> {{supplyPart.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mcErpApp.supplyPart.name">Name</span></dt>
+        <dd>
+            <span>{{supplyPart.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.supplyPart.supplierPartCode">Supplier Part Code</span></dt>
+        <dd>
+            <span>{{supplyPart.supplierPartCode}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.supplyPart.description">Description</span></dt>
+        <dd>
+            <span>{{supplyPart.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.supplyPart.contract">Contract</span></dt>
+        <dd>
+            <div *ngIf="supplyPart.contractId">
+                <a [routerLink]="['/supply-part-contract-mc', supplyPart.contractId]">{{supplyPart.contractId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.supplyPart.supplyStock">Supply Stock</span></dt>
+        <dd>
+            <div *ngIf="supplyPart.supplyStockId">
+                <a [routerLink]="['/supply-stock-mc', supplyPart.supplyStockId]">{{supplyPart.supplyStockId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'supply-part-mc/'+ supplyPart.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

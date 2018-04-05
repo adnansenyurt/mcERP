@@ -1,0 +1,107 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCashFlowLabel" jhiTranslate="mcErpApp.cashFlow.home.createOrEditLabel">Create or edit a Cash Flow</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!cashFlow.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="cashFlow.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.cashFlow.datePayment" for="field_datePayment">Date Payment</label>
+            <div class="d-flex">
+                <input id="field_datePayment" type="datetime-local" class="form-control" name="datePayment" [(ngModel)]="cashFlow.datePayment"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.datePayment?.dirty && editForm.controls.datePayment?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.datePayment?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.datePayment?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.cashFlow.direction" for="field_direction">Direction</label>
+            <select class="form-control" name="direction" [(ngModel)]="cashFlow.direction" id="field_direction"  required>
+                <option value="IN">{{'mcErpApp.CashFlowDirection.IN' | translate}}</option>
+                <option value="OUT">{{'mcErpApp.CashFlowDirection.OUT' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.direction?.dirty && editForm.controls.direction?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.direction?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.cashFlow.type" for="field_type">Type</label>
+            <select class="form-control" name="type" [(ngModel)]="cashFlow.type" id="field_type"  required>
+                <option value="INVOICE">{{'mcErpApp.CashFlowType.INVOICE' | translate}}</option>
+                <option value="ALLOWANCE">{{'mcErpApp.CashFlowType.ALLOWANCE' | translate}}</option>
+                <option value="SALARY">{{'mcErpApp.CashFlowType.SALARY' | translate}}</option>
+                <option value="PO">{{'mcErpApp.CashFlowType.PO' | translate}}</option>
+                <option value="TAX">{{'mcErpApp.CashFlowType.TAX' | translate}}</option>
+                <option value="CORRECTION">{{'mcErpApp.CashFlowType.CORRECTION' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.type?.dirty && editForm.controls.type?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.type?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.cashFlow.amount" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                [(ngModel)]="cashFlow.amount" required/>
+            <div [hidden]="!(editForm.controls.amount?.dirty && editForm.controls.amount?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.amount?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.amount?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.cashFlow.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="cashFlow.description" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.cashFlow.currentStatus" for="field_currentStatus">Current Status</label>
+            <select class="form-control" name="currentStatus" [(ngModel)]="cashFlow.currentStatus" id="field_currentStatus"  required>
+                <option value="DUE">{{'mcErpApp.CashFlowStatus.DUE' | translate}}</option>
+                <option value="PAID">{{'mcErpApp.CashFlowStatus.PAID' | translate}}</option>
+                <option value="LATE">{{'mcErpApp.CashFlowStatus.LATE' | translate}}</option>
+                <option value="CANCELLED">{{'mcErpApp.CashFlowStatus.CANCELLED' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.currentStatus?.dirty && editForm.controls.currentStatus?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.currentStatus?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

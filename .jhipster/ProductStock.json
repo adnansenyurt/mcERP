@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "productStock"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "skuCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20180405084058",
+    "entityTableName": "product_stock",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mc"
+}

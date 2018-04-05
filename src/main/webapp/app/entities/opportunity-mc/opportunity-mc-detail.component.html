@@ -1,0 +1,38 @@
+
+<div *ngIf="opportunity">
+    <h2><span jhiTranslate="mcErpApp.opportunity.detail.title">Opportunity</span> {{opportunity.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mcErpApp.opportunity.name">Name</span></dt>
+        <dd>
+            <span>{{opportunity.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.opportunity.dateOpened">Date Opened</span></dt>
+        <dd>
+            <span>{{opportunity.dateOpened | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.opportunity.amount">Amount</span></dt>
+        <dd>
+            <span>{{opportunity.amount}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.opportunity.currentStatus">Current Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mcErpApp.OpportunityStatus.' + opportunity.currentStatus}}">{{opportunity.currentStatus}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'opportunity-mc/'+ opportunity.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

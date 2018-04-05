@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span jhiTranslate="mcErpApp.billOfMaterials.home.title">Bill Of Materials</span>
+        <button class="btn btn-primary float-right jh-create-entity create-bill-of-materials-mc" [routerLink]="['/', { outlets: { popup: ['bill-of-materials-mc-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="mcErpApp.billOfMaterials.home.createLabel">
+            Create new Bill Of Materials
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="billOfMaterials">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="mcErpApp.billOfMaterials.items">Items</span></th>
+            <th><span jhiTranslate="mcErpApp.billOfMaterials.product">Product</span></th>
+            <th><span jhiTranslate="mcErpApp.billOfMaterials.supplyPart">Supply Part</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let billOfMaterials of billOfMaterials ;trackBy: trackId">
+                <td><a [routerLink]="['../bill-of-materials-mc', billOfMaterials.id ]">{{billOfMaterials.id}}</a></td>
+                <td>{{billOfMaterials.items}}</td>
+                <td>
+                    <div *ngIf="billOfMaterials.productId">
+                        <a [routerLink]="['../product-mc', billOfMaterials.productId  ]" >{{billOfMaterials.productId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="billOfMaterials.supplyPartId">
+                        <a [routerLink]="['../supply-part-mc', billOfMaterials.supplyPartId  ]" >{{billOfMaterials.supplyPartId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../bill-of-materials-mc', billOfMaterials.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bill-of-materials-mc/'+ billOfMaterials.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bill-of-materials-mc/'+ billOfMaterials.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

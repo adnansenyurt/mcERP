@@ -1,0 +1,11 @@
+{
+    "mcErpApp": {
+        "CashFlowStatus" : {
+            "null": "",
+            "DUE": "DUE",
+            "PAID": "PAID",
+            "LATE": "LATE",
+            "CANCELLED": "CANCELLED"
+        }
+    }
+}

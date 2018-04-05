@@ -1,0 +1,27 @@
+
+{
+    "mcErpApp": {
+        "opportunity" : {
+            "home": {
+                "title": "Opportunities",
+                "createLabel": "Create a new Opportunity",
+                "createOrEditLabel": "Create or edit a Opportunity"
+            },
+            "created": "A new Opportunity is created with identifier {{ param }}",
+            "updated": "A Opportunity is updated with identifier {{ param }}",
+            "deleted": "A Opportunity is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Opportunity {{ id }}?"
+            },
+            "detail": {
+                "title": "Opportunity"
+            },
+            "name": "Name",
+            "dateOpened": "Date Opened",
+            "amount": "Amount",
+            "currentStatus": "Current Status",
+            "customer": "Customer",
+            "product": "Product"
+        }
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "customerOrder",
+            "otherEntityName": "customerOrder",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "invoice"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "invoice"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateIssued",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "amountTotal",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "paymentDue",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180405084050",
+    "entityTableName": "invoice",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mc"
+}

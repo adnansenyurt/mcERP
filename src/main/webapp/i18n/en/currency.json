@@ -1,0 +1,10 @@
+{
+    "mcErpApp": {
+        "Currency" : {
+            "null": "",
+            "TL": "TL",
+            "USD": "USD",
+            "EURO": "EURO"
+        }
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "purchaseOrder",
+            "otherEntityName": "purchaseOrder",
+            "otherEntityRelationshipName": "cashFlow"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "customerOrder",
+            "otherEntityName": "customerOrder",
+            "otherEntityRelationshipName": "cashFlow"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "datePayment",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "direction",
+            "fieldType": "CashFlowDirection",
+            "fieldValues": "IN,OUT",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "CashFlowType",
+            "fieldValues": "INVOICE,ALLOWANCE,SALARY,PO,TAX,CORRECTION",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "currentStatus",
+            "fieldType": "CashFlowStatus",
+            "fieldValues": "DUE,PAID,LATE,CANCELLED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180405084049",
+    "entityTableName": "cash_flow",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mc"
+}

@@ -1,0 +1,42 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "customerProposal"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateSubmitted",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20180405084051",
+    "entityTableName": "customer_proposal",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mc"
+}

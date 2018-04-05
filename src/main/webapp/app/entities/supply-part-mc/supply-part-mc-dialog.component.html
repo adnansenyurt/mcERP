@@ -1,0 +1,60 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySupplyPartLabel" jhiTranslate="mcErpApp.supplyPart.home.createOrEditLabel">Create or edit a Supply Part</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!supplyPart.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="supplyPart.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplyPart.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="supplyPart.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplyPart.supplierPartCode" for="field_supplierPartCode">Supplier Part Code</label>
+            <input type="text" class="form-control" name="supplierPartCode" id="field_supplierPartCode"
+                [(ngModel)]="supplyPart.supplierPartCode" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplyPart.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="supplyPart.description" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplyPart.contract" for="field_contract">Contract</label>
+            <select class="form-control" id="field_contract" name="contract" [(ngModel)]="supplyPart.contractId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="supplyPartContractOption.id" *ngFor="let supplyPartContractOption of contracts; trackBy: trackSupplyPartContractById">{{supplyPartContractOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.supplyPart.supplyStock" for="field_supplyStock">Supply Stock</label>
+            <select class="form-control" id="field_supplyStock" name="supplyStock" [(ngModel)]="supplyPart.supplyStockId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="supplyStockOption.id" *ngFor="let supplyStockOption of supplystocks; trackBy: trackSupplyStockById">{{supplyStockOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

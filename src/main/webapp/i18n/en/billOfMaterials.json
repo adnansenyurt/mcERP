@@ -1,0 +1,24 @@
+
+{
+    "mcErpApp": {
+        "billOfMaterials" : {
+            "home": {
+                "title": "Bill Of Materials",
+                "createLabel": "Create a new Bill Of Materials",
+                "createOrEditLabel": "Create or edit a Bill Of Materials"
+            },
+            "created": "A new Bill Of Materials is created with identifier {{ param }}",
+            "updated": "A Bill Of Materials is updated with identifier {{ param }}",
+            "deleted": "A Bill Of Materials is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Bill Of Materials {{ id }}?"
+            },
+            "detail": {
+                "title": "Bill Of Materials"
+            },
+            "items": "Items",
+            "product": "Product",
+            "supplyPart": "Supply Part"
+        }
+    }
+}

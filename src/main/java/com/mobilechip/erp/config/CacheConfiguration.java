@@ -42,6 +42,38 @@ public class CacheConfiguration {
             cm.createCache(com.mobilechip.erp.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.mobilechip.erp.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.mobilechip.erp.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Customer.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Supplier.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.ContactPerson.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.ContactPerson.class.getName() + ".customers", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.ContactPerson.class.getName() + ".suppliers", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Opportunity.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Opportunity.class.getName() + ".customers", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Opportunity.class.getName() + ".products", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.CustomerOrder.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.CustomerOrder.class.getName() + ".customers", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.PurchaseOrder.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.PurchaseOrder.class.getName() + ".suppliers", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.PurchaseOrder.class.getName() + ".contracts", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.CashFlow.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.CashFlow.class.getName() + ".purchaseOrders", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.CashFlow.class.getName() + ".customerOrders", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Invoice.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Invoice.class.getName() + ".customers", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.CustomerProposal.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.CustomerProposal.class.getName() + ".customers", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.Product.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.BillOfMaterials.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.SupplierContract.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.SupplyPart.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.SupplyPart.class.getName() + ".boms", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.SupplyPartContract.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.SupplyPartContract.class.getName() + ".contracts", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.PriceRange.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.ProductStock.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.ProductStock.class.getName() + ".products", jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.SupplyStock.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mobilechip.erp.domain.SupplyStock.class.getName() + ".parts", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

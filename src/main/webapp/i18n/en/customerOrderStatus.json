@@ -1,0 +1,10 @@
+{
+    "mcErpApp": {
+        "CustomerOrderStatus" : {
+            "null": "",
+            "RECEIVED": "RECEIVED",
+            "INVOICED": "INVOICED",
+            "PAID": "PAID"
+        }
+    }
+}

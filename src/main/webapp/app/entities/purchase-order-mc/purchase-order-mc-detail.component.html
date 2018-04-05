@@ -1,0 +1,52 @@
+
+<div *ngIf="purchaseOrder">
+    <h2><span jhiTranslate="mcErpApp.purchaseOrder.detail.title">Purchase Order</span> {{purchaseOrder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mcErpApp.purchaseOrder.name">Name</span></dt>
+        <dd>
+            <span>{{purchaseOrder.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.purchaseOrder.dateOpened">Date Opened</span></dt>
+        <dd>
+            <span>{{purchaseOrder.dateOpened | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.purchaseOrder.amount">Amount</span></dt>
+        <dd>
+            <span>{{purchaseOrder.amount}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.purchaseOrder.costCenter">Cost Center</span></dt>
+        <dd>
+            <span>{{purchaseOrder.costCenter}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.purchaseOrder.paymentConditions">Payment Conditions</span></dt>
+        <dd>
+            <span>{{purchaseOrder.paymentConditions}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.purchaseOrder.currentStatus">Current Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mcErpApp.PurchaseOrderStatus.' + purchaseOrder.currentStatus}}">{{purchaseOrder.currentStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.purchaseOrder.cashFlow">Cash Flow</span></dt>
+        <dd>
+            <div *ngIf="purchaseOrder.cashFlowId">
+                <a [routerLink]="['/cash-flow-mc', purchaseOrder.cashFlowId]">{{purchaseOrder.cashFlowId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'purchase-order-mc/'+ purchaseOrder.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

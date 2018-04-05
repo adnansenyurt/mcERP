@@ -1,0 +1,70 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myInvoiceLabel" jhiTranslate="mcErpApp.invoice.home.createOrEditLabel">Create or edit a Invoice</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!invoice.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="invoice.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.invoice.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="invoice.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.invoice.dateIssued" for="field_dateIssued">Date Issued</label>
+            <div class="d-flex">
+                <input id="field_dateIssued" type="datetime-local" class="form-control" name="dateIssued" [(ngModel)]="invoice.dateIssued"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.dateIssued?.dirty && editForm.controls.dateIssued?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.dateIssued?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.dateIssued?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.invoice.amountTotal" for="field_amountTotal">Amount Total</label>
+            <input type="number" class="form-control" name="amountTotal" id="field_amountTotal"
+                [(ngModel)]="invoice.amountTotal" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.invoice.paymentDue" for="field_paymentDue">Payment Due</label>
+            <input type="number" class="form-control" name="paymentDue" id="field_paymentDue"
+                [(ngModel)]="invoice.paymentDue" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.invoice.customerOrder" for="field_customerOrder">Customer Order</label>
+            <select class="form-control" id="field_customerOrder" name="customerOrder" [(ngModel)]="invoice.customerOrderId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="customerOrderOption.id" *ngFor="let customerOrderOption of customerorders; trackBy: trackCustomerOrderById">{{customerOrderOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

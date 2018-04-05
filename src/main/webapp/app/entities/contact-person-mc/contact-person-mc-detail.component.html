@@ -1,0 +1,38 @@
+
+<div *ngIf="contactPerson">
+    <h2><span jhiTranslate="mcErpApp.contactPerson.detail.title">Contact Person</span> {{contactPerson.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mcErpApp.contactPerson.name">Name</span></dt>
+        <dd>
+            <span>{{contactPerson.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.contactPerson.role">Role</span></dt>
+        <dd>
+            <span>{{contactPerson.role}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.contactPerson.eMail">E Mail</span></dt>
+        <dd>
+            <span>{{contactPerson.eMail}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.contactPerson.mobile">Mobile</span></dt>
+        <dd>
+            <span>{{contactPerson.mobile}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'contact-person-mc/'+ contactPerson.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
