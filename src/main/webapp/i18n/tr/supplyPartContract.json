@@ -1,0 +1,22 @@
+
+{
+    "mcErpApp": {
+        "supplyPartContract" : {
+            "home": {
+                "title": "Supply Part Contracts",
+                "createLabel": "Create a new Supply Part Contract",
+                "createOrEditLabel": "Create or edit a Supply Part Contract"
+            },
+            "created": "A new Supply Part Contract is created with identifier {{ param }}",
+            "updated": "A Supply Part Contract is updated with identifier {{ param }}",
+            "deleted": "A Supply Part Contract is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Supply Part Contract {{ id }}?"
+            },
+            "detail": {
+                "title": "Supply Part Contract"
+            },
+            "contract": "Contract"
+        }
+    }
+}

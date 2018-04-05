@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span jhiTranslate="mcErpApp.priceRange.home.title">Price Ranges</span>
+        <button class="btn btn-primary float-right jh-create-entity create-price-range-mc" [routerLink]="['/', { outlets: { popup: ['price-range-mc-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="mcErpApp.priceRange.home.createLabel">
+            Create new Price Range
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="priceRanges">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="mcErpApp.priceRange.rangeLow">Range Low</span></th>
+            <th><span jhiTranslate="mcErpApp.priceRange.rangeHigh">Range High</span></th>
+            <th><span jhiTranslate="mcErpApp.priceRange.price">Price</span></th>
+            <th><span jhiTranslate="mcErpApp.priceRange.currency">Currency</span></th>
+            <th><span jhiTranslate="mcErpApp.priceRange.contract">Contract</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let priceRange of priceRanges ;trackBy: trackId">
+                <td><a [routerLink]="['../price-range-mc', priceRange.id ]">{{priceRange.id}}</a></td>
+                <td>{{priceRange.rangeLow}}</td>
+                <td>{{priceRange.rangeHigh}}</td>
+                <td>{{priceRange.price}}</td>
+                <td jhiTranslate="{{'mcErpApp.Currency.' + priceRange.currency}}">{{priceRange.currency}}</td>
+                <td>
+                    <div *ngIf="priceRange.contractId">
+                        <a [routerLink]="['../supply-part-contract-mc', priceRange.contractId  ]" >{{priceRange.contractId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../price-range-mc', priceRange.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'price-range-mc/'+ priceRange.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'price-range-mc/'+ priceRange.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

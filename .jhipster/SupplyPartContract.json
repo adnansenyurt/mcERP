@@ -1,0 +1,19 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contract",
+            "otherEntityName": "supplierContract",
+            "otherEntityRelationshipName": "supplyPartContract"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20180405084056",
+    "entityTableName": "supply_part_contract",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mc"
+}

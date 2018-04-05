@@ -1,0 +1,10 @@
+{
+    "mcErpApp": {
+        "PurchaseOrderStatus" : {
+            "null": "",
+            "ACTIVE": "ACTIVE",
+            "DELIVERED": "DELIVERED",
+            "CANCELLED": "CANCELLED"
+        }
+    }
+}

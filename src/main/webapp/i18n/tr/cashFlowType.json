@@ -1,0 +1,13 @@
+{
+    "mcErpApp": {
+        "CashFlowType" : {
+            "null": "",
+            "INVOICE": "INVOICE",
+            "ALLOWANCE": "ALLOWANCE",
+            "SALARY": "SALARY",
+            "PO": "PO",
+            "TAX": "TAX",
+            "CORRECTION": "CORRECTION"
+        }
+    }
+}

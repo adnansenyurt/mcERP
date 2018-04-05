@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span jhiTranslate="mcErpApp.supplyPart.home.title">Supply Parts</span>
+        <button class="btn btn-primary float-right jh-create-entity create-supply-part-mc" [routerLink]="['/', { outlets: { popup: ['supply-part-mc-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="mcErpApp.supplyPart.home.createLabel">
+            Create new Supply Part
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="supplyParts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="mcErpApp.supplyPart.name">Name</span></th>
+            <th><span jhiTranslate="mcErpApp.supplyPart.supplierPartCode">Supplier Part Code</span></th>
+            <th><span jhiTranslate="mcErpApp.supplyPart.description">Description</span></th>
+            <th><span jhiTranslate="mcErpApp.supplyPart.contract">Contract</span></th>
+            <th><span jhiTranslate="mcErpApp.supplyPart.supplyStock">Supply Stock</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let supplyPart of supplyParts ;trackBy: trackId">
+                <td><a [routerLink]="['../supply-part-mc', supplyPart.id ]">{{supplyPart.id}}</a></td>
+                <td>{{supplyPart.name}}</td>
+                <td>{{supplyPart.supplierPartCode}}</td>
+                <td>{{supplyPart.description}}</td>
+                <td>
+                    <div *ngIf="supplyPart.contractId">
+                        <a [routerLink]="['../supply-part-contract-mc', supplyPart.contractId  ]" >{{supplyPart.contractId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="supplyPart.supplyStockId">
+                        <a [routerLink]="['../supply-stock-mc', supplyPart.supplyStockId  ]" >{{supplyPart.supplyStockId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../supply-part-mc', supplyPart.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'supply-part-mc/'+ supplyPart.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'supply-part-mc/'+ supplyPart.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

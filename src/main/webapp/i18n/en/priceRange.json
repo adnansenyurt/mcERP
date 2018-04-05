@@ -1,0 +1,26 @@
+
+{
+    "mcErpApp": {
+        "priceRange" : {
+            "home": {
+                "title": "Price Ranges",
+                "createLabel": "Create a new Price Range",
+                "createOrEditLabel": "Create or edit a Price Range"
+            },
+            "created": "A new Price Range is created with identifier {{ param }}",
+            "updated": "A Price Range is updated with identifier {{ param }}",
+            "deleted": "A Price Range is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Price Range {{ id }}?"
+            },
+            "detail": {
+                "title": "Price Range"
+            },
+            "rangeLow": "Range Low",
+            "rangeHigh": "Range High",
+            "price": "Price",
+            "currency": "Currency",
+            "contract": "Contract"
+        }
+    }
+}

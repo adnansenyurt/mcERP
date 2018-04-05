@@ -1,0 +1,86 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCustomerLabel" jhiTranslate="mcErpApp.customer.home.createOrEditLabel">Create or edit a Customer</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!customer.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="customer.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.customer.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="customer.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.customer.address" for="field_address">Address</label>
+            <input type="text" class="form-control" name="address" id="field_address"
+                [(ngModel)]="customer.address" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.customer.phone" for="field_phone">Phone</label>
+            <input type="text" class="form-control" name="phone" id="field_phone"
+                [(ngModel)]="customer.phone" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.customer.accountNo" for="field_accountNo">Account No</label>
+            <input type="text" class="form-control" name="accountNo" id="field_accountNo"
+                [(ngModel)]="customer.accountNo" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.customer.contactPerson" for="field_contactPerson">Contact Person</label>
+            <select class="form-control" id="field_contactPerson" name="contactPerson" [(ngModel)]="customer.contactPersonId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contactPersonOption.id" *ngFor="let contactPersonOption of contactpeople; trackBy: trackContactPersonById">{{contactPersonOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.customer.opportunity" for="field_opportunity">Opportunity</label>
+            <select class="form-control" id="field_opportunity" name="opportunity" [(ngModel)]="customer.opportunityId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="opportunityOption.id" *ngFor="let opportunityOption of opportunities; trackBy: trackOpportunityById">{{opportunityOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.customer.customerOrder" for="field_customerOrder">Customer Order</label>
+            <select class="form-control" id="field_customerOrder" name="customerOrder" [(ngModel)]="customer.customerOrderId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="customerOrderOption.id" *ngFor="let customerOrderOption of customerorders; trackBy: trackCustomerOrderById">{{customerOrderOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.customer.invoice" for="field_invoice">Invoice</label>
+            <select class="form-control" id="field_invoice" name="invoice" [(ngModel)]="customer.invoiceId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="invoiceOption.id" *ngFor="let invoiceOption of invoices; trackBy: trackInvoiceById">{{invoiceOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.customer.customerProposal" for="field_customerProposal">Customer Proposal</label>
+            <select class="form-control" id="field_customerProposal" name="customerProposal" [(ngModel)]="customer.customerProposalId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="customerProposalOption.id" *ngFor="let customerProposalOption of customerproposals; trackBy: trackCustomerProposalById">{{customerProposalOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

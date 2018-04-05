@@ -1,0 +1,29 @@
+
+{
+    "mcErpApp": {
+        "supplier" : {
+            "home": {
+                "title": "Suppliers",
+                "createLabel": "Create a new Supplier",
+                "createOrEditLabel": "Create or edit a Supplier"
+            },
+            "created": "A new Supplier is created with identifier {{ param }}",
+            "updated": "A Supplier is updated with identifier {{ param }}",
+            "deleted": "A Supplier is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Supplier {{ id }}?"
+            },
+            "detail": {
+                "title": "Supplier"
+            },
+            "name": "Name",
+            "address": "Address",
+            "domain": "Domain",
+            "web": "Web",
+            "phone": "Phone",
+            "accountNo": "Account No",
+            "contactPerson": "Contact Person",
+            "purchaseOrder": "Purchase Order"
+        }
+    }
+}

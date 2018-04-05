@@ -1,0 +1,29 @@
+
+{
+    "mcErpApp": {
+        "cashFlow" : {
+            "home": {
+                "title": "Cash Flows",
+                "createLabel": "Create a new Cash Flow",
+                "createOrEditLabel": "Create or edit a Cash Flow"
+            },
+            "created": "A new Cash Flow is created with identifier {{ param }}",
+            "updated": "A Cash Flow is updated with identifier {{ param }}",
+            "deleted": "A Cash Flow is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Cash Flow {{ id }}?"
+            },
+            "detail": {
+                "title": "Cash Flow"
+            },
+            "datePayment": "Date Payment",
+            "direction": "Direction",
+            "type": "Type",
+            "amount": "Amount",
+            "description": "Description",
+            "currentStatus": "Current Status",
+            "purchaseOrder": "Purchase Order",
+            "customerOrder": "Customer Order"
+        }
+    }
+}

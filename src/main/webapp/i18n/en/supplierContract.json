@@ -1,0 +1,24 @@
+
+{
+    "mcErpApp": {
+        "supplierContract" : {
+            "home": {
+                "title": "Supplier Contracts",
+                "createLabel": "Create a new Supplier Contract",
+                "createOrEditLabel": "Create or edit a Supplier Contract"
+            },
+            "created": "A new Supplier Contract is created with identifier {{ param }}",
+            "updated": "A Supplier Contract is updated with identifier {{ param }}",
+            "deleted": "A Supplier Contract is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Supplier Contract {{ id }}?"
+            },
+            "detail": {
+                "title": "Supplier Contract"
+            },
+            "dateSigned": "Date Signed",
+            "purchaseOrder": "Purchase Order",
+            "supplyPartContract": "Supply Part Contract"
+        }
+    }
+}

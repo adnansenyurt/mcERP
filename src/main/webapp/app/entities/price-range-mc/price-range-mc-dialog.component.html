@@ -1,0 +1,91 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPriceRangeLabel" jhiTranslate="mcErpApp.priceRange.home.createOrEditLabel">Create or edit a Price Range</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!priceRange.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="priceRange.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.priceRange.rangeLow" for="field_rangeLow">Range Low</label>
+            <input type="number" class="form-control" name="rangeLow" id="field_rangeLow"
+                [(ngModel)]="priceRange.rangeLow" required/>
+            <div [hidden]="!(editForm.controls.rangeLow?.dirty && editForm.controls.rangeLow?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.rangeLow?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.rangeLow?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.priceRange.rangeHigh" for="field_rangeHigh">Range High</label>
+            <input type="number" class="form-control" name="rangeHigh" id="field_rangeHigh"
+                [(ngModel)]="priceRange.rangeHigh" required/>
+            <div [hidden]="!(editForm.controls.rangeHigh?.dirty && editForm.controls.rangeHigh?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.rangeHigh?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.rangeHigh?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.priceRange.price" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                [(ngModel)]="priceRange.price" required/>
+            <div [hidden]="!(editForm.controls.price?.dirty && editForm.controls.price?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.price?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.price?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.priceRange.currency" for="field_currency">Currency</label>
+            <select class="form-control" name="currency" [(ngModel)]="priceRange.currency" id="field_currency"  required>
+                <option value="TL">{{'mcErpApp.Currency.TL' | translate}}</option>
+                <option value="USD">{{'mcErpApp.Currency.USD' | translate}}</option>
+                <option value="EURO">{{'mcErpApp.Currency.EURO' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.currency?.dirty && editForm.controls.currency?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.currency?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.priceRange.contract" for="field_contract">Contract</label>
+            <select class="form-control" id="field_contract" name="contract" [(ngModel)]="priceRange.contractId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="supplyPartContractOption.id" *ngFor="let supplyPartContractOption of contracts; trackBy: trackSupplyPartContractById">{{supplyPartContractOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

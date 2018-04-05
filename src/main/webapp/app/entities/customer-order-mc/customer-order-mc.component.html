@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="mcErpApp.customerOrder.home.title">Customer Orders</span>
+        <button class="btn btn-primary float-right jh-create-entity create-customer-order-mc" [routerLink]="['/', { outlets: { popup: ['customer-order-mc-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="mcErpApp.customerOrder.home.createLabel">
+            Create new Customer Order
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="customerOrders">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="mcErpApp.customerOrder.name">Name</span></th>
+            <th><span jhiTranslate="mcErpApp.customerOrder.dateOpened">Date Opened</span></th>
+            <th><span jhiTranslate="mcErpApp.customerOrder.datePaymentDue">Date Payment Due</span></th>
+            <th><span jhiTranslate="mcErpApp.customerOrder.amount">Amount</span></th>
+            <th><span jhiTranslate="mcErpApp.customerOrder.currentStatus">Current Status</span></th>
+            <th><span jhiTranslate="mcErpApp.customerOrder.cashFlow">Cash Flow</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let customerOrder of customerOrders ;trackBy: trackId">
+                <td><a [routerLink]="['../customer-order-mc', customerOrder.id ]">{{customerOrder.id}}</a></td>
+                <td>{{customerOrder.name}}</td>
+                <td>{{customerOrder.dateOpened | date:'medium'}}</td>
+                <td>{{customerOrder.datePaymentDue | date:'medium'}}</td>
+                <td>{{customerOrder.amount}}</td>
+                <td jhiTranslate="{{'mcErpApp.CustomerOrderStatus.' + customerOrder.currentStatus}}">{{customerOrder.currentStatus}}</td>
+                <td>
+                    <div *ngIf="customerOrder.cashFlowId">
+                        <a [routerLink]="['../cash-flow-mc', customerOrder.cashFlowId  ]" >{{customerOrder.cashFlowId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../customer-order-mc', customerOrder.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer-order-mc/'+ customerOrder.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer-order-mc/'+ customerOrder.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myProductLabel" jhiTranslate="mcErpApp.product.home.createOrEditLabel">Create or edit a Product</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!product.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="product.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.product.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="product.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.product.model" for="field_model">Model</label>
+            <input type="text" class="form-control" name="model" id="field_model"
+                [(ngModel)]="product.model" required/>
+            <div [hidden]="!(editForm.controls.model?.dirty && editForm.controls.model?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.model?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.product.image" for="field_image">Image</label>
+            <input type="text" class="form-control" name="image" id="field_image"
+                [(ngModel)]="product.image" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.product.brochure" for="field_brochure">Brochure</label>
+            <input type="text" class="form-control" name="brochure" id="field_brochure"
+                [(ngModel)]="product.brochure" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.product.specsURL" for="field_specsURL">Specs URL</label>
+            <input type="text" class="form-control" name="specsURL" id="field_specsURL"
+                [(ngModel)]="product.specsURL" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.product.opportunity" for="field_opportunity">Opportunity</label>
+            <select class="form-control" id="field_opportunity" name="opportunity" [(ngModel)]="product.opportunityId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="opportunityOption.id" *ngFor="let opportunityOption of opportunities; trackBy: trackOpportunityById">{{opportunityOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.product.productStock" for="field_productStock">Product Stock</label>
+            <select class="form-control" id="field_productStock" name="productStock" [(ngModel)]="product.productStockId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="productStockOption.id" *ngFor="let productStockOption of productstocks; trackBy: trackProductStockById">{{productStockOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

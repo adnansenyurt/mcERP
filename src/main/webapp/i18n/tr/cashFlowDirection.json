@@ -1,0 +1,9 @@
+{
+    "mcErpApp": {
+        "CashFlowDirection" : {
+            "null": "",
+            "IN": "IN",
+            "OUT": "OUT"
+        }
+    }
+}

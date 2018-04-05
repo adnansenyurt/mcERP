@@ -1,0 +1,44 @@
+
+<div *ngIf="priceRange">
+    <h2><span jhiTranslate="mcErpApp.priceRange.detail.title">Price Range</span> {{priceRange.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mcErpApp.priceRange.rangeLow">Range Low</span></dt>
+        <dd>
+            <span>{{priceRange.rangeLow}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.priceRange.rangeHigh">Range High</span></dt>
+        <dd>
+            <span>{{priceRange.rangeHigh}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.priceRange.price">Price</span></dt>
+        <dd>
+            <span>{{priceRange.price}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.priceRange.currency">Currency</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mcErpApp.Currency.' + priceRange.currency}}">{{priceRange.currency}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.priceRange.contract">Contract</span></dt>
+        <dd>
+            <div *ngIf="priceRange.contractId">
+                <a [routerLink]="['/supply-part-contract-mc', priceRange.contractId]">{{priceRange.contractId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'price-range-mc/'+ priceRange.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

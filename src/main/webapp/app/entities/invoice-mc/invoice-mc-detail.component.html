@@ -1,0 +1,44 @@
+
+<div *ngIf="invoice">
+    <h2><span jhiTranslate="mcErpApp.invoice.detail.title">Invoice</span> {{invoice.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mcErpApp.invoice.name">Name</span></dt>
+        <dd>
+            <span>{{invoice.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.invoice.dateIssued">Date Issued</span></dt>
+        <dd>
+            <span>{{invoice.dateIssued | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.invoice.amountTotal">Amount Total</span></dt>
+        <dd>
+            <span>{{invoice.amountTotal}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.invoice.paymentDue">Payment Due</span></dt>
+        <dd>
+            <span>{{invoice.paymentDue}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.invoice.customerOrder">Customer Order</span></dt>
+        <dd>
+            <div *ngIf="invoice.customerOrderId">
+                <a [routerLink]="['/customer-order-mc', invoice.customerOrderId]">{{invoice.customerOrderId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'invoice-mc/'+ invoice.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

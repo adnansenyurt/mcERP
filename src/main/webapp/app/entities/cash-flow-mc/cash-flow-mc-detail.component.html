@@ -1,0 +1,46 @@
+
+<div *ngIf="cashFlow">
+    <h2><span jhiTranslate="mcErpApp.cashFlow.detail.title">Cash Flow</span> {{cashFlow.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mcErpApp.cashFlow.datePayment">Date Payment</span></dt>
+        <dd>
+            <span>{{cashFlow.datePayment | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.cashFlow.direction">Direction</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mcErpApp.CashFlowDirection.' + cashFlow.direction}}">{{cashFlow.direction}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.cashFlow.type">Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mcErpApp.CashFlowType.' + cashFlow.type}}">{{cashFlow.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.cashFlow.amount">Amount</span></dt>
+        <dd>
+            <span>{{cashFlow.amount}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.cashFlow.description">Description</span></dt>
+        <dd>
+            <span>{{cashFlow.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.cashFlow.currentStatus">Current Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mcErpApp.CashFlowStatus.' + cashFlow.currentStatus}}">{{cashFlow.currentStatus}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'cash-flow-mc/'+ cashFlow.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

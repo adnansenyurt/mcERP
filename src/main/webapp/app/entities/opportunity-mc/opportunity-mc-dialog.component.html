@@ -1,0 +1,67 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myOpportunityLabel" jhiTranslate="mcErpApp.opportunity.home.createOrEditLabel">Create or edit a Opportunity</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!opportunity.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="opportunity.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.opportunity.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="opportunity.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.opportunity.dateOpened" for="field_dateOpened">Date Opened</label>
+            <div class="d-flex">
+                <input id="field_dateOpened" type="datetime-local" class="form-control" name="dateOpened" [(ngModel)]="opportunity.dateOpened"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.dateOpened?.dirty && editForm.controls.dateOpened?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.dateOpened?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.dateOpened?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.opportunity.amount" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                [(ngModel)]="opportunity.amount" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.opportunity.currentStatus" for="field_currentStatus">Current Status</label>
+            <select class="form-control" name="currentStatus" [(ngModel)]="opportunity.currentStatus" id="field_currentStatus" >
+                <option value="INITIAL">{{'mcErpApp.OpportunityStatus.INITIAL' | translate}}</option>
+                <option value="PROPOSAL">{{'mcErpApp.OpportunityStatus.PROPOSAL' | translate}}</option>
+                <option value="LOST">{{'mcErpApp.OpportunityStatus.LOST' | translate}}</option>
+                <option value="WON">{{'mcErpApp.OpportunityStatus.WON' | translate}}</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
