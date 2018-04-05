@@ -153,7 +153,7 @@ entity SupplyStock {
 relationship OneToMany {
 	ContactPerson{customer} to Customer,
     ContactPerson{supplier} to Supplier,
-    Opportunity{customer} to Customer,
+    Customer{opportunity} to Opportunity,
     Opportunity{product} to Product,
     CustomerOrder{customer} to Customer,
     PurchaseOrder{supplier} to Supplier,
