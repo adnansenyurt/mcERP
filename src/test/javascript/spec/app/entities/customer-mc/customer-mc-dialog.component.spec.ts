@@ -10,7 +10,6 @@ import { CustomerMcDialogComponent } from '../../../../../../main/webapp/app/ent
 import { CustomerMcService } from '../../../../../../main/webapp/app/entities/customer-mc/customer-mc.service';
 import { CustomerMc } from '../../../../../../main/webapp/app/entities/customer-mc/customer-mc.model';
 import { ContactPersonMcService } from '../../../../../../main/webapp/app/entities/contact-person-mc';
-import { OpportunityMcService } from '../../../../../../main/webapp/app/entities/opportunity-mc';
 import { CustomerOrderMcService } from '../../../../../../main/webapp/app/entities/customer-order-mc';
 import { InvoiceMcService } from '../../../../../../main/webapp/app/entities/invoice-mc';
 import { CustomerProposalMcService } from '../../../../../../main/webapp/app/entities/customer-proposal-mc';
@@ -30,7 +29,6 @@ describe('Component Tests', () => {
                 declarations: [CustomerMcDialogComponent],
                 providers: [
                     ContactPersonMcService,
-                    OpportunityMcService,
                     CustomerOrderMcService,
                     InvoiceMcService,
                     CustomerProposalMcService,

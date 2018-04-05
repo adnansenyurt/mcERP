@@ -20,8 +20,8 @@
             "address": "Address",
             "phone": "Phone",
             "accountNo": "Account No",
-            "contactPerson": "Contact Person",
             "opportunity": "Opportunity",
+            "contactPerson": "Contact Person",
             "customerOrder": "Customer Order",
             "invoice": "Invoice",
             "customerProposal": "Customer Proposal"

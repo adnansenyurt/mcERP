@@ -22,7 +22,6 @@
             <th><span jhiTranslate="mcErpApp.customer.phone">Phone</span></th>
             <th><span jhiTranslate="mcErpApp.customer.accountNo">Account No</span></th>
             <th><span jhiTranslate="mcErpApp.customer.contactPerson">Contact Person</span></th>
-            <th><span jhiTranslate="mcErpApp.customer.opportunity">Opportunity</span></th>
             <th><span jhiTranslate="mcErpApp.customer.customerOrder">Customer Order</span></th>
             <th><span jhiTranslate="mcErpApp.customer.invoice">Invoice</span></th>
             <th><span jhiTranslate="mcErpApp.customer.customerProposal">Customer Proposal</span></th>
@@ -39,11 +38,6 @@
                 <td>
                     <div *ngIf="customer.contactPersonId">
                         <a [routerLink]="['../contact-person-mc', customer.contactPersonId  ]" >{{customer.contactPersonId}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="customer.opportunityId">
-                        <a [routerLink]="['../opportunity-mc', customer.opportunityId  ]" >{{customer.opportunityId}}</a>
                     </div>
                 </td>
                 <td>

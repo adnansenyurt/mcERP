@@ -26,6 +26,8 @@ public class OpportunityDTO implements Serializable {
 
     private OpportunityStatus currentStatus;
 
+    private Long customerId;
+
     public Long getId() {
         return id;
     }
@@ -64,6 +66,14 @@ public class OpportunityDTO implements Serializable {
 
     public void setCurrentStatus(OpportunityStatus currentStatus) {
         this.currentStatus = currentStatus;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @Override

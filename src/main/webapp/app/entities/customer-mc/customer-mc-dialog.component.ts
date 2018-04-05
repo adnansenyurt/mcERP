@@ -10,7 +10,6 @@ import { CustomerMc } from './customer-mc.model';
 import { CustomerMcPopupService } from './customer-mc-popup.service';
 import { CustomerMcService } from './customer-mc.service';
 import { ContactPersonMc, ContactPersonMcService } from '../contact-person-mc';
-import { OpportunityMc, OpportunityMcService } from '../opportunity-mc';
 import { CustomerOrderMc, CustomerOrderMcService } from '../customer-order-mc';
 import { InvoiceMc, InvoiceMcService } from '../invoice-mc';
 import { CustomerProposalMc, CustomerProposalMcService } from '../customer-proposal-mc';
@@ -26,8 +25,6 @@ export class CustomerMcDialogComponent implements OnInit {
 
     contactpeople: ContactPersonMc[];
 
-    opportunities: OpportunityMc[];
-
     customerorders: CustomerOrderMc[];
 
     invoices: InvoiceMc[];
@@ -39,7 +36,6 @@ export class CustomerMcDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private customerService: CustomerMcService,
         private contactPersonService: ContactPersonMcService,
-        private opportunityService: OpportunityMcService,
         private customerOrderService: CustomerOrderMcService,
         private invoiceService: InvoiceMcService,
         private customerProposalService: CustomerProposalMcService,
@@ -51,8 +47,6 @@ export class CustomerMcDialogComponent implements OnInit {
         this.isSaving = false;
         this.contactPersonService.query()
             .subscribe((res: HttpResponse<ContactPersonMc[]>) => { this.contactpeople = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.opportunityService.query()
-            .subscribe((res: HttpResponse<OpportunityMc[]>) => { this.opportunities = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.customerOrderService.query()
             .subscribe((res: HttpResponse<CustomerOrderMc[]>) => { this.customerorders = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.invoiceService.query()
@@ -96,10 +90,6 @@ export class CustomerMcDialogComponent implements OnInit {
     }
 
     trackContactPersonById(index: number, item: ContactPersonMc) {
-        return item.id;
-    }
-
-    trackOpportunityById(index: number, item: OpportunityMc) {
         return item.id;
     }
 

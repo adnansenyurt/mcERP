@@ -2,14 +2,14 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "contactPerson",
-            "otherEntityName": "contactPerson",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
+            "relationshipType": "one-to-many",
             "relationshipName": "opportunity",
             "otherEntityName": "opportunity",
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipName": "contactPerson",
+            "otherEntityName": "contactPerson",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },

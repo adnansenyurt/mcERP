@@ -45,10 +45,8 @@ public class Opportunity implements Serializable {
     @Column(name = "current_status")
     private OpportunityStatus currentStatus;
 
-    @OneToMany(mappedBy = "opportunity")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Customer> customers = new HashSet<>();
+    @ManyToOne
+    private Customer customer;
 
     @OneToMany(mappedBy = "opportunity")
     @JsonIgnore
@@ -116,29 +114,17 @@ public class Opportunity implements Serializable {
         this.currentStatus = currentStatus;
     }
 
-    public Set<Customer> getCustomers() {
-        return customers;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public Opportunity customers(Set<Customer> customers) {
-        this.customers = customers;
+    public Opportunity customer(Customer customer) {
+        this.customer = customer;
         return this;
     }
 
-    public Opportunity addCustomer(Customer customer) {
-        this.customers.add(customer);
-        customer.setOpportunity(this);
-        return this;
-    }
-
-    public Opportunity removeCustomer(Customer customer) {
-        this.customers.remove(customer);
-        customer.setOpportunity(null);
-        return this;
-    }
-
-    public void setCustomers(Set<Customer> customers) {
-        this.customers = customers;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Set<Product> getProducts() {

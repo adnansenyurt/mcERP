@@ -26,12 +26,6 @@
                 <a [routerLink]="['/contact-person-mc', customer.contactPersonId]">{{customer.contactPersonId}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="mcErpApp.customer.opportunity">Opportunity</span></dt>
-        <dd>
-            <div *ngIf="customer.opportunityId">
-                <a [routerLink]="['/opportunity-mc', customer.opportunityId]">{{customer.opportunityId}}</a>
-            </div>
-        </dd>
         <dt><span jhiTranslate="mcErpApp.customer.customerOrder">Customer Order</span></dt>
         <dd>
             <div *ngIf="customer.customerOrderId">
