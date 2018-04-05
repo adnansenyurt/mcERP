@@ -6,6 +6,14 @@
             "otherEntityName": "customer",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "opportunity",
+            "otherEntityName": "opportunity",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "proposal"
         }
     ],
     "fields": [

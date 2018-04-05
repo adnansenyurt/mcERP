@@ -43,6 +43,7 @@ describe('CustomerOrder e2e test', () => {
         expect(customerOrderDialogPage.getAmountInput()).toMatch('5');
         customerOrderDialogPage.currentStatusSelectLastOption();
         customerOrderDialogPage.customerSelectLastOption();
+        customerOrderDialogPage.proposalSelectLastOption();
         customerOrderDialogPage.save();
         expect(customerOrderDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -75,6 +76,7 @@ export class CustomerOrderDialogPage {
     amountInput = element(by.css('input#field_amount'));
     currentStatusSelect = element(by.css('select#field_currentStatus'));
     customerSelect = element(by.css('select#field_customer'));
+    proposalSelect = element(by.css('select#field_proposal'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -137,6 +139,22 @@ export class CustomerOrderDialogPage {
 
     getCustomerSelectedOption = function() {
         return this.customerSelect.element(by.css('option:checked')).getText();
+    };
+
+    proposalSelectLastOption = function() {
+        this.proposalSelect.all(by.tagName('option')).last().click();
+    };
+
+    proposalSelectOption = function(option) {
+        this.proposalSelect.sendKeys(option);
+    };
+
+    getProposalSelect = function() {
+        return this.proposalSelect;
+    };
+
+    getProposalSelectedOption = function() {
+        return this.proposalSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

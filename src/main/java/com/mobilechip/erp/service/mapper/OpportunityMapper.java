@@ -16,6 +16,7 @@ public interface OpportunityMapper extends EntityMapper<OpportunityDTO, Opportun
     OpportunityDTO toDto(Opportunity opportunity);
 
     @Mapping(source = "customerId", target = "customer")
+    @Mapping(target = "proposal", ignore = true)
     @Mapping(source = "productId", target = "product")
     Opportunity toEntity(OpportunityDTO opportunityDTO);
 

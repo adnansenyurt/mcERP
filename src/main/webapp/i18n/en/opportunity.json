@@ -21,6 +21,7 @@
             "amount": "Amount",
             "currentStatus": "Current Status",
             "customer": "Customer",
+            "proposal": "Proposal",
             "product": "Product"
         }
     }

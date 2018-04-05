@@ -22,6 +22,7 @@
             <th><span jhiTranslate="mcErpApp.customerProposal.duration">Duration</span></th>
             <th><span jhiTranslate="mcErpApp.customerProposal.amount">Amount</span></th>
             <th><span jhiTranslate="mcErpApp.customerProposal.customer">Customer</span></th>
+            <th><span jhiTranslate="mcErpApp.customerProposal.opportunity">Opportunity</span></th>
             <th></th>
             </tr>
             </thead>
@@ -35,6 +36,11 @@
                 <td>
                     <div *ngIf="customerProposal.customerId">
                         <a [routerLink]="['../customer-mc', customerProposal.customerId  ]" >{{customerProposal.customerId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customerProposal.opportunityId">
+                        <a [routerLink]="['../opportunity-mc', customerProposal.opportunityId  ]" >{{customerProposal.opportunityId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

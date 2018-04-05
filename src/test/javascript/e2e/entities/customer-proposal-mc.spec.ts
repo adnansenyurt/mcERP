@@ -42,6 +42,7 @@ describe('CustomerProposal e2e test', () => {
         customerProposalDialogPage.setAmountInput('5');
         expect(customerProposalDialogPage.getAmountInput()).toMatch('5');
         customerProposalDialogPage.customerSelectLastOption();
+        customerProposalDialogPage.opportunitySelectLastOption();
         customerProposalDialogPage.save();
         expect(customerProposalDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -73,6 +74,7 @@ export class CustomerProposalDialogPage {
     durationInput = element(by.css('input#field_duration'));
     amountInput = element(by.css('input#field_amount'));
     customerSelect = element(by.css('select#field_customer'));
+    opportunitySelect = element(by.css('select#field_opportunity'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -124,6 +126,22 @@ export class CustomerProposalDialogPage {
 
     getCustomerSelectedOption = function() {
         return this.customerSelect.element(by.css('option:checked')).getText();
+    };
+
+    opportunitySelectLastOption = function() {
+        this.opportunitySelect.all(by.tagName('option')).last().click();
+    };
+
+    opportunitySelectOption = function(option) {
+        this.opportunitySelect.sendKeys(option);
+    };
+
+    getOpportunitySelect = function() {
+        return this.opportunitySelect;
+    };
+
+    getOpportunitySelectedOption = function() {
+        return this.opportunitySelect.element(by.css('option:checked')).getText();
     };
 
     save() {

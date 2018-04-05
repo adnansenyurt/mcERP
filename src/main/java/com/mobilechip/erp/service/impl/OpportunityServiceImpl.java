@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Service Implementation for managing Opportunity.
@@ -56,6 +57,21 @@ public class OpportunityServiceImpl implements OpportunityService {
     public List<OpportunityDTO> findAll() {
         log.debug("Request to get all Opportunities");
         return opportunityRepository.findAll().stream()
+            .map(opportunityMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+
+    /**
+     *  get all the opportunities where Proposal is null.
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public List<OpportunityDTO> findAllWhereProposalIsNull() {
+        log.debug("Request to get all opportunities where Proposal is null");
+        return StreamSupport
+            .stream(opportunityRepository.findAll().spliterator(), false)
+            .filter(opportunity -> opportunity.getProposal() == null)
             .map(opportunityMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }

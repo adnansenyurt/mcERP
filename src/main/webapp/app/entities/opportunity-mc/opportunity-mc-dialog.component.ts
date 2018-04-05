@@ -10,6 +10,7 @@ import { OpportunityMc } from './opportunity-mc.model';
 import { OpportunityMcPopupService } from './opportunity-mc-popup.service';
 import { OpportunityMcService } from './opportunity-mc.service';
 import { CustomerMc, CustomerMcService } from '../customer-mc';
+import { CustomerProposalMc, CustomerProposalMcService } from '../customer-proposal-mc';
 import { ProductMc, ProductMcService } from '../product-mc';
 
 @Component({
@@ -23,6 +24,8 @@ export class OpportunityMcDialogComponent implements OnInit {
 
     customers: CustomerMc[];
 
+    customerproposals: CustomerProposalMc[];
+
     products: ProductMc[];
 
     constructor(
@@ -30,6 +33,7 @@ export class OpportunityMcDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private opportunityService: OpportunityMcService,
         private customerService: CustomerMcService,
+        private customerProposalService: CustomerProposalMcService,
         private productService: ProductMcService,
         private eventManager: JhiEventManager
     ) {
@@ -39,6 +43,8 @@ export class OpportunityMcDialogComponent implements OnInit {
         this.isSaving = false;
         this.customerService.query()
             .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.customerProposalService.query()
+            .subscribe((res: HttpResponse<CustomerProposalMc[]>) => { this.customerproposals = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.productService.query()
             .subscribe((res: HttpResponse<ProductMc[]>) => { this.products = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
@@ -78,6 +84,10 @@ export class OpportunityMcDialogComponent implements OnInit {
     }
 
     trackCustomerById(index: number, item: CustomerMc) {
+        return item.id;
+    }
+
+    trackCustomerProposalById(index: number, item: CustomerProposalMc) {
         return item.id;
     }
 

@@ -22,6 +22,7 @@
             "amount": "Amount",
             "currentStatus": "Current Status",
             "customer": "Customer",
+            "proposal": "Proposal",
             "cashFlow": "Cash Flow"
         }
     }

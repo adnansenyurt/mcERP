@@ -10,6 +10,7 @@ import { CustomerProposalMc } from './customer-proposal-mc.model';
 import { CustomerProposalMcPopupService } from './customer-proposal-mc-popup.service';
 import { CustomerProposalMcService } from './customer-proposal-mc.service';
 import { CustomerMc, CustomerMcService } from '../customer-mc';
+import { OpportunityMc, OpportunityMcService } from '../opportunity-mc';
 
 @Component({
     selector: 'jhi-customer-proposal-mc-dialog',
@@ -22,11 +23,14 @@ export class CustomerProposalMcDialogComponent implements OnInit {
 
     customers: CustomerMc[];
 
+    opportunities: OpportunityMc[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private customerProposalService: CustomerProposalMcService,
         private customerService: CustomerMcService,
+        private opportunityService: OpportunityMcService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -35,6 +39,19 @@ export class CustomerProposalMcDialogComponent implements OnInit {
         this.isSaving = false;
         this.customerService.query()
             .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.opportunityService
+            .query({filter: 'proposal-is-null'})
+            .subscribe((res: HttpResponse<OpportunityMc[]>) => {
+                if (!this.customerProposal.opportunityId) {
+                    this.opportunities = res.body;
+                } else {
+                    this.opportunityService
+                        .find(this.customerProposal.opportunityId)
+                        .subscribe((subRes: HttpResponse<OpportunityMc>) => {
+                            this.opportunities = [subRes.body].concat(res.body);
+                        }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
+                }
+            }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -72,6 +89,10 @@ export class CustomerProposalMcDialogComponent implements OnInit {
     }
 
     trackCustomerById(index: number, item: CustomerMc) {
+        return item.id;
+    }
+
+    trackOpportunityById(index: number, item: OpportunityMc) {
         return item.id;
     }
 }

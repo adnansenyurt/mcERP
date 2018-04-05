@@ -8,6 +8,7 @@ export class CustomerProposalMc implements BaseEntity {
         public duration?: number,
         public amount?: number,
         public customerId?: number,
+        public opportunityId?: number,
     ) {
     }
 }

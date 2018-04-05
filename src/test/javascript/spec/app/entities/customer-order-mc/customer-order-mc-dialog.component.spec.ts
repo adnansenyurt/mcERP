@@ -10,6 +10,7 @@ import { CustomerOrderMcDialogComponent } from '../../../../../../main/webapp/ap
 import { CustomerOrderMcService } from '../../../../../../main/webapp/app/entities/customer-order-mc/customer-order-mc.service';
 import { CustomerOrderMc } from '../../../../../../main/webapp/app/entities/customer-order-mc/customer-order-mc.model';
 import { CustomerMcService } from '../../../../../../main/webapp/app/entities/customer-mc';
+import { CustomerProposalMcService } from '../../../../../../main/webapp/app/entities/customer-proposal-mc';
 
 describe('Component Tests', () => {
 
@@ -26,6 +27,7 @@ describe('Component Tests', () => {
                 declarations: [CustomerOrderMcDialogComponent],
                 providers: [
                     CustomerMcService,
+                    CustomerProposalMcService,
                     CustomerOrderMcService
                 ]
             })

@@ -172,6 +172,8 @@ relationship OneToOne {
     SupplyPart{contract} to SupplyPartContract,
     PriceRange{contract} to SupplyPartContract,
     Invoice{customerOrder(name)} to CustomerOrder,
+    CustomerOrder{proposal} to CustomerProposal,
+    CustomerProposal{opportunity} to Opportunity{proposal},
     BillOfMaterials{product} to Product
 }
 

@@ -30,6 +30,8 @@ public class CustomerOrderDTO implements Serializable {
 
     private Long customerId;
 
+    private Long proposalId;
+
     public Long getId() {
         return id;
     }
@@ -84,6 +86,14 @@ public class CustomerOrderDTO implements Serializable {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public Long getProposalId() {
+        return proposalId;
+    }
+
+    public void setProposalId(Long customerProposalId) {
+        this.proposalId = customerProposalId;
     }
 
     @Override
