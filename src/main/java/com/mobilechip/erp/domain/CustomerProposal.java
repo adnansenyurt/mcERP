@@ -1,5 +1,6 @@
 package com.mobilechip.erp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -39,12 +40,16 @@ public class CustomerProposal implements Serializable {
     @Column(name = "amount")
     private Long amount;
 
-    @ManyToOne
-    private Customer customer;
-
     @OneToOne
     @JoinColumn(unique = true)
     private Opportunity opportunity;
+
+    @OneToOne(mappedBy = "proposal")
+    @JsonIgnore
+    private CustomerOrder customerOrder;
+
+    @ManyToOne
+    private Customer customer;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -107,19 +112,6 @@ public class CustomerProposal implements Serializable {
         this.amount = amount;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public CustomerProposal customer(Customer customer) {
-        this.customer = customer;
-        return this;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public Opportunity getOpportunity() {
         return opportunity;
     }
@@ -131,6 +123,32 @@ public class CustomerProposal implements Serializable {
 
     public void setOpportunity(Opportunity opportunity) {
         this.opportunity = opportunity;
+    }
+
+    public CustomerOrder getCustomerOrder() {
+        return customerOrder;
+    }
+
+    public CustomerProposal customerOrder(CustomerOrder customerOrder) {
+        this.customerOrder = customerOrder;
+        return this;
+    }
+
+    public void setCustomerOrder(CustomerOrder customerOrder) {
+        this.customerOrder = customerOrder;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public CustomerProposal customer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

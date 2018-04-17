@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Service Implementation for managing Product.
@@ -56,6 +57,21 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDTO> findAll() {
         log.debug("Request to get all Products");
         return productRepository.findAll().stream()
+            .map(productMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+
+    /**
+     *  get all the products where Bom is null.
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public List<ProductDTO> findAllWhereBomIsNull() {
+        log.debug("Request to get all products where Bom is null");
+        return StreamSupport
+            .stream(productRepository.findAll().spliterator(), false)
+            .filter(product -> product.getBom() == null)
             .map(productMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }

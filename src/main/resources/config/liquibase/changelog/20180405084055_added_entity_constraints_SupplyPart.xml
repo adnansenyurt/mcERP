@@ -8,17 +8,17 @@
     -->
     <changeSet id="20180405084055-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="bill_of_materials_id"
-                                 baseTableName="supply_part"
-                                 constraintName="fk_supply_part_bill_of_materials_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="bill_of_materials"/>
-
         <addForeignKeyConstraint baseColumnNames="contract_id"
                                  baseTableName="supply_part"
                                  constraintName="fk_supply_part_contract_id"
                                  referencedColumnNames="id"
                                  referencedTableName="supply_part_contract"/>
+
+        <addForeignKeyConstraint baseColumnNames="bom_id"
+                                 baseTableName="supply_part"
+                                 constraintName="fk_supply_part_bom_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bill_of_materials"/>
 
     </changeSet>
 </databaseChangeLog>

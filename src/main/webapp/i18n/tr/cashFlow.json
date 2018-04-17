@@ -22,8 +22,8 @@
             "amount": "Amount",
             "description": "Description",
             "currentStatus": "Current Status",
-            "customerOrder": "Customer Order",
-            "purchaseOrder": "Purchase Order"
+            "purchaseOrder": "Purchase Order",
+            "customerOrder": "Customer Order"
         }
     }
 }

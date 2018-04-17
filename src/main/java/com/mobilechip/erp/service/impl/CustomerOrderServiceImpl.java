@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Service Implementation for managing CustomerOrder.
@@ -56,6 +57,21 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
     public List<CustomerOrderDTO> findAll() {
         log.debug("Request to get all CustomerOrders");
         return customerOrderRepository.findAll().stream()
+            .map(customerOrderMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+
+    /**
+     *  get all the customerOrders where Invoice is null.
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public List<CustomerOrderDTO> findAllWhereInvoiceIsNull() {
+        log.debug("Request to get all customerOrders where Invoice is null");
+        return StreamSupport
+            .stream(customerOrderRepository.findAll().spliterator(), false)
+            .filter(customerOrder -> customerOrder.getInvoice() == null)
             .map(customerOrderMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }

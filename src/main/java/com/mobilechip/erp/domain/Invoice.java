@@ -39,12 +39,12 @@ public class Invoice implements Serializable {
     @Column(name = "payment_due")
     private Integer paymentDue;
 
-    @ManyToOne
-    private Customer customer;
-
     @OneToOne
     @JoinColumn(unique = true)
     private CustomerOrder customerOrder;
+
+    @ManyToOne
+    private Customer customer;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -107,19 +107,6 @@ public class Invoice implements Serializable {
         this.paymentDue = paymentDue;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public Invoice customer(Customer customer) {
-        this.customer = customer;
-        return this;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public CustomerOrder getCustomerOrder() {
         return customerOrder;
     }
@@ -131,6 +118,19 @@ public class Invoice implements Serializable {
 
     public void setCustomerOrder(CustomerOrder customerOrder) {
         this.customerOrder = customerOrder;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Invoice customer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

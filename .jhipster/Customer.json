@@ -3,13 +3,7 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "opportunity",
-            "otherEntityName": "opportunity",
-            "otherEntityRelationshipName": "customer"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "customerOrder",
+            "relationshipName": "order",
             "otherEntityName": "customerOrder",
             "otherEntityRelationshipName": "customer"
         },
@@ -30,6 +24,12 @@
             "relationshipName": "invoice",
             "otherEntityName": "invoice",
             "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "opportunity",
+            "otherEntityName": "opportunity",
+            "otherEntityField": "name"
         }
     ],
     "fields": [

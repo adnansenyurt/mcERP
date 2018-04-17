@@ -21,6 +21,7 @@
             <th><span jhiTranslate="mcErpApp.customer.address">Address</span></th>
             <th><span jhiTranslate="mcErpApp.customer.phone">Phone</span></th>
             <th><span jhiTranslate="mcErpApp.customer.accountNo">Account No</span></th>
+            <th><span jhiTranslate="mcErpApp.customer.opportunity">Opportunity</span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,6 +32,11 @@
                 <td>{{customer.address}}</td>
                 <td>{{customer.phone}}</td>
                 <td>{{customer.accountNo}}</td>
+                <td>
+                    <div *ngIf="customer.opportunityId">
+                        <a [routerLink]="['../opportunity-mc', customer.opportunityId  ]" >{{customer.opportunityName}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

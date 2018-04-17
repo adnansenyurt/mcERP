@@ -9,8 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { SupplyPartMc } from './supply-part-mc.model';
 import { SupplyPartMcPopupService } from './supply-part-mc-popup.service';
 import { SupplyPartMcService } from './supply-part-mc.service';
-import { BillOfMaterialsMc, BillOfMaterialsMcService } from '../bill-of-materials-mc';
 import { SupplyPartContractMc, SupplyPartContractMcService } from '../supply-part-contract-mc';
+import { BillOfMaterialsMc, BillOfMaterialsMcService } from '../bill-of-materials-mc';
 
 @Component({
     selector: 'jhi-supply-part-mc-dialog',
@@ -21,24 +21,22 @@ export class SupplyPartMcDialogComponent implements OnInit {
     supplyPart: SupplyPartMc;
     isSaving: boolean;
 
-    billofmaterials: BillOfMaterialsMc[];
-
     contracts: SupplyPartContractMc[];
+
+    billofmaterials: BillOfMaterialsMc[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private supplyPartService: SupplyPartMcService,
-        private billOfMaterialsService: BillOfMaterialsMcService,
         private supplyPartContractService: SupplyPartContractMcService,
+        private billOfMaterialsService: BillOfMaterialsMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.billOfMaterialsService.query()
-            .subscribe((res: HttpResponse<BillOfMaterialsMc[]>) => { this.billofmaterials = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.supplyPartContractService
             .query({filter: 'supplypart-is-null'})
             .subscribe((res: HttpResponse<SupplyPartContractMc[]>) => {
@@ -52,6 +50,8 @@ export class SupplyPartMcDialogComponent implements OnInit {
                         }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
                 }
             }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.billOfMaterialsService.query()
+            .subscribe((res: HttpResponse<BillOfMaterialsMc[]>) => { this.billofmaterials = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -88,11 +88,11 @@ export class SupplyPartMcDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackBillOfMaterialsById(index: number, item: BillOfMaterialsMc) {
+    trackSupplyPartContractById(index: number, item: SupplyPartContractMc) {
         return item.id;
     }
 
-    trackSupplyPartContractById(index: number, item: SupplyPartContractMc) {
+    trackBillOfMaterialsById(index: number, item: BillOfMaterialsMc) {
         return item.id;
     }
 }

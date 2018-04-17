@@ -21,9 +21,10 @@
             "datePaymentDue": "Date Payment Due",
             "amount": "Amount",
             "currentStatus": "Current Status",
-            "customer": "Customer",
             "proposal": "Proposal",
-            "cashFlow": "Cash Flow"
+            "cashFlow": "Cash Flow",
+            "invoice": "Invoice",
+            "customer": "Customer"
         }
     }
 }

@@ -20,11 +20,11 @@
             "address": "Address",
             "phone": "Phone",
             "accountNo": "Account No",
-            "opportunity": "Opportunity",
-            "customerOrder": "Customer Order",
+            "order": "Order",
             "contactPerson": "Contact Person",
             "customerProposal": "Customer Proposal",
-            "invoice": "Invoice"
+            "invoice": "Invoice",
+            "opportunity": "Opportunity"
         }
     }
 }

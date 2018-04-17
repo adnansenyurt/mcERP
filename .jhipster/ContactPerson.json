@@ -2,15 +2,15 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "many-to-one",
             "relationshipName": "customer",
             "otherEntityName": "customer",
-            "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
         {
+            "relationshipType": "many-to-one",
             "relationshipName": "supplier",
             "otherEntityName": "supplier",
-            "relationshipType": "many-to-one",
             "otherEntityField": "id"
         }
     ],

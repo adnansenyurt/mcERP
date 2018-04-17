@@ -25,9 +25,9 @@ public class CustomerProposalDTO implements Serializable {
 
     private Long amount;
 
-    private Long customerId;
-
     private Long opportunityId;
+
+    private Long customerId;
 
     public Long getId() {
         return id;
@@ -69,20 +69,20 @@ public class CustomerProposalDTO implements Serializable {
         this.amount = amount;
     }
 
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
-
     public Long getOpportunityId() {
         return opportunityId;
     }
 
     public void setOpportunityId(Long opportunityId) {
         this.opportunityId = opportunityId;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @Override

@@ -4,11 +4,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { CustomerMc } from './customer-mc.model';
 import { CustomerMcPopupService } from './customer-mc-popup.service';
 import { CustomerMcService } from './customer-mc.service';
+import { OpportunityMc, OpportunityMcService } from '../opportunity-mc';
 
 @Component({
     selector: 'jhi-customer-mc-dialog',
@@ -19,15 +20,21 @@ export class CustomerMcDialogComponent implements OnInit {
     customer: CustomerMc;
     isSaving: boolean;
 
+    opportunities: OpportunityMc[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private customerService: CustomerMcService,
+        private opportunityService: OpportunityMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.opportunityService.query()
+            .subscribe((res: HttpResponse<OpportunityMc[]>) => { this.opportunities = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -58,6 +65,14 @@ export class CustomerMcDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackOpportunityById(index: number, item: OpportunityMc) {
+        return item.id;
     }
 }
 

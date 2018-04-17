@@ -14,9 +14,11 @@ export class CustomerOrderMc implements BaseEntity {
         public datePaymentDue?: any,
         public amount?: number,
         public currentStatus?: CustomerOrderStatus,
-        public customerId?: number,
         public proposalId?: number,
         public cashFlows?: BaseEntity[],
+        public invoiceId?: number,
+        public customerName?: string,
+        public customerId?: number,
     ) {
     }
 }

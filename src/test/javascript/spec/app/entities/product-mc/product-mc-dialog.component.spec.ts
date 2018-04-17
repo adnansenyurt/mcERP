@@ -9,6 +9,7 @@ import { McErpTestModule } from '../../../test.module';
 import { ProductMcDialogComponent } from '../../../../../../main/webapp/app/entities/product-mc/product-mc-dialog.component';
 import { ProductMcService } from '../../../../../../main/webapp/app/entities/product-mc/product-mc.service';
 import { ProductMc } from '../../../../../../main/webapp/app/entities/product-mc/product-mc.model';
+import { BillOfMaterialsMcService } from '../../../../../../main/webapp/app/entities/bill-of-materials-mc';
 
 describe('Component Tests', () => {
 
@@ -24,6 +25,7 @@ describe('Component Tests', () => {
                 imports: [McErpTestModule],
                 declarations: [ProductMcDialogComponent],
                 providers: [
+                    BillOfMaterialsMcService,
                     ProductMcService
                 ]
             })
