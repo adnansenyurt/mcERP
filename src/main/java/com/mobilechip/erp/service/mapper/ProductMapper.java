@@ -14,6 +14,7 @@ public interface ProductMapper extends EntityMapper<ProductDTO, Product> {
 
     @Mapping(target = "opportunities", ignore = true)
     @Mapping(target = "productStocks", ignore = true)
+    @Mapping(target = "bom", ignore = true)
     Product toEntity(ProductDTO productDTO);
 
     default Product fromId(Long id) {

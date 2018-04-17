@@ -20,16 +20,16 @@
         <dd>
             <span>{{customerProposal.amount}}</span>
         </dd>
-        <dt><span jhiTranslate="mcErpApp.customerProposal.customer">Customer</span></dt>
-        <dd>
-            <div *ngIf="customerProposal.customerId">
-                <a [routerLink]="['/customer-mc', customerProposal.customerId]">{{customerProposal.customerId}}</a>
-            </div>
-        </dd>
         <dt><span jhiTranslate="mcErpApp.customerProposal.opportunity">Opportunity</span></dt>
         <dd>
             <div *ngIf="customerProposal.opportunityId">
                 <a [routerLink]="['/opportunity-mc', customerProposal.opportunityId]">{{customerProposal.opportunityId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.customerProposal.customer">Customer</span></dt>
+        <dd>
+            <div *ngIf="customerProposal.customerId">
+                <a [routerLink]="['/customer-mc', customerProposal.customerId]">{{customerProposal.customerId}}</a>
             </div>
         </dd>
     </dl>

@@ -20,8 +20,8 @@
             <th><span jhiTranslate="mcErpApp.supplyPart.name">Name</span></th>
             <th><span jhiTranslate="mcErpApp.supplyPart.supplierPartCode">Supplier Part Code</span></th>
             <th><span jhiTranslate="mcErpApp.supplyPart.description">Description</span></th>
-            <th><span jhiTranslate="mcErpApp.supplyPart.billOfMaterials">Bill Of Materials</span></th>
             <th><span jhiTranslate="mcErpApp.supplyPart.contract">Contract</span></th>
+            <th><span jhiTranslate="mcErpApp.supplyPart.bom">Bom</span></th>
             <th></th>
             </tr>
             </thead>
@@ -32,13 +32,13 @@
                 <td>{{supplyPart.supplierPartCode}}</td>
                 <td>{{supplyPart.description}}</td>
                 <td>
-                    <div *ngIf="supplyPart.billOfMaterialsId">
-                        <a [routerLink]="['../bill-of-materials-mc', supplyPart.billOfMaterialsId  ]" >{{supplyPart.billOfMaterialsId}}</a>
+                    <div *ngIf="supplyPart.contractId">
+                        <a [routerLink]="['../supply-part-contract-mc', supplyPart.contractId  ]" >{{supplyPart.contractId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="supplyPart.contractId">
-                        <a [routerLink]="['../supply-part-contract-mc', supplyPart.contractId  ]" >{{supplyPart.contractId}}</a>
+                    <div *ngIf="supplyPart.bomId">
+                        <a [routerLink]="['../bill-of-materials-mc', supplyPart.bomId  ]" >{{supplyPart.bomId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

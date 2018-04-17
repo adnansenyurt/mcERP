@@ -9,7 +9,6 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { OpportunityMc } from './opportunity-mc.model';
 import { OpportunityMcPopupService } from './opportunity-mc-popup.service';
 import { OpportunityMcService } from './opportunity-mc.service';
-import { CustomerMc, CustomerMcService } from '../customer-mc';
 import { CustomerProposalMc, CustomerProposalMcService } from '../customer-proposal-mc';
 import { ProductMc, ProductMcService } from '../product-mc';
 
@@ -22,8 +21,6 @@ export class OpportunityMcDialogComponent implements OnInit {
     opportunity: OpportunityMc;
     isSaving: boolean;
 
-    customers: CustomerMc[];
-
     customerproposals: CustomerProposalMc[];
 
     products: ProductMc[];
@@ -32,7 +29,6 @@ export class OpportunityMcDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private opportunityService: OpportunityMcService,
-        private customerService: CustomerMcService,
         private customerProposalService: CustomerProposalMcService,
         private productService: ProductMcService,
         private eventManager: JhiEventManager
@@ -41,8 +37,6 @@ export class OpportunityMcDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.customerService.query()
-            .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.customerProposalService.query()
             .subscribe((res: HttpResponse<CustomerProposalMc[]>) => { this.customerproposals = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.productService.query()
@@ -81,10 +75,6 @@ export class OpportunityMcDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
-    }
-
-    trackCustomerById(index: number, item: CustomerMc) {
-        return item.id;
     }
 
     trackCustomerProposalById(index: number, item: CustomerProposalMc) {

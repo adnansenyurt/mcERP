@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Service Implementation for managing CustomerProposal.
@@ -56,6 +57,21 @@ public class CustomerProposalServiceImpl implements CustomerProposalService {
     public List<CustomerProposalDTO> findAll() {
         log.debug("Request to get all CustomerProposals");
         return customerProposalRepository.findAll().stream()
+            .map(customerProposalMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+
+    /**
+     *  get all the customerProposals where CustomerOrder is null.
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public List<CustomerProposalDTO> findAllWhereCustomerOrderIsNull() {
+        log.debug("Request to get all customerProposals where CustomerOrder is null");
+        return StreamSupport
+            .stream(customerProposalRepository.findAll().spliterator(), false)
+            .filter(customerProposal -> customerProposal.getCustomerOrder() == null)
             .map(customerProposalMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }

@@ -41,6 +41,7 @@ describe('Customer e2e test', () => {
         expect(customerDialogPage.getPhoneInput()).toMatch('phone');
         customerDialogPage.setAccountNoInput('accountNo');
         expect(customerDialogPage.getAccountNoInput()).toMatch('accountNo');
+        customerDialogPage.opportunitySelectLastOption();
         customerDialogPage.save();
         expect(customerDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -71,6 +72,7 @@ export class CustomerDialogPage {
     addressInput = element(by.css('input#field_address'));
     phoneInput = element(by.css('input#field_phone'));
     accountNoInput = element(by.css('input#field_accountNo'));
+    opportunitySelect = element(by.css('select#field_opportunity'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -106,6 +108,22 @@ export class CustomerDialogPage {
 
     getAccountNoInput = function() {
         return this.accountNoInput.getAttribute('value');
+    };
+
+    opportunitySelectLastOption = function() {
+        this.opportunitySelect.all(by.tagName('option')).last().click();
+    };
+
+    opportunitySelectOption = function(option) {
+        this.opportunitySelect.sendKeys(option);
+    };
+
+    getOpportunitySelect = function() {
+        return this.opportunitySelect;
+    };
+
+    getOpportunitySelectedOption = function() {
+        return this.opportunitySelect.element(by.css('option:checked')).getText();
     };
 
     save() {

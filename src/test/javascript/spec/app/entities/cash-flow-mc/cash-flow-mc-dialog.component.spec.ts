@@ -9,8 +9,8 @@ import { McErpTestModule } from '../../../test.module';
 import { CashFlowMcDialogComponent } from '../../../../../../main/webapp/app/entities/cash-flow-mc/cash-flow-mc-dialog.component';
 import { CashFlowMcService } from '../../../../../../main/webapp/app/entities/cash-flow-mc/cash-flow-mc.service';
 import { CashFlowMc } from '../../../../../../main/webapp/app/entities/cash-flow-mc/cash-flow-mc.model';
-import { CustomerOrderMcService } from '../../../../../../main/webapp/app/entities/customer-order-mc';
 import { PurchaseOrderMcService } from '../../../../../../main/webapp/app/entities/purchase-order-mc';
+import { CustomerOrderMcService } from '../../../../../../main/webapp/app/entities/customer-order-mc';
 
 describe('Component Tests', () => {
 
@@ -26,8 +26,8 @@ describe('Component Tests', () => {
                 imports: [McErpTestModule],
                 declarations: [CashFlowMcDialogComponent],
                 providers: [
-                    CustomerOrderMcService,
                     PurchaseOrderMcService,
+                    CustomerOrderMcService,
                     CashFlowMcService
                 ]
             })

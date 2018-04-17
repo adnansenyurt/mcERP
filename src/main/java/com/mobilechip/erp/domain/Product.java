@@ -54,6 +54,10 @@ public class Product implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ProductStock> productStocks = new HashSet<>();
 
+    @OneToOne(mappedBy = "product")
+    @JsonIgnore
+    private BillOfMaterials bom;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -176,6 +180,19 @@ public class Product implements Serializable {
 
     public void setProductStocks(Set<ProductStock> productStocks) {
         this.productStocks = productStocks;
+    }
+
+    public BillOfMaterials getBom() {
+        return bom;
+    }
+
+    public Product bom(BillOfMaterials billOfMaterials) {
+        this.bom = billOfMaterials;
+        return this;
+    }
+
+    public void setBom(BillOfMaterials billOfMaterials) {
+        this.bom = billOfMaterials;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

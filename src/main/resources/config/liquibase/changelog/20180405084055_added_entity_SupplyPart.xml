@@ -32,13 +32,13 @@
             <column name="description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
-            <column name="bill_of_materials_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="contract_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>
+            <column name="bom_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

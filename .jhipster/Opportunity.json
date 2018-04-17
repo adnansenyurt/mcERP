@@ -2,10 +2,10 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "one-to-many",
             "relationshipName": "customer",
             "otherEntityName": "customer",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityRelationshipName": "opportunity"
         },
         {
             "relationshipType": "one-to-one",
@@ -15,9 +15,9 @@
             "otherEntityRelationshipName": "opportunity"
         },
         {
+            "relationshipType": "many-to-one",
             "relationshipName": "product",
             "otherEntityName": "product",
-            "relationshipType": "many-to-one",
             "otherEntityField": "id"
         }
     ],

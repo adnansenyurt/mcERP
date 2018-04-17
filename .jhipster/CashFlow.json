@@ -2,15 +2,15 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "customerOrder",
-            "otherEntityName": "customerOrder",
             "relationshipType": "many-to-one",
+            "relationshipName": "purchaseOrder",
+            "otherEntityName": "purchaseOrder",
             "otherEntityField": "id"
         },
         {
-            "relationshipName": "purchaseOrder",
-            "otherEntityName": "purchaseOrder",
             "relationshipType": "many-to-one",
+            "relationshipName": "customerOrder",
+            "otherEntityName": "customerOrder",
             "otherEntityField": "id"
         }
     ],

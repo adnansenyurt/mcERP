@@ -24,16 +24,16 @@
         <dd>
             <span jhiTranslate="{{'mcErpApp.CustomerOrderStatus.' + customerOrder.currentStatus}}">{{customerOrder.currentStatus}}</span>
         </dd>
-        <dt><span jhiTranslate="mcErpApp.customerOrder.customer">Customer</span></dt>
-        <dd>
-            <div *ngIf="customerOrder.customerId">
-                <a [routerLink]="['/customer-mc', customerOrder.customerId]">{{customerOrder.customerId}}</a>
-            </div>
-        </dd>
         <dt><span jhiTranslate="mcErpApp.customerOrder.proposal">Proposal</span></dt>
         <dd>
             <div *ngIf="customerOrder.proposalId">
                 <a [routerLink]="['/customer-proposal-mc', customerOrder.proposalId]">{{customerOrder.proposalId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="mcErpApp.customerOrder.customer">Customer</span></dt>
+        <dd>
+            <div *ngIf="customerOrder.customerId">
+                <a [routerLink]="['/customer-mc', customerOrder.customerId]">{{customerOrder.customerName}}</a>
             </div>
         </dd>
     </dl>

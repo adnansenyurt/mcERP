@@ -58,10 +58,10 @@ public class CashFlow implements Serializable {
     private CashFlowStatus currentStatus;
 
     @ManyToOne
-    private CustomerOrder customerOrder;
+    private PurchaseOrder purchaseOrder;
 
     @ManyToOne
-    private PurchaseOrder purchaseOrder;
+    private CustomerOrder customerOrder;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -150,19 +150,6 @@ public class CashFlow implements Serializable {
         this.currentStatus = currentStatus;
     }
 
-    public CustomerOrder getCustomerOrder() {
-        return customerOrder;
-    }
-
-    public CashFlow customerOrder(CustomerOrder customerOrder) {
-        this.customerOrder = customerOrder;
-        return this;
-    }
-
-    public void setCustomerOrder(CustomerOrder customerOrder) {
-        this.customerOrder = customerOrder;
-    }
-
     public PurchaseOrder getPurchaseOrder() {
         return purchaseOrder;
     }
@@ -174,6 +161,19 @@ public class CashFlow implements Serializable {
 
     public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
         this.purchaseOrder = purchaseOrder;
+    }
+
+    public CustomerOrder getCustomerOrder() {
+        return customerOrder;
+    }
+
+    public CashFlow customerOrder(CustomerOrder customerOrder) {
+        this.customerOrder = customerOrder;
+        return this;
+    }
+
+    public void setCustomerOrder(CustomerOrder customerOrder) {
+        this.customerOrder = customerOrder;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -1,0 +1,444 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-1">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-2">
+        <createTable tableName="bill_of_materials">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="bill_of_materialsPK"/>
+            </column>
+            <column name="items" type="INT"/>
+            <column name="product_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-3">
+        <createTable tableName="cash_flow">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="cash_flowPK"/>
+            </column>
+            <column name="amount" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_payment" type="BINARY(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="direction" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="jhi_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_order_id" type="BIGINT"/>
+            <column name="purchase_order_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-4">
+        <createTable tableName="contact_person">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="contact_personPK"/>
+            </column>
+            <column name="e_mail" type="VARCHAR(255)"/>
+            <column name="mobile" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="jhi_role" type="VARCHAR(255)"/>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="supplier_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-5">
+        <createTable tableName="customer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="customerPK"/>
+            </column>
+            <column name="account_no" type="VARCHAR(255)"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="opportunity_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-6">
+        <createTable tableName="customer_order">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="customer_orderPK"/>
+            </column>
+            <column name="amount" type="BIGINT"/>
+            <column name="current_status" type="VARCHAR(255)"/>
+            <column name="date_opened" type="BINARY(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_payment_due" type="BINARY(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="proposal_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-7">
+        <createTable tableName="customer_proposal">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="customer_proposalPK"/>
+            </column>
+            <column name="amount" type="BIGINT"/>
+            <column name="date_submitted" type="BINARY(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration" type="INT"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="opportunity_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-8">
+        <createTable tableName="invoice">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="invoicePK"/>
+            </column>
+            <column name="amount_total" type="BIGINT"/>
+            <column name="date_issued" type="BINARY(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_due" type="INT"/>
+            <column name="customer_id" type="BIGINT"/>
+            <column name="customer_order_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-9">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-10">
+        <createTable tableName="jhi_persistent_audit_event">
+            <column autoIncrement="true" name="event_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
+            </column>
+            <column name="event_date" type="BINARY(255)"/>
+            <column name="event_type" type="VARCHAR(255)"/>
+            <column name="principal" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-11">
+        <createTable tableName="jhi_persistent_audit_evt_data">
+            <column name="event_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-12">
+        <createTable tableName="jhi_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="BINARY(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="BINARY(255)"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(100)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(6)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)"/>
+            <column name="reset_date" type="BINARY(255)"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-13">
+        <createTable tableName="jhi_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-14">
+        <createTable tableName="opportunity">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="opportunityPK"/>
+            </column>
+            <column name="amount" type="BIGINT"/>
+            <column name="current_status" type="VARCHAR(255)"/>
+            <column name="date_opened" type="BINARY(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-15">
+        <createTable tableName="price_range">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="price_rangePK"/>
+            </column>
+            <column name="currency" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="range_high" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="range_low" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contract_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-16">
+        <createTable tableName="product">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="productPK"/>
+            </column>
+            <column name="brochure" type="VARCHAR(255)"/>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="model" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="specs_url" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-17">
+        <createTable tableName="product_stock">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="product_stockPK"/>
+            </column>
+            <column name="amount" type="BIGINT"/>
+            <column name="sku_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-18">
+        <createTable tableName="purchase_order">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="purchase_orderPK"/>
+            </column>
+            <column name="amount" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cost_center" type="VARCHAR(255)"/>
+            <column name="current_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_opened" type="BINARY(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_conditions" type="VARCHAR(255)"/>
+            <column name="supplier_id" type="BIGINT"/>
+            <column name="supplier_contract_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-19">
+        <createTable tableName="supplier">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="supplierPK"/>
+            </column>
+            <column name="account_no" type="VARCHAR(255)"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="domain" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(255)"/>
+            <column name="web" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-20">
+        <createTable tableName="supplier_contract">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="supplier_contractPK"/>
+            </column>
+            <column name="date_signed" type="BINARY(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-21">
+        <createTable tableName="supply_part">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="supply_partPK"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="supplier_part_code" type="VARCHAR(255)"/>
+            <column name="bom_id" type="BIGINT"/>
+            <column name="contract_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-22">
+        <createTable tableName="supply_part_contract">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="supply_part_contractPK"/>
+            </column>
+            <column name="supplier_contract_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-23">
+        <createTable tableName="supply_stock">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="supply_stockPK"/>
+            </column>
+            <column name="amount" type="BIGINT"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="supply_part_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-24">
+        <addPrimaryKey columnNames="event_id, name" tableName="jhi_persistent_audit_evt_data"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-25">
+        <addPrimaryKey columnNames="user_id, authority_name" tableName="jhi_user_authority"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-26">
+        <addPrimaryKey columnNames="name" constraintName="jhi_authorityPK" tableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-27">
+        <addUniqueConstraint columnNames="product_id" constraintName="UC_BILL_OF_MATERIALSPRODUCT_ID_COL" tableName="bill_of_materials"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-28">
+        <addUniqueConstraint columnNames="proposal_id" constraintName="UC_CUSTOMER_ORDERPROPOSAL_ID_COL" tableName="customer_order"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-29">
+        <addUniqueConstraint columnNames="opportunity_id" constraintName="UC_CUSTOMER_PROPOSALOPPORTUNITY_ID_COL" tableName="customer_proposal"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-30">
+        <addUniqueConstraint columnNames="customer_order_id" constraintName="UC_INVOICECUSTOMER_ORDER_ID_COL" tableName="invoice"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-31">
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-32">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-33">
+        <addUniqueConstraint columnNames="contract_id" constraintName="UC_PRICE_RANGECONTRACT_ID_COL" tableName="price_range"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-34">
+        <addUniqueConstraint columnNames="contract_id" constraintName="UC_SUPPLY_PARTCONTRACT_ID_COL" tableName="supply_part"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-35">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-36">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="jhi_persistent_audit_evt_data" constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="jhi_persistent_audit_event"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-37">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-38">
+        <addForeignKeyConstraint baseColumnNames="opportunity_id" baseTableName="customer_proposal" constraintName="FK4r2dvnh2ql7gv10xrsjrpgmml" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="opportunity"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-39">
+        <addForeignKeyConstraint baseColumnNames="supplier_id" baseTableName="purchase_order" constraintName="FK4traogu3jriq9u7e8rvm86k7i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="supplier"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-40">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="invoice" constraintName="FK5e32ukwo9uknwhylogvta4po6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-41">
+        <addForeignKeyConstraint baseColumnNames="supplier_contract_id" baseTableName="purchase_order" constraintName="FK5fhlkjc9aw9y3n1e8jaet8rjy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="supplier_contract"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-42">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="bill_of_materials" constraintName="FK9gcwap50wb06pfc8kdk3vq2de" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-43">
+        <addForeignKeyConstraint baseColumnNames="contract_id" baseTableName="price_range" constraintName="FKbmdxlv679ixwrbv0l79pf54wd" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="supply_part_contract"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-44">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="contact_person" constraintName="FKbrk1pt9oiao3xxpvmwwsua87i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-45">
+        <addForeignKeyConstraint baseColumnNames="supplier_id" baseTableName="contact_person" constraintName="FKclcvyx5rlkw3rilw3e0oa0crg" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="supplier"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-46">
+        <addForeignKeyConstraint baseColumnNames="customer_order_id" baseTableName="invoice" constraintName="FKdj6pe3u6iu31gcb837t9hp4ej" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer_order"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-47">
+        <addForeignKeyConstraint baseColumnNames="bom_id" baseTableName="supply_part" constraintName="FKe63rqgava5tt1o2oj0npha4e1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bill_of_materials"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-48">
+        <addForeignKeyConstraint baseColumnNames="supply_part_id" baseTableName="supply_stock" constraintName="FKe97i3rgccg5rd4q0qlyfpo4m6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="supply_part"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-49">
+        <addForeignKeyConstraint baseColumnNames="proposal_id" baseTableName="customer_order" constraintName="FKeju6gxks4o48pkyj58gam5ijs" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer_proposal"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-50">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="customer_order" constraintName="FKf9abd30bhiqvugayxlpq8ryq9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-51">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="customer_proposal" constraintName="FKfsv2vh6j4e85brgg8etcf4b0a" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-52">
+        <addForeignKeyConstraint baseColumnNames="purchase_order_id" baseTableName="cash_flow" constraintName="FKghjew3ksjeyr6w38pp9pjhh1r" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="purchase_order"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-53">
+        <addForeignKeyConstraint baseColumnNames="opportunity_id" baseTableName="customer" constraintName="FKiwaqn72i3m2inesfux9rr4h7n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="opportunity"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-54">
+        <addForeignKeyConstraint baseColumnNames="supplier_contract_id" baseTableName="supply_part_contract" constraintName="FKk6h49b8cynpoupthevug3j7tr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="supplier_contract"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-55">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_stock" constraintName="FKlpu1phje1bb3y9ww8k9fut4gh" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-56">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="opportunity" constraintName="FKo2jx9wnx7ajdhr8k78644josn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-57">
+        <addForeignKeyConstraint baseColumnNames="contract_id" baseTableName="supply_part" constraintName="FKobib66usku71fsb92kwj9ghxm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="supply_part_contract"/>
+    </changeSet>
+    <changeSet author="adnansenyurt (generated)" id="1523449059498-58">
+        <addForeignKeyConstraint baseColumnNames="customer_order_id" baseTableName="cash_flow" constraintName="FKq4qtteg448ita3467011wvpre" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer_order"/>
+    </changeSet>
+</databaseChangeLog>

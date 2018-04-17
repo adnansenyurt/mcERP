@@ -9,8 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { InvoiceMc } from './invoice-mc.model';
 import { InvoiceMcPopupService } from './invoice-mc-popup.service';
 import { InvoiceMcService } from './invoice-mc.service';
-import { CustomerMc, CustomerMcService } from '../customer-mc';
 import { CustomerOrderMc, CustomerOrderMcService } from '../customer-order-mc';
+import { CustomerMc, CustomerMcService } from '../customer-mc';
 
 @Component({
     selector: 'jhi-invoice-mc-dialog',
@@ -21,24 +21,22 @@ export class InvoiceMcDialogComponent implements OnInit {
     invoice: InvoiceMc;
     isSaving: boolean;
 
-    customers: CustomerMc[];
-
     customerorders: CustomerOrderMc[];
+
+    customers: CustomerMc[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private invoiceService: InvoiceMcService,
-        private customerService: CustomerMcService,
         private customerOrderService: CustomerOrderMcService,
+        private customerService: CustomerMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.customerService.query()
-            .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.customerOrderService
             .query({filter: 'invoice-is-null'})
             .subscribe((res: HttpResponse<CustomerOrderMc[]>) => {
@@ -52,6 +50,8 @@ export class InvoiceMcDialogComponent implements OnInit {
                         }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
                 }
             }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.customerService.query()
+            .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -88,11 +88,11 @@ export class InvoiceMcDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackCustomerById(index: number, item: CustomerMc) {
+    trackCustomerOrderById(index: number, item: CustomerOrderMc) {
         return item.id;
     }
 
-    trackCustomerOrderById(index: number, item: CustomerOrderMc) {
+    trackCustomerById(index: number, item: CustomerMc) {
         return item.id;
     }
 }

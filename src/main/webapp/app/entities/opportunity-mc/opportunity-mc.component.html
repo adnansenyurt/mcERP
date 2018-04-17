@@ -21,7 +21,6 @@
             <th><span jhiTranslate="mcErpApp.opportunity.dateOpened">Date Opened</span></th>
             <th><span jhiTranslate="mcErpApp.opportunity.amount">Amount</span></th>
             <th><span jhiTranslate="mcErpApp.opportunity.currentStatus">Current Status</span></th>
-            <th><span jhiTranslate="mcErpApp.opportunity.customer">Customer</span></th>
             <th><span jhiTranslate="mcErpApp.opportunity.product">Product</span></th>
             <th></th>
             </tr>
@@ -33,11 +32,6 @@
                 <td>{{opportunity.dateOpened | date:'medium'}}</td>
                 <td>{{opportunity.amount}}</td>
                 <td jhiTranslate="{{'mcErpApp.OpportunityStatus.' + opportunity.currentStatus}}">{{opportunity.currentStatus}}</td>
-                <td>
-                    <div *ngIf="opportunity.customerId">
-                        <a [routerLink]="['../customer-mc', opportunity.customerId  ]" >{{opportunity.customerId}}</a>
-                    </div>
-                </td>
                 <td>
                     <div *ngIf="opportunity.productId">
                         <a [routerLink]="['../product-mc', opportunity.productId  ]" >{{opportunity.productId}}</a>

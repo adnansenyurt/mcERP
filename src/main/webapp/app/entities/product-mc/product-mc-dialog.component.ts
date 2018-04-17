@@ -4,11 +4,12 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { ProductMc } from './product-mc.model';
 import { ProductMcPopupService } from './product-mc-popup.service';
 import { ProductMcService } from './product-mc.service';
+import { BillOfMaterialsMc, BillOfMaterialsMcService } from '../bill-of-materials-mc';
 
 @Component({
     selector: 'jhi-product-mc-dialog',
@@ -19,15 +20,21 @@ export class ProductMcDialogComponent implements OnInit {
     product: ProductMc;
     isSaving: boolean;
 
+    billofmaterials: BillOfMaterialsMc[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private productService: ProductMcService,
+        private billOfMaterialsService: BillOfMaterialsMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.billOfMaterialsService.query()
+            .subscribe((res: HttpResponse<BillOfMaterialsMc[]>) => { this.billofmaterials = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -58,6 +65,14 @@ export class ProductMcDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackBillOfMaterialsById(index: number, item: BillOfMaterialsMc) {
+        return item.id;
     }
 }
 

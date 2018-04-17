@@ -42,8 +42,8 @@ describe('CashFlow e2e test', () => {
         cashFlowDialogPage.setDescriptionInput('description');
         expect(cashFlowDialogPage.getDescriptionInput()).toMatch('description');
         cashFlowDialogPage.currentStatusSelectLastOption();
-        cashFlowDialogPage.customerOrderSelectLastOption();
         cashFlowDialogPage.purchaseOrderSelectLastOption();
+        cashFlowDialogPage.customerOrderSelectLastOption();
         cashFlowDialogPage.save();
         expect(cashFlowDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -76,8 +76,8 @@ export class CashFlowDialogPage {
     amountInput = element(by.css('input#field_amount'));
     descriptionInput = element(by.css('input#field_description'));
     currentStatusSelect = element(by.css('select#field_currentStatus'));
-    customerOrderSelect = element(by.css('select#field_customerOrder'));
     purchaseOrderSelect = element(by.css('select#field_purchaseOrder'));
+    customerOrderSelect = element(by.css('select#field_customerOrder'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -140,22 +140,6 @@ export class CashFlowDialogPage {
     currentStatusSelectLastOption = function() {
         this.currentStatusSelect.all(by.tagName('option')).last().click();
     };
-    customerOrderSelectLastOption = function() {
-        this.customerOrderSelect.all(by.tagName('option')).last().click();
-    };
-
-    customerOrderSelectOption = function(option) {
-        this.customerOrderSelect.sendKeys(option);
-    };
-
-    getCustomerOrderSelect = function() {
-        return this.customerOrderSelect;
-    };
-
-    getCustomerOrderSelectedOption = function() {
-        return this.customerOrderSelect.element(by.css('option:checked')).getText();
-    };
-
     purchaseOrderSelectLastOption = function() {
         this.purchaseOrderSelect.all(by.tagName('option')).last().click();
     };
@@ -170,6 +154,22 @@ export class CashFlowDialogPage {
 
     getPurchaseOrderSelectedOption = function() {
         return this.purchaseOrderSelect.element(by.css('option:checked')).getText();
+    };
+
+    customerOrderSelectLastOption = function() {
+        this.customerOrderSelect.all(by.tagName('option')).last().click();
+    };
+
+    customerOrderSelectOption = function(option) {
+        this.customerOrderSelect.sendKeys(option);
+    };
+
+    getCustomerOrderSelect = function() {
+        return this.customerOrderSelect;
+    };
+
+    getCustomerOrderSelectedOption = function() {
+        return this.customerOrderSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

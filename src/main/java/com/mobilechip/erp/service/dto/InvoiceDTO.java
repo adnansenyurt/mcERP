@@ -25,11 +25,11 @@ public class InvoiceDTO implements Serializable {
 
     private Integer paymentDue;
 
-    private Long customerId;
-
     private Long customerOrderId;
 
     private String customerOrderName;
+
+    private Long customerId;
 
     public Long getId() {
         return id;
@@ -71,14 +71,6 @@ public class InvoiceDTO implements Serializable {
         this.paymentDue = paymentDue;
     }
 
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
-
     public Long getCustomerOrderId() {
         return customerOrderId;
     }
@@ -93,6 +85,14 @@ public class InvoiceDTO implements Serializable {
 
     public void setCustomerOrderName(String customerOrderName) {
         this.customerOrderName = customerOrderName;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @Override

@@ -2,18 +2,18 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "customer",
-            "otherEntityName": "customer",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
             "relationshipType": "one-to-one",
             "relationshipName": "customerOrder",
             "otherEntityName": "customerOrder",
             "otherEntityField": "name",
             "ownerSide": true,
             "otherEntityRelationshipName": "invoice"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

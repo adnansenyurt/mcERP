@@ -45,11 +45,11 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="customer_order_id" type="bigint">
+            <column name="purchase_order_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
-            <column name="purchase_order_id" type="bigint">
+            <column name="customer_order_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

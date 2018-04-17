@@ -37,9 +37,6 @@ public class SupplyPart implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
-    private BillOfMaterials billOfMaterials;
-
     @OneToOne
     @JoinColumn(unique = true)
     private SupplyPartContract contract;
@@ -48,6 +45,9 @@ public class SupplyPart implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<SupplyStock> supplyStocks = new HashSet<>();
+
+    @ManyToOne
+    private BillOfMaterials bom;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -97,19 +97,6 @@ public class SupplyPart implements Serializable {
         this.description = description;
     }
 
-    public BillOfMaterials getBillOfMaterials() {
-        return billOfMaterials;
-    }
-
-    public SupplyPart billOfMaterials(BillOfMaterials billOfMaterials) {
-        this.billOfMaterials = billOfMaterials;
-        return this;
-    }
-
-    public void setBillOfMaterials(BillOfMaterials billOfMaterials) {
-        this.billOfMaterials = billOfMaterials;
-    }
-
     public SupplyPartContract getContract() {
         return contract;
     }
@@ -146,6 +133,19 @@ public class SupplyPart implements Serializable {
 
     public void setSupplyStocks(Set<SupplyStock> supplyStocks) {
         this.supplyStocks = supplyStocks;
+    }
+
+    public BillOfMaterials getBom() {
+        return bom;
+    }
+
+    public SupplyPart bom(BillOfMaterials billOfMaterials) {
+        this.bom = billOfMaterials;
+        return this;
+    }
+
+    public void setBom(BillOfMaterials billOfMaterials) {
+        this.bom = billOfMaterials;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -22,6 +22,12 @@ public interface ProductService {
      * @return the list of entities
      */
     List<ProductDTO> findAll();
+    /**
+     * Get all the ProductDTO where Bom is null.
+     *
+     * @return the list of entities
+     */
+    List<ProductDTO> findAllWhereBomIsNull();
 
     /**
      * Get the "id" product.

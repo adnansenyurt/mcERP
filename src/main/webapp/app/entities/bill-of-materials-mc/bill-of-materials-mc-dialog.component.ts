@@ -34,7 +34,7 @@ export class BillOfMaterialsMcDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.productService
-            .query({filter: 'billofmaterials-is-null'})
+            .query({filter: 'bom-is-null'})
             .subscribe((res: HttpResponse<ProductMc[]>) => {
                 if (!this.billOfMaterials.productId) {
                     this.products = res.body;

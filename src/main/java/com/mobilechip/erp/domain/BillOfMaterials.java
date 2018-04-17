@@ -33,7 +33,7 @@ public class BillOfMaterials implements Serializable {
     @JoinColumn(unique = true)
     private Product product;
 
-    @OneToMany(mappedBy = "billOfMaterials")
+    @OneToMany(mappedBy = "bom")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<SupplyPart> supplyParts = new HashSet<>();
@@ -84,13 +84,13 @@ public class BillOfMaterials implements Serializable {
 
     public BillOfMaterials addSupplyPart(SupplyPart supplyPart) {
         this.supplyParts.add(supplyPart);
-        supplyPart.setBillOfMaterials(this);
+        supplyPart.setBom(this);
         return this;
     }
 
     public BillOfMaterials removeSupplyPart(SupplyPart supplyPart) {
         this.supplyParts.remove(supplyPart);
-        supplyPart.setBillOfMaterials(null);
+        supplyPart.setBom(null);
         return this;
     }
 

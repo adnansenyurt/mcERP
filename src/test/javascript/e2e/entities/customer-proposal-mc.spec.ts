@@ -41,8 +41,8 @@ describe('CustomerProposal e2e test', () => {
         expect(customerProposalDialogPage.getDurationInput()).toMatch('5');
         customerProposalDialogPage.setAmountInput('5');
         expect(customerProposalDialogPage.getAmountInput()).toMatch('5');
-        customerProposalDialogPage.customerSelectLastOption();
         customerProposalDialogPage.opportunitySelectLastOption();
+        customerProposalDialogPage.customerSelectLastOption();
         customerProposalDialogPage.save();
         expect(customerProposalDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -73,8 +73,8 @@ export class CustomerProposalDialogPage {
     dateSubmittedInput = element(by.css('input#field_dateSubmitted'));
     durationInput = element(by.css('input#field_duration'));
     amountInput = element(by.css('input#field_amount'));
-    customerSelect = element(by.css('select#field_customer'));
     opportunitySelect = element(by.css('select#field_opportunity'));
+    customerSelect = element(by.css('select#field_customer'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -112,22 +112,6 @@ export class CustomerProposalDialogPage {
         return this.amountInput.getAttribute('value');
     };
 
-    customerSelectLastOption = function() {
-        this.customerSelect.all(by.tagName('option')).last().click();
-    };
-
-    customerSelectOption = function(option) {
-        this.customerSelect.sendKeys(option);
-    };
-
-    getCustomerSelect = function() {
-        return this.customerSelect;
-    };
-
-    getCustomerSelectedOption = function() {
-        return this.customerSelect.element(by.css('option:checked')).getText();
-    };
-
     opportunitySelectLastOption = function() {
         this.opportunitySelect.all(by.tagName('option')).last().click();
     };
@@ -142,6 +126,22 @@ export class CustomerProposalDialogPage {
 
     getOpportunitySelectedOption = function() {
         return this.opportunitySelect.element(by.css('option:checked')).getText();
+    };
+
+    customerSelectLastOption = function() {
+        this.customerSelect.all(by.tagName('option')).last().click();
+    };
+
+    customerSelectOption = function(option) {
+        this.customerSelect.sendKeys(option);
+    };
+
+    getCustomerSelect = function() {
+        return this.customerSelect;
+    };
+
+    getCustomerSelectedOption = function() {
+        return this.customerSelect.element(by.css('option:checked')).getText();
     };
 
     save() {

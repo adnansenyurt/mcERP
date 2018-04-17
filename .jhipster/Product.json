@@ -12,6 +12,13 @@
             "relationshipName": "productStock",
             "otherEntityName": "productStock",
             "otherEntityRelationshipName": "product"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "bom",
+            "otherEntityName": "billOfMaterials",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "product"
         }
     ],
     "fields": [

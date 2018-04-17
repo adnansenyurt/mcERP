@@ -22,8 +22,8 @@
             "costCenter": "Cost Center",
             "paymentConditions": "Payment Conditions",
             "currentStatus": "Current Status",
-            "supplier": "Supplier",
             "cashFlow": "Cash Flow",
+            "supplier": "Supplier",
             "supplierContract": "Supplier Contract"
         }
     }

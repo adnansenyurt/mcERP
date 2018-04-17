@@ -8,15 +8,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity CashFlow and its DTO CashFlowDTO.
  */
-@Mapper(componentModel = "spring", uses = {CustomerOrderMapper.class, PurchaseOrderMapper.class})
+@Mapper(componentModel = "spring", uses = {PurchaseOrderMapper.class, CustomerOrderMapper.class})
 public interface CashFlowMapper extends EntityMapper<CashFlowDTO, CashFlow> {
 
-    @Mapping(source = "customerOrder.id", target = "customerOrderId")
     @Mapping(source = "purchaseOrder.id", target = "purchaseOrderId")
+    @Mapping(source = "customerOrder.id", target = "customerOrderId")
     CashFlowDTO toDto(CashFlow cashFlow);
 
-    @Mapping(source = "customerOrderId", target = "customerOrder")
     @Mapping(source = "purchaseOrderId", target = "purchaseOrder")
+    @Mapping(source = "customerOrderId", target = "customerOrder")
     CashFlow toEntity(CashFlowDTO cashFlowDTO);
 
     default CashFlow fromId(Long id) {

@@ -10,6 +10,7 @@ export class ProductMc implements BaseEntity {
         public specsURL?: string,
         public opportunities?: BaseEntity[],
         public productStocks?: BaseEntity[],
+        public bomId?: number,
     ) {
     }
 }

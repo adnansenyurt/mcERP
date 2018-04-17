@@ -43,12 +43,7 @@ public class Customer implements Serializable {
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Opportunity> opportunities = new HashSet<>();
-
-    @OneToMany(mappedBy = "customer")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CustomerOrder> customerOrders = new HashSet<>();
+    private Set<CustomerOrder> orders = new HashSet<>();
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
@@ -64,6 +59,9 @@ public class Customer implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Invoice> invoices = new HashSet<>();
+
+    @ManyToOne
+    private Opportunity opportunity;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -126,54 +124,29 @@ public class Customer implements Serializable {
         this.accountNo = accountNo;
     }
 
-    public Set<Opportunity> getOpportunities() {
-        return opportunities;
+    public Set<CustomerOrder> getOrders() {
+        return orders;
     }
 
-    public Customer opportunities(Set<Opportunity> opportunities) {
-        this.opportunities = opportunities;
+    public Customer orders(Set<CustomerOrder> customerOrders) {
+        this.orders = customerOrders;
         return this;
     }
 
-    public Customer addOpportunity(Opportunity opportunity) {
-        this.opportunities.add(opportunity);
-        opportunity.setCustomer(this);
-        return this;
-    }
-
-    public Customer removeOpportunity(Opportunity opportunity) {
-        this.opportunities.remove(opportunity);
-        opportunity.setCustomer(null);
-        return this;
-    }
-
-    public void setOpportunities(Set<Opportunity> opportunities) {
-        this.opportunities = opportunities;
-    }
-
-    public Set<CustomerOrder> getCustomerOrders() {
-        return customerOrders;
-    }
-
-    public Customer customerOrders(Set<CustomerOrder> customerOrders) {
-        this.customerOrders = customerOrders;
-        return this;
-    }
-
-    public Customer addCustomerOrder(CustomerOrder customerOrder) {
-        this.customerOrders.add(customerOrder);
+    public Customer addOrder(CustomerOrder customerOrder) {
+        this.orders.add(customerOrder);
         customerOrder.setCustomer(this);
         return this;
     }
 
-    public Customer removeCustomerOrder(CustomerOrder customerOrder) {
-        this.customerOrders.remove(customerOrder);
+    public Customer removeOrder(CustomerOrder customerOrder) {
+        this.orders.remove(customerOrder);
         customerOrder.setCustomer(null);
         return this;
     }
 
-    public void setCustomerOrders(Set<CustomerOrder> customerOrders) {
-        this.customerOrders = customerOrders;
+    public void setOrders(Set<CustomerOrder> customerOrders) {
+        this.orders = customerOrders;
     }
 
     public Set<ContactPerson> getContactPeople() {
@@ -249,6 +222,19 @@ public class Customer implements Serializable {
 
     public void setInvoices(Set<Invoice> invoices) {
         this.invoices = invoices;
+    }
+
+    public Opportunity getOpportunity() {
+        return opportunity;
+    }
+
+    public Customer opportunity(Opportunity opportunity) {
+        this.opportunity = opportunity;
+        return this;
+    }
+
+    public void setOpportunity(Opportunity opportunity) {
+        this.opportunity = opportunity;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
