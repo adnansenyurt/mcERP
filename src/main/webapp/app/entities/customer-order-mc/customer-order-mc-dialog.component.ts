@@ -9,8 +9,9 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { CustomerOrderMc } from './customer-order-mc.model';
 import { CustomerOrderMcPopupService } from './customer-order-mc-popup.service';
 import { CustomerOrderMcService } from './customer-order-mc.service';
-import { CustomerMc, CustomerMcService } from '../customer-mc';
 import { CustomerProposalMc, CustomerProposalMcService } from '../customer-proposal-mc';
+import { InvoiceMc, InvoiceMcService } from '../invoice-mc';
+import { CustomerMc, CustomerMcService } from '../customer-mc';
 
 @Component({
     selector: 'jhi-customer-order-mc-dialog',
@@ -21,24 +22,25 @@ export class CustomerOrderMcDialogComponent implements OnInit {
     customerOrder: CustomerOrderMc;
     isSaving: boolean;
 
-    customers: CustomerMc[];
-
     proposals: CustomerProposalMc[];
+
+    invoices: InvoiceMc[];
+
+    customers: CustomerMc[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private customerOrderService: CustomerOrderMcService,
-        private customerService: CustomerMcService,
         private customerProposalService: CustomerProposalMcService,
+        private invoiceService: InvoiceMcService,
+        private customerService: CustomerMcService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.customerService.query()
-            .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.customerProposalService
             .query({filter: 'customerorder-is-null'})
             .subscribe((res: HttpResponse<CustomerProposalMc[]>) => {
@@ -52,6 +54,10 @@ export class CustomerOrderMcDialogComponent implements OnInit {
                         }, (subRes: HttpErrorResponse) => this.onError(subRes.message));
                 }
             }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.invoiceService.query()
+            .subscribe((res: HttpResponse<InvoiceMc[]>) => { this.invoices = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.customerService.query()
+            .subscribe((res: HttpResponse<CustomerMc[]>) => { this.customers = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -88,11 +94,15 @@ export class CustomerOrderMcDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackCustomerById(index: number, item: CustomerMc) {
+    trackCustomerProposalById(index: number, item: CustomerProposalMc) {
         return item.id;
     }
 
-    trackCustomerProposalById(index: number, item: CustomerProposalMc) {
+    trackInvoiceById(index: number, item: InvoiceMc) {
+        return item.id;
+    }
+
+    trackCustomerById(index: number, item: CustomerMc) {
         return item.id;
     }
 }

@@ -2,18 +2,25 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "customer",
-            "otherEntityName": "customer",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
             "relationshipType": "one-to-one",
             "relationshipName": "opportunity",
             "otherEntityName": "opportunity",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "proposal"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "customerOrder",
+            "otherEntityName": "customerOrder",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "proposal"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

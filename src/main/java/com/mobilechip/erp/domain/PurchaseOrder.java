@@ -53,13 +53,13 @@ public class PurchaseOrder implements Serializable {
     @Column(name = "current_status", nullable = false)
     private PurchaseOrderStatus currentStatus;
 
-    @ManyToOne
-    private Supplier supplier;
-
     @OneToMany(mappedBy = "purchaseOrder")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CashFlow> cashFlows = new HashSet<>();
+
+    @ManyToOne
+    private Supplier supplier;
 
     @ManyToOne
     private SupplierContract supplierContract;
@@ -151,19 +151,6 @@ public class PurchaseOrder implements Serializable {
         this.currentStatus = currentStatus;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
-    }
-
-    public PurchaseOrder supplier(Supplier supplier) {
-        this.supplier = supplier;
-        return this;
-    }
-
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
-    }
-
     public Set<CashFlow> getCashFlows() {
         return cashFlows;
     }
@@ -187,6 +174,19 @@ public class PurchaseOrder implements Serializable {
 
     public void setCashFlows(Set<CashFlow> cashFlows) {
         this.cashFlows = cashFlows;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public PurchaseOrder supplier(Supplier supplier) {
+        this.supplier = supplier;
+        return this;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     public SupplierContract getSupplierContract() {

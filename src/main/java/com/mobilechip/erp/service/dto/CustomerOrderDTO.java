@@ -28,9 +28,11 @@ public class CustomerOrderDTO implements Serializable {
 
     private CustomerOrderStatus currentStatus;
 
+    private Long proposalId;
+
     private Long customerId;
 
-    private Long proposalId;
+    private String customerName;
 
     public Long getId() {
         return id;
@@ -80,6 +82,14 @@ public class CustomerOrderDTO implements Serializable {
         this.currentStatus = currentStatus;
     }
 
+    public Long getProposalId() {
+        return proposalId;
+    }
+
+    public void setProposalId(Long customerProposalId) {
+        this.proposalId = customerProposalId;
+    }
+
     public Long getCustomerId() {
         return customerId;
     }
@@ -88,12 +98,12 @@ public class CustomerOrderDTO implements Serializable {
         this.customerId = customerId;
     }
 
-    public Long getProposalId() {
-        return proposalId;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setProposalId(Long customerProposalId) {
-        this.proposalId = customerProposalId;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     @Override

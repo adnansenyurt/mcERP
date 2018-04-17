@@ -7,13 +7,13 @@
             "otherEntityName": "product",
             "otherEntityField": "id",
             "ownerSide": true,
-            "otherEntityRelationshipName": "billOfMaterials"
+            "otherEntityRelationshipName": "bom"
         },
         {
             "relationshipType": "one-to-many",
             "relationshipName": "supplyPart",
             "otherEntityName": "supplyPart",
-            "otherEntityRelationshipName": "billOfMaterials"
+            "otherEntityRelationshipName": "bom"
         }
     ],
     "fields": [

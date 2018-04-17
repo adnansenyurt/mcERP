@@ -52,17 +52,17 @@
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="mcErpApp.customerProposal.customer" for="field_customer">Customer</label>
-            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="customerProposal.customerId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="mcErpApp.customerProposal.opportunity" for="field_opportunity">Opportunity</label>
             <select class="form-control" id="field_opportunity" name="opportunity" [(ngModel)]="customerProposal.opportunityId">
                 <option [ngValue]="null"></option>
                 <option [ngValue]="opportunityOption.id" *ngFor="let opportunityOption of opportunities; trackBy: trackOpportunityById">{{opportunityOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.customerProposal.customer" for="field_customer">Customer</label>
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="customerProposal.customerId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
             </select>
         </div>
     </div>

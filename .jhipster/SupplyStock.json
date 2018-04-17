@@ -2,9 +2,9 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "many-to-one",
             "relationshipName": "supplyPart",
             "otherEntityName": "supplyPart",
-            "relationshipType": "many-to-one",
             "otherEntityField": "id"
         }
     ],

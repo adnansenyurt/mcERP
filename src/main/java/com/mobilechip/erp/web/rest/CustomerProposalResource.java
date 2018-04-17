@@ -17,6 +17,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing CustomerProposal.
@@ -80,11 +81,16 @@ public class CustomerProposalResource {
     /**
      * GET  /customer-proposals : get all the customerProposals.
      *
+     * @param filter the filter of the request
      * @return the ResponseEntity with status 200 (OK) and the list of customerProposals in body
      */
     @GetMapping("/customer-proposals")
     @Timed
-    public List<CustomerProposalDTO> getAllCustomerProposals() {
+    public List<CustomerProposalDTO> getAllCustomerProposals(@RequestParam(required = false) String filter) {
+        if ("customerorder-is-null".equals(filter)) {
+            log.debug("REST request to get all CustomerProposals where customerOrder is null");
+            return customerProposalService.findAllWhereCustomerOrderIsNull();
+        }
         log.debug("REST request to get all CustomerProposals");
         return customerProposalService.findAll();
         }

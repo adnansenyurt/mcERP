@@ -2,9 +2,9 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "many-to-one",
             "relationshipName": "product",
             "otherEntityName": "product",
-            "relationshipType": "many-to-one",
             "otherEntityField": "id"
         }
     ],

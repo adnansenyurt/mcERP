@@ -22,6 +22,12 @@ public interface CustomerOrderService {
      * @return the list of entities
      */
     List<CustomerOrderDTO> findAll();
+    /**
+     * Get all the CustomerOrderDTO where Invoice is null.
+     *
+     * @return the list of entities
+     */
+    List<CustomerOrderDTO> findAllWhereInvoiceIsNull();
 
     /**
      * Get the "id" customerOrder.

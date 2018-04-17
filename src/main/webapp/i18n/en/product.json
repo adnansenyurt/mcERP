@@ -22,7 +22,8 @@
             "brochure": "Brochure",
             "specsURL": "Specs URL",
             "opportunity": "Opportunity",
-            "productStock": "Product Stock"
+            "productStock": "Product Stock",
+            "bom": "Bom"
         }
     }
 }

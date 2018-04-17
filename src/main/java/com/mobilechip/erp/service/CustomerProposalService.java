@@ -22,6 +22,12 @@ public interface CustomerProposalService {
      * @return the list of entities
      */
     List<CustomerProposalDTO> findAll();
+    /**
+     * Get all the CustomerProposalDTO where CustomerOrder is null.
+     *
+     * @return the list of entities
+     */
+    List<CustomerProposalDTO> findAllWhereCustomerOrderIsNull();
 
     /**
      * Get the "id" customerProposal.

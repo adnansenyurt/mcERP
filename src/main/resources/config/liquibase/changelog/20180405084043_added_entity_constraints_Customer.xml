@@ -8,29 +8,11 @@
     -->
     <changeSet id="20180405084043-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="contact_person_id"
+        <addForeignKeyConstraint baseColumnNames="opportunity_id"
                                  baseTableName="customer"
-                                 constraintName="fk_customer_contact_person_id"
+                                 constraintName="fk_customer_opportunity_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="contact_person"/>
-
-        <addForeignKeyConstraint baseColumnNames="customer_order_id"
-                                 baseTableName="customer"
-                                 constraintName="fk_customer_customer_order_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="customer_order"/>
-
-        <addForeignKeyConstraint baseColumnNames="invoice_id"
-                                 baseTableName="customer"
-                                 constraintName="fk_customer_invoice_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="invoice"/>
-
-        <addForeignKeyConstraint baseColumnNames="customer_proposal_id"
-                                 baseTableName="customer"
-                                 constraintName="fk_customer_customer_proposal_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="customer_proposal"/>
+                                 referencedTableName="opportunity"/>
 
     </changeSet>
 </databaseChangeLog>

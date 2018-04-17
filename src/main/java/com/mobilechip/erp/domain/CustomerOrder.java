@@ -48,9 +48,6 @@ public class CustomerOrder implements Serializable {
     @Column(name = "current_status")
     private CustomerOrderStatus currentStatus;
 
-    @ManyToOne
-    private Customer customer;
-
     @OneToOne
     @JoinColumn(unique = true)
     private CustomerProposal proposal;
@@ -59,6 +56,13 @@ public class CustomerOrder implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CashFlow> cashFlows = new HashSet<>();
+
+    @OneToOne(mappedBy = "customerOrder")
+    @JsonIgnore
+    private Invoice invoice;
+
+    @ManyToOne
+    private Customer customer;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -134,19 +138,6 @@ public class CustomerOrder implements Serializable {
         this.currentStatus = currentStatus;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public CustomerOrder customer(Customer customer) {
-        this.customer = customer;
-        return this;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public CustomerProposal getProposal() {
         return proposal;
     }
@@ -183,6 +174,32 @@ public class CustomerOrder implements Serializable {
 
     public void setCashFlows(Set<CashFlow> cashFlows) {
         this.cashFlows = cashFlows;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public CustomerOrder invoice(Invoice invoice) {
+        this.invoice = invoice;
+        return this;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public CustomerOrder customer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

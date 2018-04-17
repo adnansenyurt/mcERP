@@ -15,8 +15,8 @@ public interface PurchaseOrderMapper extends EntityMapper<PurchaseOrderDTO, Purc
     @Mapping(source = "supplierContract.id", target = "supplierContractId")
     PurchaseOrderDTO toDto(PurchaseOrder purchaseOrder);
 
-    @Mapping(source = "supplierId", target = "supplier")
     @Mapping(target = "cashFlows", ignore = true)
+    @Mapping(source = "supplierId", target = "supplier")
     @Mapping(source = "supplierContractId", target = "supplierContract")
     PurchaseOrder toEntity(PurchaseOrderDTO purchaseOrderDTO);
 

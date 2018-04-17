@@ -9,6 +9,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.mobilechip.erp.domain.enumeration.OpportunityStatus;
@@ -43,8 +45,10 @@ public class Opportunity implements Serializable {
     @Column(name = "current_status")
     private OpportunityStatus currentStatus;
 
-    @ManyToOne
-    private Customer customer;
+    @OneToMany(mappedBy = "opportunity")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Customer> customers = new HashSet<>();
 
     @OneToOne(mappedBy = "opportunity")
     @JsonIgnore
@@ -114,17 +118,29 @@ public class Opportunity implements Serializable {
         this.currentStatus = currentStatus;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Set<Customer> getCustomers() {
+        return customers;
     }
 
-    public Opportunity customer(Customer customer) {
-        this.customer = customer;
+    public Opportunity customers(Set<Customer> customers) {
+        this.customers = customers;
         return this;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public Opportunity addCustomer(Customer customer) {
+        this.customers.add(customer);
+        customer.setOpportunity(this);
+        return this;
+    }
+
+    public Opportunity removeCustomer(Customer customer) {
+        this.customers.remove(customer);
+        customer.setOpportunity(null);
+        return this;
+    }
+
+    public void setCustomers(Set<Customer> customers) {
+        this.customers = customers;
     }
 
     public CustomerProposal getProposal() {

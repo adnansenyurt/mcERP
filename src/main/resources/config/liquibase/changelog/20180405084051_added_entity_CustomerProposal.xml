@@ -36,13 +36,13 @@
             <column name="amount" type="bigint">
                 <constraints nullable="true" />
             </column>
-
-            <column name="customer_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="opportunity_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>
+            <column name="customer_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="customer_proposal" columnName="date_submitted" columnDataType="datetime"/>

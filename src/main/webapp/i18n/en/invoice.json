@@ -20,8 +20,8 @@
             "dateIssued": "Date Issued",
             "amountTotal": "Amount Total",
             "paymentDue": "Payment Due",
-            "customer": "Customer",
-            "customerOrder": "Customer Order"
+            "customerOrder": "Customer Order",
+            "customer": "Customer"
         }
     }
 }
