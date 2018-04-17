@@ -151,30 +151,30 @@ entity SupplyStock {
 }
 
 relationship OneToMany {
-    Customer{opportunity(name)} to Opportunity,
-    Customer{customerOrder(name)} to CustomerOrder,
-    Customer{contactPerson(name)} to ContactPerson,
-    Supplier{contactPerson(name)} to ContactPerson,
-    Product{opportunity(name)} to Opportunity,
-    Supplier{purchaseOrder(name)} to PurchaseOrder,
-    SupplierContract{purchaseOrder(dateSigned)} to PurchaseOrder,
-    SupplierContract{supplyPartContract(dateSigned)} to SupplyPartContract,
-    PurchaseOrder{cashFlow(name)} to CashFlow,
-    CustomerOrder{cashFlow(name)} to CashFlow,
-    Customer{customerProposal(name)} to CustomerProposal,
-    Product{productStock(name)} to ProductStock,
-    SupplyPart{supplyStock(name)} to SupplyStock,
-    BillOfMaterials{supplyPart} to SupplyPart,
-    Customer{invoice(name)} to Invoice
+    Opportunity{customer} to Customer{opportunity(name)},
+    Customer{order} to CustomerOrder{customer(name)},
+    Customer{contactPerson(name)} to ContactPerson{customer},
+    Supplier{contactPerson(name)} to ContactPerson{supplier},
+    Product{opportunity(name)} to Opportunity{product},
+    Supplier{purchaseOrder(name)} to PurchaseOrder{supplier},
+    SupplierContract{purchaseOrder(dateSigned)} to PurchaseOrder{supplierContract},
+    SupplierContract{supplyPartContract(dateSigned)} to SupplyPartContract{supplierContract},
+    PurchaseOrder{cashFlow(name)} to CashFlow{purchaseOrder},
+    CustomerOrder{cashFlow(name)} to CashFlow{customerOrder},
+    Customer{customerProposal(name)} to CustomerProposal{customer},
+    Product{productStock(name)} to ProductStock{product},
+    SupplyPart{supplyStock(name)} to SupplyStock{supplyPart},
+    BillOfMaterials{supplyPart} to SupplyPart{bom},
+    Customer{invoice(name)} to Invoice{customer}
 }
 
 relationship OneToOne {
     SupplyPart{contract} to SupplyPartContract,
     PriceRange{contract} to SupplyPartContract,
-    Invoice{customerOrder(name)} to CustomerOrder,
-    CustomerOrder{proposal} to CustomerProposal,
+    Invoice{customerOrder(name)} to CustomerOrder{invoice},
+    CustomerOrder{proposal} to CustomerProposal{customerOrder},
     CustomerProposal{opportunity} to Opportunity{proposal},
-    BillOfMaterials{product} to Product
+    BillOfMaterials{product} to Product{bom}
 }
 
 //relationship ManyToMany {
