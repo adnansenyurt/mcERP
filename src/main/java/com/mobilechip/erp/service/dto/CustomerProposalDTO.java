@@ -27,6 +27,8 @@ public class CustomerProposalDTO implements Serializable {
 
     private Long opportunityId;
 
+    private String opportunityName;
+
     private Long customerId;
 
     private String customerName;
@@ -77,6 +79,14 @@ public class CustomerProposalDTO implements Serializable {
 
     public void setOpportunityId(Long opportunityId) {
         this.opportunityId = opportunityId;
+    }
+
+    public String getOpportunityName() {
+        return opportunityName;
+    }
+
+    public void setOpportunityName(String opportunityName) {
+        this.opportunityName = opportunityName;
     }
 
     public Long getCustomerId() {

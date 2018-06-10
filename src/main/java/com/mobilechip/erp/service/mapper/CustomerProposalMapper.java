@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface CustomerProposalMapper extends EntityMapper<CustomerProposalDTO, CustomerProposal> {
 
     @Mapping(source = "opportunity.id", target = "opportunityId")
+    @Mapping(source = "opportunity.name", target = "opportunityName")
     @Mapping(source = "customer.id", target = "customerId")
     @Mapping(source = "customer.name", target = "customerName")
     CustomerProposalDTO toDto(CustomerProposal customerProposal);

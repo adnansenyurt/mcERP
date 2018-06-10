@@ -35,7 +35,7 @@
                 <td>{{customerProposal.amount}}</td>
                 <td>
                     <div *ngIf="customerProposal.opportunityId">
-                        <a [routerLink]="['../opportunity-mc', customerProposal.opportunityId  ]" >{{customerProposal.opportunityId}}</a>
+                        <a [routerLink]="['../opportunity-mc', customerProposal.opportunityId  ]" >{{customerProposal.opportunityName}}</a>
                     </div>
                 </td>
                 <td>
