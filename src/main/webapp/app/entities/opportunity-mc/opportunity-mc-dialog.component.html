@@ -56,6 +56,13 @@
         </div>
 
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mcErpApp.opportunity.customer" for="field_customer">Customer</label>
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="opportunity.customerId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="mcErpApp.opportunity.product" for="field_product">Product</label>
             <select class="form-control" id="field_product" name="product" [(ngModel)]="opportunity.productId" >
                 <option [ngValue]="null"></option>

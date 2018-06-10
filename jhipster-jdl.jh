@@ -151,7 +151,7 @@ entity SupplyStock {
 }
 
 relationship OneToMany {
-    Opportunity{customer} to Customer{opportunity(name)},
+    Customer{opportunity} to Opportunity{customer(name)},
     Customer{order} to CustomerOrder{customer(name)},
     Customer{contactPerson} to ContactPerson{customer(name)},
     Supplier{contactPerson} to ContactPerson{supplier(name)},

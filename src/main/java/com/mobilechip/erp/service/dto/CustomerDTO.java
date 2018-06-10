@@ -23,10 +23,6 @@ public class CustomerDTO implements Serializable {
 
     private String accountNo;
 
-    private Long opportunityId;
-
-    private String opportunityName;
-
     public Long getId() {
         return id;
     }
@@ -65,22 +61,6 @@ public class CustomerDTO implements Serializable {
 
     public void setAccountNo(String accountNo) {
         this.accountNo = accountNo;
-    }
-
-    public Long getOpportunityId() {
-        return opportunityId;
-    }
-
-    public void setOpportunityId(Long opportunityId) {
-        this.opportunityId = opportunityId;
-    }
-
-    public String getOpportunityName() {
-        return opportunityName;
-    }
-
-    public void setOpportunityName(String opportunityName) {
-        this.opportunityName = opportunityName;
     }
 
     @Override

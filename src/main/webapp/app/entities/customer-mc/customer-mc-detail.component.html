@@ -20,12 +20,6 @@
         <dd>
             <span>{{customer.accountNo}}</span>
         </dd>
-        <dt><span jhiTranslate="mcErpApp.customer.opportunity">Opportunity</span></dt>
-        <dd>
-            <div *ngIf="customer.opportunityId">
-                <a [routerLink]="['/opportunity-mc', customer.opportunityId]">{{customer.opportunityName}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

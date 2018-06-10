@@ -20,6 +20,12 @@
         <dd>
             <span jhiTranslate="{{'mcErpApp.OpportunityStatus.' + opportunity.currentStatus}}">{{opportunity.currentStatus}}</span>
         </dd>
+        <dt><span jhiTranslate="mcErpApp.opportunity.customer">Customer</span></dt>
+        <dd>
+            <div *ngIf="opportunity.customerId">
+                <a [routerLink]="['/customer-mc', opportunity.customerId]">{{opportunity.customerName}}</a>
+            </div>
+        </dd>
         <dt><span jhiTranslate="mcErpApp.opportunity.product">Product</span></dt>
         <dd>
             <div *ngIf="opportunity.productId">

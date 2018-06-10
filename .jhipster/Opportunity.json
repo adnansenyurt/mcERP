@@ -2,17 +2,17 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "customer",
-            "otherEntityName": "customer",
-            "otherEntityRelationshipName": "opportunity"
-        },
-        {
             "relationshipType": "one-to-one",
             "relationshipName": "proposal",
             "otherEntityName": "customerProposal",
             "ownerSide": false,
             "otherEntityRelationshipName": "opportunity"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityField": "name"
         },
         {
             "relationshipType": "many-to-one",

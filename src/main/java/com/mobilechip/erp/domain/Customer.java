@@ -43,6 +43,11 @@ public class Customer implements Serializable {
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Opportunity> opportunities = new HashSet<>();
+
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CustomerOrder> orders = new HashSet<>();
 
     @OneToMany(mappedBy = "customer")
@@ -59,9 +64,6 @@ public class Customer implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Invoice> invoices = new HashSet<>();
-
-    @ManyToOne
-    private Opportunity opportunity;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -122,6 +124,31 @@ public class Customer implements Serializable {
 
     public void setAccountNo(String accountNo) {
         this.accountNo = accountNo;
+    }
+
+    public Set<Opportunity> getOpportunities() {
+        return opportunities;
+    }
+
+    public Customer opportunities(Set<Opportunity> opportunities) {
+        this.opportunities = opportunities;
+        return this;
+    }
+
+    public Customer addOpportunity(Opportunity opportunity) {
+        this.opportunities.add(opportunity);
+        opportunity.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeOpportunity(Opportunity opportunity) {
+        this.opportunities.remove(opportunity);
+        opportunity.setCustomer(null);
+        return this;
+    }
+
+    public void setOpportunities(Set<Opportunity> opportunities) {
+        this.opportunities = opportunities;
     }
 
     public Set<CustomerOrder> getOrders() {
@@ -222,19 +249,6 @@ public class Customer implements Serializable {
 
     public void setInvoices(Set<Invoice> invoices) {
         this.invoices = invoices;
-    }
-
-    public Opportunity getOpportunity() {
-        return opportunity;
-    }
-
-    public Customer opportunity(Opportunity opportunity) {
-        this.opportunity = opportunity;
-        return this;
-    }
-
-    public void setOpportunity(Opportunity opportunity) {
-        this.opportunity = opportunity;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

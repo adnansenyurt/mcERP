@@ -7,12 +7,11 @@ export class CustomerMc implements BaseEntity {
         public address?: string,
         public phone?: string,
         public accountNo?: string,
+        public opportunities?: BaseEntity[],
         public orders?: BaseEntity[],
         public contactPeople?: BaseEntity[],
         public customerProposals?: BaseEntity[],
         public invoices?: BaseEntity[],
-        public opportunityName?: string,
-        public opportunityId?: number,
     ) {
     }
 }

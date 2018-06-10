@@ -20,8 +20,8 @@
             "dateOpened": "Date Opened",
             "amount": "Amount",
             "currentStatus": "Current Status",
-            "customer": "Customer",
             "proposal": "Proposal",
+            "customer": "Customer",
             "product": "Product"
         }
     }
