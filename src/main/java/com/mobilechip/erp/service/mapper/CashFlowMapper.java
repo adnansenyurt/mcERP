@@ -12,7 +12,9 @@ import org.mapstruct.*;
 public interface CashFlowMapper extends EntityMapper<CashFlowDTO, CashFlow> {
 
     @Mapping(source = "purchaseOrder.id", target = "purchaseOrderId")
+    @Mapping(source = "purchaseOrder.name", target = "purchaseOrderName")
     @Mapping(source = "customerOrder.id", target = "customerOrderId")
+    @Mapping(source = "customerOrder.name", target = "customerOrderName")
     CashFlowDTO toDto(CashFlow cashFlow);
 
     @Mapping(source = "purchaseOrderId", target = "purchaseOrder")

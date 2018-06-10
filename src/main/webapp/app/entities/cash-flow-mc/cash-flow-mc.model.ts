@@ -30,7 +30,9 @@ export class CashFlowMc implements BaseEntity {
         public amount?: number,
         public description?: string,
         public currentStatus?: CashFlowStatus,
+        public purchaseOrderName?: string,
         public purchaseOrderId?: number,
+        public customerOrderName?: string,
         public customerOrderId?: number,
     ) {
     }

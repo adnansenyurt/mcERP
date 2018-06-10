@@ -99,14 +99,14 @@
             <label class="form-control-label" jhiTranslate="mcErpApp.cashFlow.purchaseOrder" for="field_purchaseOrder">Purchase Order</label>
             <select class="form-control" id="field_purchaseOrder" name="purchaseOrder" [(ngModel)]="cashFlow.purchaseOrderId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="purchaseOrderOption.id" *ngFor="let purchaseOrderOption of purchaseorders; trackBy: trackPurchaseOrderById">{{purchaseOrderOption.id}}</option>
+                <option [ngValue]="purchaseOrderOption.id" *ngFor="let purchaseOrderOption of purchaseorders; trackBy: trackPurchaseOrderById">{{purchaseOrderOption.name}}</option>
             </select>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="mcErpApp.cashFlow.customerOrder" for="field_customerOrder">Customer Order</label>
             <select class="form-control" id="field_customerOrder" name="customerOrder" [(ngModel)]="cashFlow.customerOrderId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="customerOrderOption.id" *ngFor="let customerOrderOption of customerorders; trackBy: trackCustomerOrderById">{{customerOrderOption.id}}</option>
+                <option [ngValue]="customerOrderOption.id" *ngFor="let customerOrderOption of customerorders; trackBy: trackCustomerOrderById">{{customerOrderOption.name}}</option>
             </select>
         </div>
     </div>

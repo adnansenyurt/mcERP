@@ -39,12 +39,12 @@
                 <td jhiTranslate="{{'mcErpApp.CashFlowStatus.' + cashFlow.currentStatus}}">{{cashFlow.currentStatus}}</td>
                 <td>
                     <div *ngIf="cashFlow.purchaseOrderId">
-                        <a [routerLink]="['../purchase-order-mc', cashFlow.purchaseOrderId  ]" >{{cashFlow.purchaseOrderId}}</a>
+                        <a [routerLink]="['../purchase-order-mc', cashFlow.purchaseOrderId  ]" >{{cashFlow.purchaseOrderName}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="cashFlow.customerOrderId">
-                        <a [routerLink]="['../customer-order-mc', cashFlow.customerOrderId  ]" >{{cashFlow.customerOrderId}}</a>
+                        <a [routerLink]="['../customer-order-mc', cashFlow.customerOrderId  ]" >{{cashFlow.customerOrderName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

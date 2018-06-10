@@ -16,6 +16,7 @@ export class PurchaseOrderMc implements BaseEntity {
         public paymentConditions?: string,
         public currentStatus?: PurchaseOrderStatus,
         public cashFlows?: BaseEntity[],
+        public supplierName?: string,
         public supplierId?: number,
         public supplierContractId?: number,
     ) {

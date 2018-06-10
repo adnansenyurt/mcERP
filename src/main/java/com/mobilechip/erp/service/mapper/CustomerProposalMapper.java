@@ -13,6 +13,7 @@ public interface CustomerProposalMapper extends EntityMapper<CustomerProposalDTO
 
     @Mapping(source = "opportunity.id", target = "opportunityId")
     @Mapping(source = "customer.id", target = "customerId")
+    @Mapping(source = "customer.name", target = "customerName")
     CustomerProposalDTO toDto(CustomerProposal customerProposal);
 
     @Mapping(source = "opportunityId", target = "opportunity")

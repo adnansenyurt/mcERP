@@ -29,7 +29,7 @@
         <dt><span jhiTranslate="mcErpApp.invoice.customer">Customer</span></dt>
         <dd>
             <div *ngIf="invoice.customerId">
-                <a [routerLink]="['/customer-mc', invoice.customerId]">{{invoice.customerId}}</a>
+                <a [routerLink]="['/customer-mc', invoice.customerId]">{{invoice.customerName}}</a>
             </div>
         </dd>
     </dl>

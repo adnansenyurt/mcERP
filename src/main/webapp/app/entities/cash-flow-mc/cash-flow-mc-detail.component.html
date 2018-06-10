@@ -31,13 +31,13 @@
         <dt><span jhiTranslate="mcErpApp.cashFlow.purchaseOrder">Purchase Order</span></dt>
         <dd>
             <div *ngIf="cashFlow.purchaseOrderId">
-                <a [routerLink]="['/purchase-order-mc', cashFlow.purchaseOrderId]">{{cashFlow.purchaseOrderId}}</a>
+                <a [routerLink]="['/purchase-order-mc', cashFlow.purchaseOrderId]">{{cashFlow.purchaseOrderName}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="mcErpApp.cashFlow.customerOrder">Customer Order</span></dt>
         <dd>
             <div *ngIf="cashFlow.customerOrderId">
-                <a [routerLink]="['/customer-order-mc', cashFlow.customerOrderId]">{{cashFlow.customerOrderId}}</a>
+                <a [routerLink]="['/customer-order-mc', cashFlow.customerOrderId]">{{cashFlow.customerOrderName}}</a>
             </div>
         </dd>
     </dl>

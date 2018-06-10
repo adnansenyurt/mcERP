@@ -37,7 +37,11 @@ public class CashFlowDTO implements Serializable {
 
     private Long purchaseOrderId;
 
+    private String purchaseOrderName;
+
     private Long customerOrderId;
+
+    private String customerOrderName;
 
     public Long getId() {
         return id;
@@ -103,12 +107,28 @@ public class CashFlowDTO implements Serializable {
         this.purchaseOrderId = purchaseOrderId;
     }
 
+    public String getPurchaseOrderName() {
+        return purchaseOrderName;
+    }
+
+    public void setPurchaseOrderName(String purchaseOrderName) {
+        this.purchaseOrderName = purchaseOrderName;
+    }
+
     public Long getCustomerOrderId() {
         return customerOrderId;
     }
 
     public void setCustomerOrderId(Long customerOrderId) {
         this.customerOrderId = customerOrderId;
+    }
+
+    public String getCustomerOrderName() {
+        return customerOrderName;
+    }
+
+    public void setCustomerOrderName(String customerOrderName) {
+        this.customerOrderName = customerOrderName;
     }
 
     @Override

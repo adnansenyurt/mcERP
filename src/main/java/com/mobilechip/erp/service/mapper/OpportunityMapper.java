@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface OpportunityMapper extends EntityMapper<OpportunityDTO, Opportunity> {
 
     @Mapping(source = "product.id", target = "productId")
+    @Mapping(source = "product.name", target = "productName")
     OpportunityDTO toDto(Opportunity opportunity);
 
     @Mapping(target = "customers", ignore = true)

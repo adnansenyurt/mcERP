@@ -9,6 +9,7 @@ export class InvoiceMc implements BaseEntity {
         public paymentDue?: number,
         public customerOrderName?: string,
         public customerOrderId?: number,
+        public customerName?: string,
         public customerId?: number,
     ) {
     }

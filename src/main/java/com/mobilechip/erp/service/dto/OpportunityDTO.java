@@ -28,6 +28,8 @@ public class OpportunityDTO implements Serializable {
 
     private Long productId;
 
+    private String productName;
+
     public Long getId() {
         return id;
     }
@@ -74,6 +76,14 @@ public class OpportunityDTO implements Serializable {
 
     public void setProductId(Long productId) {
         this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     @Override

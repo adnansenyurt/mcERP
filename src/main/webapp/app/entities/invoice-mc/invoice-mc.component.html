@@ -40,7 +40,7 @@
                 </td>
                 <td>
                     <div *ngIf="invoice.customerId">
-                        <a [routerLink]="['../customer-mc', invoice.customerId  ]" >{{invoice.customerId}}</a>
+                        <a [routerLink]="['../customer-mc', invoice.customerId  ]" >{{invoice.customerName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

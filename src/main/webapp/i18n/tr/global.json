@@ -7,6 +7,23 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Varlıklar",
+                "contactPersonMc": "Contact Person",
+                "opportunityMc": "Opportunity",
+                "purchaseOrderMc": "Purchase Order",
+                "cashFlowMc": "Cash Flow",
+                "invoiceMc": "Invoice",
+                "customerProposalMc": "Customer Proposal",
+                "supplyPartContractMc": "Supply Part Contract",
+                "productStockMc": "Product Stock",
+                "customerMc": "Customer",
+                "supplierMc": "Supplier",
+                "customerOrderMc": "Customer Order",
+                "productMc": "Product",
+                "billOfMaterialsMc": "Bill Of Materials",
+                "supplierContractMc": "Supplier Contract",
+                "supplyPartMc": "Supply Part",
+                "priceRangeMc": "Price Range",
+                "supplyStockMc": "Supply Stock",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

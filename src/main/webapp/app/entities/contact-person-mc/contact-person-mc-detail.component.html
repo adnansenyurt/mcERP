@@ -23,13 +23,13 @@
         <dt><span jhiTranslate="mcErpApp.contactPerson.customer">Customer</span></dt>
         <dd>
             <div *ngIf="contactPerson.customerId">
-                <a [routerLink]="['/customer-mc', contactPerson.customerId]">{{contactPerson.customerId}}</a>
+                <a [routerLink]="['/customer-mc', contactPerson.customerId]">{{contactPerson.customerName}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="mcErpApp.contactPerson.supplier">Supplier</span></dt>
         <dd>
             <div *ngIf="contactPerson.supplierId">
-                <a [routerLink]="['/supplier-mc', contactPerson.supplierId]">{{contactPerson.supplierId}}</a>
+                <a [routerLink]="['/supplier-mc', contactPerson.supplierId]">{{contactPerson.supplierName}}</a>
             </div>
         </dd>
     </dl>

@@ -5,6 +5,7 @@ export class ProductStockMc implements BaseEntity {
         public id?: number,
         public skuCode?: string,
         public amount?: number,
+        public productName?: string,
         public productId?: number,
     ) {
     }

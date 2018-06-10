@@ -34,6 +34,8 @@ public class PurchaseOrderDTO implements Serializable {
 
     private Long supplierId;
 
+    private String supplierName;
+
     private Long supplierContractId;
 
     public Long getId() {
@@ -98,6 +100,14 @@ public class PurchaseOrderDTO implements Serializable {
 
     public void setSupplierId(Long supplierId) {
         this.supplierId = supplierId;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public Long getSupplierContractId() {

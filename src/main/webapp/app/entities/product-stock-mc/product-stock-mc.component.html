@@ -30,7 +30,7 @@
                 <td>{{productStock.amount}}</td>
                 <td>
                     <div *ngIf="productStock.productId">
-                        <a [routerLink]="['../product-mc', productStock.productId  ]" >{{productStock.productId}}</a>
+                        <a [routerLink]="['../product-mc', productStock.productId  ]" >{{productStock.productName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

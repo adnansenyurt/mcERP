@@ -39,7 +39,7 @@
                 <td jhiTranslate="{{'mcErpApp.PurchaseOrderStatus.' + purchaseOrder.currentStatus}}">{{purchaseOrder.currentStatus}}</td>
                 <td>
                     <div *ngIf="purchaseOrder.supplierId">
-                        <a [routerLink]="['../supplier-mc', purchaseOrder.supplierId  ]" >{{purchaseOrder.supplierId}}</a>
+                        <a [routerLink]="['../supplier-mc', purchaseOrder.supplierId  ]" >{{purchaseOrder.supplierName}}</a>
                     </div>
                 </td>
                 <td>

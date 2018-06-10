@@ -11,7 +11,7 @@
             "relationshipType": "many-to-one",
             "relationshipName": "supplier",
             "otherEntityName": "supplier",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         },
         {
             "relationshipType": "many-to-one",

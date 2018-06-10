@@ -5,13 +5,13 @@
             "relationshipType": "many-to-one",
             "relationshipName": "purchaseOrder",
             "otherEntityName": "purchaseOrder",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "customerOrder",
             "otherEntityName": "customerOrder",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         }
     ],
     "fields": [
