@@ -5,7 +5,7 @@
             "relationshipType": "one-to-one",
             "relationshipName": "proposal",
             "otherEntityName": "customerProposal",
-            "otherEntityField": "id",
+            "otherEntityField": "name",
             "ownerSide": true,
             "otherEntityRelationshipName": "customerOrder"
         },

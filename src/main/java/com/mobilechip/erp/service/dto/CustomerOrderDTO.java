@@ -30,6 +30,8 @@ public class CustomerOrderDTO implements Serializable {
 
     private Long proposalId;
 
+    private String proposalName;
+
     private Long customerId;
 
     private String customerName;
@@ -88,6 +90,14 @@ public class CustomerOrderDTO implements Serializable {
 
     public void setProposalId(Long customerProposalId) {
         this.proposalId = customerProposalId;
+    }
+
+    public String getProposalName() {
+        return proposalName;
+    }
+
+    public void setProposalName(String customerProposalName) {
+        this.proposalName = customerProposalName;
     }
 
     public Long getCustomerId() {

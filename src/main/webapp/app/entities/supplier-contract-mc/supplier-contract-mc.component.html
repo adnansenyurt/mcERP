@@ -17,6 +17,7 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="mcErpApp.supplierContract.name">Name</span></th>
             <th><span jhiTranslate="mcErpApp.supplierContract.dateSigned">Date Signed</span></th>
             <th></th>
             </tr>
@@ -24,6 +25,7 @@
             <tbody>
             <tr *ngFor="let supplierContract of supplierContracts ;trackBy: trackId">
                 <td><a [routerLink]="['../supplier-contract-mc', supplierContract.id ]">{{supplierContract.id}}</a></td>
+                <td>{{supplierContract.name}}</td>
                 <td>{{supplierContract.dateSigned | date:'medium'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

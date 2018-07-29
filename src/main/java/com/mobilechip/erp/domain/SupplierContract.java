@@ -29,6 +29,10 @@ public class SupplierContract implements Serializable {
     private Long id;
 
     @NotNull
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @NotNull
     @Column(name = "date_signed", nullable = false)
     private Instant dateSigned;
 
@@ -49,6 +53,19 @@ public class SupplierContract implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public SupplierContract name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Instant getDateSigned() {
@@ -139,6 +156,7 @@ public class SupplierContract implements Serializable {
     public String toString() {
         return "SupplierContract{" +
             "id=" + getId() +
+            ", name='" + getName() + "'" +
             ", dateSigned='" + getDateSigned() + "'" +
             "}";
     }

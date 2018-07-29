@@ -43,6 +43,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = McErpApp.class)
 public class SupplierContractResourceIntTest {
 
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
+
     private static final Instant DEFAULT_DATE_SIGNED = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATE_SIGNED = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
@@ -90,6 +93,7 @@ public class SupplierContractResourceIntTest {
      */
     public static SupplierContract createEntity(EntityManager em) {
         SupplierContract supplierContract = new SupplierContract()
+            .name(DEFAULT_NAME)
             .dateSigned(DEFAULT_DATE_SIGNED);
         return supplierContract;
     }
@@ -115,6 +119,7 @@ public class SupplierContractResourceIntTest {
         List<SupplierContract> supplierContractList = supplierContractRepository.findAll();
         assertThat(supplierContractList).hasSize(databaseSizeBeforeCreate + 1);
         SupplierContract testSupplierContract = supplierContractList.get(supplierContractList.size() - 1);
+        assertThat(testSupplierContract.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testSupplierContract.getDateSigned()).isEqualTo(DEFAULT_DATE_SIGNED);
     }
 
@@ -136,6 +141,25 @@ public class SupplierContractResourceIntTest {
         // Validate the SupplierContract in the database
         List<SupplierContract> supplierContractList = supplierContractRepository.findAll();
         assertThat(supplierContractList).hasSize(databaseSizeBeforeCreate);
+    }
+
+    @Test
+    @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = supplierContractRepository.findAll().size();
+        // set the field null
+        supplierContract.setName(null);
+
+        // Create the SupplierContract, which fails.
+        SupplierContractDTO supplierContractDTO = supplierContractMapper.toDto(supplierContract);
+
+        restSupplierContractMockMvc.perform(post("/api/supplier-contracts")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(supplierContractDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<SupplierContract> supplierContractList = supplierContractRepository.findAll();
+        assertThat(supplierContractList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -168,6 +192,7 @@ public class SupplierContractResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(supplierContract.getId().intValue())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].dateSigned").value(hasItem(DEFAULT_DATE_SIGNED.toString())));
     }
 
@@ -182,6 +207,7 @@ public class SupplierContractResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(supplierContract.getId().intValue()))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.dateSigned").value(DEFAULT_DATE_SIGNED.toString()));
     }
 
@@ -205,6 +231,7 @@ public class SupplierContractResourceIntTest {
         // Disconnect from session so that the updates on updatedSupplierContract are not directly saved in db
         em.detach(updatedSupplierContract);
         updatedSupplierContract
+            .name(UPDATED_NAME)
             .dateSigned(UPDATED_DATE_SIGNED);
         SupplierContractDTO supplierContractDTO = supplierContractMapper.toDto(updatedSupplierContract);
 
@@ -217,6 +244,7 @@ public class SupplierContractResourceIntTest {
         List<SupplierContract> supplierContractList = supplierContractRepository.findAll();
         assertThat(supplierContractList).hasSize(databaseSizeBeforeUpdate);
         SupplierContract testSupplierContract = supplierContractList.get(supplierContractList.size() - 1);
+        assertThat(testSupplierContract.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testSupplierContract.getDateSigned()).isEqualTo(UPDATED_DATE_SIGNED);
     }
 

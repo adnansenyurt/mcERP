@@ -33,6 +33,8 @@ describe('SupplierContract e2e test', () => {
 
     it('should create and save SupplierContracts', () => {
         supplierContractComponentsPage.clickOnCreateButton();
+        supplierContractDialogPage.setNameInput('name');
+        expect(supplierContractDialogPage.getNameInput()).toMatch('name');
         supplierContractDialogPage.setDateSignedInput(12310020012301);
         expect(supplierContractDialogPage.getDateSignedInput()).toMatch('2001-12-31T02:30');
         supplierContractDialogPage.save();
@@ -61,11 +63,20 @@ export class SupplierContractDialogPage {
     modalTitle = element(by.css('h4#mySupplierContractLabel'));
     saveButton = element(by.css('.modal-footer .btn.btn-primary'));
     closeButton = element(by.css('button.close'));
+    nameInput = element(by.css('input#field_name'));
     dateSignedInput = element(by.css('input#field_dateSigned'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
     }
+
+    setNameInput = function(name) {
+        this.nameInput.sendKeys(name);
+    };
+
+    getNameInput = function() {
+        return this.nameInput.getAttribute('value');
+    };
 
     setDateSignedInput = function(dateSigned) {
         this.dateSignedInput.sendKeys(dateSigned);

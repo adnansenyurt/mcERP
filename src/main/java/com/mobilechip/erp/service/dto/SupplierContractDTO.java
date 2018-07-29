@@ -16,6 +16,9 @@ public class SupplierContractDTO implements Serializable {
     private Long id;
 
     @NotNull
+    private String name;
+
+    @NotNull
     private Instant dateSigned;
 
     public Long getId() {
@@ -24,6 +27,14 @@ public class SupplierContractDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Instant getDateSigned() {
@@ -59,6 +70,7 @@ public class SupplierContractDTO implements Serializable {
     public String toString() {
         return "SupplierContractDTO{" +
             "id=" + getId() +
+            ", name='" + getName() + "'" +
             ", dateSigned='" + getDateSigned() + "'" +
             "}";
     }

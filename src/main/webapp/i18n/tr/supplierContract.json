@@ -16,6 +16,7 @@
             "detail": {
                 "title": "Supplier Contract"
             },
+            "name": "Name",
             "dateSigned": "Date Signed",
             "purchaseOrder": "Purchase Order",
             "supplyPartContract": "Supply Part Contract"

@@ -115,7 +115,8 @@ entity BillOfMaterials {
 }
 
 entity SupplierContract {
-	//relatedSupplier
+	name String required
+    //relatedSupplier
     dateSigned Instant required
     //relatedSupplyPartContract
     //relatedPriceRange
@@ -172,7 +173,7 @@ relationship OneToOne {
     SupplyPart{contract} to SupplyPartContract,
     PriceRange{contract} to SupplyPartContract,
     Invoice{customerOrder(name)} to CustomerOrder{invoice},
-    CustomerOrder{proposal} to CustomerProposal{customerOrder},
+    CustomerOrder{proposal(name)} to CustomerProposal{customerOrder},
     CustomerProposal{opportunity(name)} to Opportunity{proposal},
     BillOfMaterials{product} to Product{bom}
 }
