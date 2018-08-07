@@ -5,6 +5,8 @@ import com.mobilechip.erp.service.CustomerOrderService;
 import com.mobilechip.erp.web.rest.errors.BadRequestAlertException;
 import com.mobilechip.erp.web.rest.util.HeaderUtil;
 import com.mobilechip.erp.service.dto.CustomerOrderDTO;
+import com.mobilechip.erp.service.dto.CustomerOrderCriteria;
+import com.mobilechip.erp.service.CustomerOrderQueryService;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +34,11 @@ public class CustomerOrderResource {
 
     private final CustomerOrderService customerOrderService;
 
-    public CustomerOrderResource(CustomerOrderService customerOrderService) {
+    private final CustomerOrderQueryService customerOrderQueryService;
+
+    public CustomerOrderResource(CustomerOrderService customerOrderService, CustomerOrderQueryService customerOrderQueryService) {
         this.customerOrderService = customerOrderService;
+        this.customerOrderQueryService = customerOrderQueryService;
     }
 
     /**
@@ -81,19 +86,16 @@ public class CustomerOrderResource {
     /**
      * GET  /customer-orders : get all the customerOrders.
      *
-     * @param filter the filter of the request
+     * @param criteria the criterias which the requested entities should match
      * @return the ResponseEntity with status 200 (OK) and the list of customerOrders in body
      */
     @GetMapping("/customer-orders")
     @Timed
-    public List<CustomerOrderDTO> getAllCustomerOrders(@RequestParam(required = false) String filter) {
-        if ("invoice-is-null".equals(filter)) {
-            log.debug("REST request to get all CustomerOrders where invoice is null");
-            return customerOrderService.findAllWhereInvoiceIsNull();
-        }
-        log.debug("REST request to get all CustomerOrders");
-        return customerOrderService.findAll();
-        }
+    public ResponseEntity<List<CustomerOrderDTO>> getAllCustomerOrders(CustomerOrderCriteria criteria) {
+        log.debug("REST request to get CustomerOrders by criteria: {}", criteria);
+        List<CustomerOrderDTO> entityList = customerOrderQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
 
     /**
      * GET  /customer-orders/:id : get the "id" customerOrder.
