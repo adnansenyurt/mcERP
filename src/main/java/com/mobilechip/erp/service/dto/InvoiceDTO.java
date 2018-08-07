@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+import com.mobilechip.erp.domain.enumeration.InvoiceStatus;
 
 /**
  * A DTO for the Invoice entity.
@@ -17,6 +18,9 @@ public class InvoiceDTO implements Serializable {
 
     @NotNull
     private String name;
+
+    @NotNull
+    private InvoiceStatus status;
 
     @NotNull
     private Instant dateIssued;
@@ -47,6 +51,14 @@ public class InvoiceDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public InvoiceStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(InvoiceStatus status) {
+        this.status = status;
     }
 
     public Instant getDateIssued() {
@@ -131,6 +143,7 @@ public class InvoiceDTO implements Serializable {
         return "InvoiceDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", status='" + getStatus() + "'" +
             ", dateIssued='" + getDateIssued() + "'" +
             ", amountTotal=" + getAmountTotal() +
             ", paymentDue=" + getPaymentDue() +

@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.mobilechip.erp.domain.enumeration.InvoiceStatus;
+
 /**
  * A Invoice.
  */
@@ -28,6 +30,11 @@ public class Invoice implements Serializable {
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private InvoiceStatus status;
 
     @NotNull
     @Column(name = "date_issued", nullable = false)
@@ -66,6 +73,19 @@ public class Invoice implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public InvoiceStatus getStatus() {
+        return status;
+    }
+
+    public Invoice status(InvoiceStatus status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(InvoiceStatus status) {
+        this.status = status;
     }
 
     public Instant getDateIssued() {
@@ -159,6 +179,7 @@ public class Invoice implements Serializable {
         return "Invoice{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", status='" + getStatus() + "'" +
             ", dateIssued='" + getDateIssued() + "'" +
             ", amountTotal=" + getAmountTotal() +
             ", paymentDue=" + getPaymentDue() +

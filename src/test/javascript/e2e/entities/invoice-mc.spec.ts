@@ -35,6 +35,7 @@ describe('Invoice e2e test', () => {
         invoiceComponentsPage.clickOnCreateButton();
         invoiceDialogPage.setNameInput('name');
         expect(invoiceDialogPage.getNameInput()).toMatch('name');
+        invoiceDialogPage.statusSelectLastOption();
         invoiceDialogPage.setDateIssuedInput(12310020012301);
         expect(invoiceDialogPage.getDateIssuedInput()).toMatch('2001-12-31T02:30');
         invoiceDialogPage.setAmountTotalInput('5');
@@ -70,6 +71,7 @@ export class InvoiceDialogPage {
     saveButton = element(by.css('.modal-footer .btn.btn-primary'));
     closeButton = element(by.css('button.close'));
     nameInput = element(by.css('input#field_name'));
+    statusSelect = element(by.css('select#field_status'));
     dateIssuedInput = element(by.css('input#field_dateIssued'));
     amountTotalInput = element(by.css('input#field_amountTotal'));
     paymentDueInput = element(by.css('input#field_paymentDue'));
@@ -88,6 +90,17 @@ export class InvoiceDialogPage {
         return this.nameInput.getAttribute('value');
     };
 
+    setStatusSelect = function(status) {
+        this.statusSelect.sendKeys(status);
+    };
+
+    getStatusSelect = function() {
+        return this.statusSelect.element(by.css('option:checked')).getText();
+    };
+
+    statusSelectLastOption = function() {
+        this.statusSelect.all(by.tagName('option')).last().click();
+    };
     setDateIssuedInput = function(dateIssued) {
         this.dateIssuedInput.sendKeys(dateIssued);
     };

@@ -18,6 +18,7 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="mcErpApp.invoice.name">Name</span></th>
+            <th><span jhiTranslate="mcErpApp.invoice.status">Status</span></th>
             <th><span jhiTranslate="mcErpApp.invoice.dateIssued">Date Issued</span></th>
             <th><span jhiTranslate="mcErpApp.invoice.amountTotal">Amount Total</span></th>
             <th><span jhiTranslate="mcErpApp.invoice.paymentDue">Payment Due</span></th>
@@ -30,6 +31,7 @@
             <tr *ngFor="let invoice of invoices ;trackBy: trackId">
                 <td><a [routerLink]="['../invoice-mc', invoice.id ]">{{invoice.id}}</a></td>
                 <td>{{invoice.name}}</td>
+                <td jhiTranslate="{{'mcErpApp.InvoiceStatus.' + invoice.status}}">{{invoice.status}}</td>
                 <td>{{invoice.dateIssued | date:'medium'}}</td>
                 <td>{{invoice.amountTotal}}</td>
                 <td>{{invoice.paymentDue}}</td>

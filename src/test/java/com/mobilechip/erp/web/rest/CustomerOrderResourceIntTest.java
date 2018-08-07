@@ -8,6 +8,7 @@ import com.mobilechip.erp.service.CustomerOrderService;
 import com.mobilechip.erp.service.dto.CustomerOrderDTO;
 import com.mobilechip.erp.service.mapper.CustomerOrderMapper;
 import com.mobilechip.erp.web.rest.errors.ExceptionTranslator;
+import com.mobilechip.erp.domain.Invoice;
 
 import org.junit.Before;
 import org.junit.Test;

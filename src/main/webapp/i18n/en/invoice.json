@@ -17,6 +17,7 @@
                 "title": "Invoice"
             },
             "name": "Name",
+            "status": "Status",
             "dateIssued": "Date Issued",
             "amountTotal": "Amount Total",
             "paymentDue": "Payment Due",

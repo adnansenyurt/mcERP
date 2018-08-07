@@ -1,0 +1,10 @@
+{
+    "mcErpApp": {
+        "InvoiceStatus" : {
+            "null": "",
+            "ISSUED": "ISSUED",
+            "CANCELLED": "CANCELLED",
+            "PAID": "PAID"
+        }
+    }
+}

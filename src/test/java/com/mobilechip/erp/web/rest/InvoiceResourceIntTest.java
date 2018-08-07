@@ -34,6 +34,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.mobilechip.erp.domain.enumeration.InvoiceStatus;
 /**
  * Test class for the InvoiceResource REST controller.
  *
@@ -45,6 +46,9 @@ public class InvoiceResourceIntTest {
 
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
+
+    private static final InvoiceStatus DEFAULT_STATUS = InvoiceStatus.ISSUED;
+    private static final InvoiceStatus UPDATED_STATUS = InvoiceStatus.CANCELLED;
 
     private static final Instant DEFAULT_DATE_ISSUED = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATE_ISSUED = Instant.now().truncatedTo(ChronoUnit.MILLIS);
@@ -100,6 +104,7 @@ public class InvoiceResourceIntTest {
     public static Invoice createEntity(EntityManager em) {
         Invoice invoice = new Invoice()
             .name(DEFAULT_NAME)
+            .status(DEFAULT_STATUS)
             .dateIssued(DEFAULT_DATE_ISSUED)
             .amountTotal(DEFAULT_AMOUNT_TOTAL)
             .paymentDue(DEFAULT_PAYMENT_DUE);
@@ -128,6 +133,7 @@ public class InvoiceResourceIntTest {
         assertThat(invoiceList).hasSize(databaseSizeBeforeCreate + 1);
         Invoice testInvoice = invoiceList.get(invoiceList.size() - 1);
         assertThat(testInvoice.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testInvoice.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testInvoice.getDateIssued()).isEqualTo(DEFAULT_DATE_ISSUED);
         assertThat(testInvoice.getAmountTotal()).isEqualTo(DEFAULT_AMOUNT_TOTAL);
         assertThat(testInvoice.getPaymentDue()).isEqualTo(DEFAULT_PAYMENT_DUE);
@@ -174,6 +180,25 @@ public class InvoiceResourceIntTest {
 
     @Test
     @Transactional
+    public void checkStatusIsRequired() throws Exception {
+        int databaseSizeBeforeTest = invoiceRepository.findAll().size();
+        // set the field null
+        invoice.setStatus(null);
+
+        // Create the Invoice, which fails.
+        InvoiceDTO invoiceDTO = invoiceMapper.toDto(invoice);
+
+        restInvoiceMockMvc.perform(post("/api/invoices")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(invoiceDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Invoice> invoiceList = invoiceRepository.findAll();
+        assertThat(invoiceList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void checkDateIssuedIsRequired() throws Exception {
         int databaseSizeBeforeTest = invoiceRepository.findAll().size();
         // set the field null
@@ -203,6 +228,7 @@ public class InvoiceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(invoice.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].dateIssued").value(hasItem(DEFAULT_DATE_ISSUED.toString())))
             .andExpect(jsonPath("$.[*].amountTotal").value(hasItem(DEFAULT_AMOUNT_TOTAL.intValue())))
             .andExpect(jsonPath("$.[*].paymentDue").value(hasItem(DEFAULT_PAYMENT_DUE)));
@@ -220,6 +246,7 @@ public class InvoiceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(invoice.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.dateIssued").value(DEFAULT_DATE_ISSUED.toString()))
             .andExpect(jsonPath("$.amountTotal").value(DEFAULT_AMOUNT_TOTAL.intValue()))
             .andExpect(jsonPath("$.paymentDue").value(DEFAULT_PAYMENT_DUE));
@@ -246,6 +273,7 @@ public class InvoiceResourceIntTest {
         em.detach(updatedInvoice);
         updatedInvoice
             .name(UPDATED_NAME)
+            .status(UPDATED_STATUS)
             .dateIssued(UPDATED_DATE_ISSUED)
             .amountTotal(UPDATED_AMOUNT_TOTAL)
             .paymentDue(UPDATED_PAYMENT_DUE);
@@ -261,6 +289,7 @@ public class InvoiceResourceIntTest {
         assertThat(invoiceList).hasSize(databaseSizeBeforeUpdate);
         Invoice testInvoice = invoiceList.get(invoiceList.size() - 1);
         assertThat(testInvoice.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testInvoice.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testInvoice.getDateIssued()).isEqualTo(UPDATED_DATE_ISSUED);
         assertThat(testInvoice.getAmountTotal()).isEqualTo(UPDATED_AMOUNT_TOTAL);
         assertThat(testInvoice.getPaymentDue()).isEqualTo(UPDATED_PAYMENT_DUE);

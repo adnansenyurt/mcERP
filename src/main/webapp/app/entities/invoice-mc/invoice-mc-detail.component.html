@@ -8,6 +8,10 @@
         <dd>
             <span>{{invoice.name}}</span>
         </dd>
+        <dt><span jhiTranslate="mcErpApp.invoice.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mcErpApp.InvoiceStatus.' + invoice.status}}">{{invoice.status}}</span>
+        </dd>
         <dt><span jhiTranslate="mcErpApp.invoice.dateIssued">Date Issued</span></dt>
         <dd>
             <span>{{invoice.dateIssued | date:'medium'}}</span>

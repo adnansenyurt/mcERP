@@ -25,6 +25,14 @@
             ]
         },
         {
+            "fieldName": "status",
+            "fieldType": "InvoiceStatus",
+            "fieldValues": "ISSUED,CANCELLED,PAID",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "dateIssued",
             "fieldType": "Instant",
             "fieldValidateRules": [

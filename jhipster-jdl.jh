@@ -3,6 +3,9 @@
 enum OpportunityStatus {
 	INITIAL, PROPOSAL, LOST, WON
 }
+enum InvoiceStatus {
+	ISSUED, CANCELLED, PAID
+}
 
 enum CustomerOrderStatus {
     RECEIVED, INVOICED, PAID
@@ -90,7 +93,8 @@ entity CashFlow {
 
 entity Invoice {
 	name String required
-	dateIssued Instant required
+	status InvoiceStatus required
+    dateIssued Instant required
     amountTotal Long
     paymentDue Integer //duration
 }
@@ -196,4 +200,7 @@ dto * with mapstruct
 service all with serviceImpl //except Employee, Job
 // Set an angular suffix
 angularSuffix * with mc //mobile-chip
+
+filter CustomerOrder
+
 
